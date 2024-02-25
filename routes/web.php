@@ -18,5 +18,9 @@ Route::middleware([
     })->name('dashboard');
 
     Route::resource("devices", DeviceController::class);
+    Route::post("/devices/{device}/tokens", [DeviceController::class, "createToken"])
+        ->name("devices.tokens.create");
+    Route::delete("/devices/{device}/tokens/{token}", [DeviceController::class, "deleteToken"])
+        ->name("devices.tokens.delete");
     Route::resource("devices.slots", SlotController::class)->shallow();
 });

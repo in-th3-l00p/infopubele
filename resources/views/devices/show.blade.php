@@ -20,7 +20,7 @@
         </div>
 
         <ul class="ml-8">
-            @forelse ($device->slots as $slot)
+            @forelse ($slots as $slot)
                 <li>
                     <a
                         class="flex items-center justify-between my-4 p-4 border-2 rounded-md shadow-md hover:shadow-lg hover:bg-zinc-100 transition ease-in-out"
@@ -39,5 +39,75 @@
                 <p>{{ __("There are no slots configured.") }}</p>
             @endforelse
         </ul>
+
+        {{ $slots->links() }}
+    </x-white-container>
+
+    <x-white-container>
+        <h2 class="text-lg font-semibold mb-8">{{ __("Transactions") }}</h2>
+
+        <ul class="ml-8">
+            @forelse ($transactions as $transaction)
+                <li @class([
+                    "flex items-center justify-between",
+                    "my-4 p-4 border-2 rounded-md shadow-md",
+                    "hover:shadow-lg hover:bg-zinc-100 transition ease-in-out"
+                ])>
+                    <div>
+                        <h3 class="text-lg font-semibold">{{ $transaction->created_at }}</h3>
+                    </div>
+                    <div>
+                        <p>{{ $transaction->amount }} m<sup>3</sup></p>
+                    </div>
+                </li>
+            @empty
+                <p>{{ __("There are no transactions.") }}</p>
+            @endforelse
+        </ul>
+    </x-white-container>
+
+    <x-white-container>
+        <div class="flex justify-between items-center mb-8">
+            <h2 class="text-lg font-semibold">{{ __("Access tokens") }}:</h2>
+            <form
+                method="POST"
+                action="{{ route("devices.tokens.create", [
+                    "device" => $device
+                ]) }}"
+            >
+                @csrf
+
+                <x-button class="aspect-square">
+                    <img src="/icons/plus.svg" alt="plus" class="w-4 invert">
+                </x-button>
+            </form>
+
+        </div>
+
+        <ul class="ml-8">
+            @forelse ($tokens as $token)
+                <li @class([
+                    "flex items-center justify-between my-4 p-4 border-2 rounded-md shadow-md",
+                    "hover:shadow-lg hover:bg-zinc-100 transition ease-in-out"
+                ])>
+                    <div>
+                        <h3 class="text-lg font-semibold">{{ $token->token }}</h3>
+                    </div>
+                    <form method="POST" action="{{ route("devices.tokens.delete", [
+                        "device" => $device,
+                        "token" => $token
+                    ]) }}">
+                        @csrf
+                        @method("DELETE")
+
+                        <x-danger-button type="submit" title="remove">Remove</x-danger-button>
+                    </form>
+                </li>
+            @empty
+                <p>{{ __("There are no tokens created.") }}</p>
+            @endforelse
+        </ul>
+
+        {{ $tokens->links() }}
     </x-white-container>
 </x-app-layout>

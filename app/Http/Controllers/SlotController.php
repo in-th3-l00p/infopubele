@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Device;
 use App\Models\Slot;
+use http\Env\Response;
 use Illuminate\Http\Request;
 
 class SlotController extends Controller
@@ -17,12 +18,39 @@ class SlotController extends Controller
         ]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
+    public function store(Request $request) {
+    }
+
+    public function transaction(Request $request, Slot $slot) {
+        $request->validate([
+            "amount" => [
+                "required",
+                "numeric",
+                "min:" . -$slot->volume,
+                "max:" . $slot->max_volume - $slot->volume
+            ],
+            "token" => "required|exists:device_tokens,token"
+        ]);
+
+        if (!$slot
+            ->device()
+            ->first()
+            ->tokens()
+            ->where("token", $request->token)
+            ->exists()
+        )
+            return response()->json([
+                "message" => "Invalid token"
+            ], 401);
+
+
+        $slot->transactions()->create([
+            "amount" => $request->amount
+        ]);
+        $slot->update([
+            "volume" => $slot->volume + $request->amount
+        ]);
+        return response("", 201);
     }
 
     public function show(Slot $slot) {
@@ -31,27 +59,12 @@ class SlotController extends Controller
         ]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Slot $slot)
-    {
-        //
+    public function edit(Slot $slot) {
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Slot $slot)
-    {
-        //
+    public function update(Request $request, Slot $slot) {
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Slot $slot)
-    {
-        //
+    public function destroy(Slot $slot) {
     }
 }

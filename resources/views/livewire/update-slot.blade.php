@@ -9,6 +9,15 @@
 
     <x-slot name="form">
         <div class="col-span-6 sm:col-span-4">
+            <label for="id">{{ __("ID") }}</label>
+            <x-input
+                id="id" type="text" class="mt-1 block w-full"
+                required autocomplete="id"
+                disabled value="{{ $slot->id }}"
+            />
+        </div>
+
+        <div class="col-span-6 sm:col-span-4">
             <x-label for="name" value="{{ __('Name') }}" />
             <x-input
                 id="name" type="text" class="mt-1 block w-full"
@@ -19,7 +28,7 @@
         </div>
 
         <div class="col-span-6 sm:col-span-4">
-            <x-label for="capacity" value="{{ __('Capacity') }}" />
+            <x-label for="capacity" value="{{ __('Max Capacity') }}" />
             <x-input
                 id="capacity" type="number" class="mt-1 block w-full"
                 required autocomplete="capacity"
