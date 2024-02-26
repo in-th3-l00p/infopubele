@@ -17,10 +17,14 @@ Route::middleware([
         return view('dashboard');
     })->name('dashboard');
 
-    Route::resource("devices", DeviceController::class);
-    Route::post("/devices/{device}/tokens", [DeviceController::class, "createToken"])
-        ->name("devices.tokens.create");
-    Route::delete("/devices/{device}/tokens/{token}", [DeviceController::class, "deleteToken"])
-        ->name("devices.tokens.delete");
-    Route::resource("devices.slots", SlotController::class)->shallow();
+    // admin
+    Route::middleware("admin")->group(function () {
+        Route::resource("devices", DeviceController::class);
+        Route::post("/devices/{device}/tokens", [DeviceController::class, "createToken"])
+            ->name("devices.tokens.create");
+        Route::delete("/devices/{device}/tokens/{token}", [DeviceController::class, "deleteToken"])
+            ->name("devices.tokens.delete");
+        Route::resource("devices.slots", SlotController::class)->shallow();
+        Route::resource("users", \App\Http\Controllers\AdminUserController::class);
+    });
 });

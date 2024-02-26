@@ -25,4 +25,19 @@
             </div>
         </x-white-container>
     </div>
+
+    <x-white-container>
+        <h2 class="text-lg font-semibold mb-8">{{ __("Transactions") }}</h2>
+
+        <ul class="ml-8">
+            @forelse ($transactions as $transaction)
+                <x-transaction-display
+                    :transaction="$transaction"
+                    :device="$device"
+                />
+            @empty
+                <p>{{ __("There are no transactions.") }}</p>
+            @endforelse
+        </ul>
+    </x-white-container>
 </x-app-layout>

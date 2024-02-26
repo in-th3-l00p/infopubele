@@ -28,7 +28,7 @@
                 </div>
             </a>
         @empty
-            <p class="text-center">No devices found.</p>
+            <p class="text-center">{{ __("No devices found.") }}</p>
         @endforelse
 
         {{ $devices->links() }}

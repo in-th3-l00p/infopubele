@@ -48,18 +48,10 @@
 
         <ul class="ml-8">
             @forelse ($transactions as $transaction)
-                <li @class([
-                    "flex items-center justify-between",
-                    "my-4 p-4 border-2 rounded-md shadow-md",
-                    "hover:shadow-lg hover:bg-zinc-100 transition ease-in-out"
-                ])>
-                    <div>
-                        <h3 class="text-lg font-semibold">{{ $transaction->created_at }}</h3>
-                    </div>
-                    <div>
-                        <p>{{ $transaction->amount }} m<sup>3</sup></p>
-                    </div>
-                </li>
+                <x-transaction-display
+                    :transaction="$transaction"
+                    :device="$device"
+                />
             @empty
                 <p>{{ __("There are no transactions.") }}</p>
             @endforelse
@@ -86,22 +78,41 @@
 
         <ul class="ml-8">
             @forelse ($tokens as $token)
-                <li @class([
-                    "flex items-center justify-between my-4 p-4 border-2 rounded-md shadow-md",
-                    "hover:shadow-lg hover:bg-zinc-100 transition ease-in-out"
-                ])>
-                    <div>
-                        <h3 class="text-lg font-semibold">{{ $token->token }}</h3>
+                <li
+                    @class([
+                        "flex items-center justify-between my-4 p-4 border-2 rounded-md shadow-md",
+                        "hover:shadow-lg hover:bg-zinc-100 transition ease-in-out gap-8"
+                    ])
+                    x-data="{ showToken: false }"
+                >
+                    <div class="flex-grow">
+                        <h3 class="text-lg font-semibold" x-show="showToken">{{ $token->token }}</h3>
+                        <div
+                            class="w-full p-4 bg-zinc-600 animate-pulse rounded-lg max-w-[400px] hover:cursor-help"
+                            title="{{ __("Press the \"Show\" button to see the token") }}"
+                            x-show="!showToken"
+                        ></div>
                     </div>
-                    <form method="POST" action="{{ route("devices.tokens.delete", [
-                        "device" => $device,
-                        "token" => $token
-                    ]) }}">
-                        @csrf
-                        @method("DELETE")
 
-                        <x-danger-button type="submit" title="remove">Remove</x-danger-button>
-                    </form>
+                    <div class="flex items-center gap-4">
+                        <button
+                            type="button"
+                            class="btn"
+                            @click="showToken = !showToken"
+                            x-text="showToken ? '{{ __("Hide") }}' : '{{ __("Show") }}'"
+                        >
+                        </button>
+
+                        <form method="POST" action="{{ route("devices.tokens.delete", [
+                            "device" => $device,
+                            "token" => $token
+                        ]) }}">
+                            @csrf
+                            @method("DELETE")
+
+                            <x-danger-button type="submit" title="remove">Remove</x-danger-button>
+                        </form>
+                    </div>
                 </li>
             @empty
                 <p>{{ __("There are no tokens created.") }}</p>

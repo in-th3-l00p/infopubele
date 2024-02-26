@@ -23,6 +23,7 @@ return new class extends Migration
             $table->timestamps();
 
             $table->enum("role", [ "user", "admin", "generator", "uat", "operator" ])->default("user");
+            $table->string("city")->nullable();
         });
     }
 
