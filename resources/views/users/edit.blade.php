@@ -1,8 +1,13 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Update User') . ": " . $user->name  }}
-        </h2>
+        <div class="flex items-center gap-4">
+            <a href="{{ route("users.index") }}">
+                <x-button :title="__('Back')">Back</x-button>
+            </a>
+            <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+                {{ __('Update User') . ": " . $user->name  }}
+            </h2>
+        </div>
     </x-slot>
 
     <x-white-container>
@@ -69,6 +74,30 @@
                 </select>
                 <x-input-error for="city" class="mt-2" />
             </div>
+
+            @if (
+                $user->role === "user" ||
+                $user->role === "uat" ||
+                $user->role === "operator"
+            )
+                <div class="mt-4">
+                    <x-label for="device_id" value="{{ __('Device') }}" />
+                    <select name="device_id" id="device_id" class="select">
+                        <option value="" @selected($user->device === null)>
+                            {{ __("No device") }}
+                        </option>
+
+                        @foreach ($devices as $device)
+                            <option
+                                value="{{ $device->id }}"
+                                @selected($user->device_id === $device->id)
+                            >
+                                {{ $device->name }}
+                            </option>
+                        @endforeach
+                    </select>
+                </div>
+            @endif
 
             <div class="flex items-center justify-center mt-4">
                 <x-button>{{ __('Edit') }}</x-button>
