@@ -13,18 +13,39 @@ class AdminUserController extends Controller
     }
 
     public function create() {
+        return view("users.create");
     }
 
     public function store(Request $request) {
+        $user = User::query()->create($request->validate([
+            "name" => "required|max:255",
+            "email" => "required|email|unique:users,email",
+            "password" => "required|confirmed|min:8",
+            "city" => "required|max:255",
+            "role" => "required|in:admin,user,generator,uat,operator"
+        ]));
+
+        return redirect()->route("users.index");
     }
 
     public function show(User $user) {
     }
 
     public function edit(User $user) {
+        return view("users.edit", ["user" => $user]);
     }
 
     public function update(Request $request, User $user) {
+        $user->update($request->validate([
+            "name" => "required|max:255",
+            "email" => "required|email|unique:users,email," . $user->id,
+            "city" => "required|max:255",
+            "role" => "required|in:admin,user,generator,uat,operator"
+        ]));
+
+        return redirect()->route("users.edit", [
+            "user" => $user
+        ]);
     }
 
     public function destroy(User $user) {

@@ -22,7 +22,7 @@
             <x-label for="city" value="{{ __('City') }}" />
             <select
                 id="city" name="city"
-                class="mt-1 block w-full border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm"
+                class="select"
                 wire:model="city"
             >
                 <option value="New York" selected>New York</option>
