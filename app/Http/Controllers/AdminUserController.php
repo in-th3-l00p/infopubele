@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Device;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -32,7 +33,10 @@ class AdminUserController extends Controller
     }
 
     public function edit(User $user) {
-        return view("users.edit", ["user" => $user]);
+        return view("users.edit", [
+            "user" => $user,
+            "devices" => Device::all()
+        ]);
     }
 
     public function update(Request $request, User $user) {
@@ -40,7 +44,8 @@ class AdminUserController extends Controller
             "name" => "required|max:255",
             "email" => "required|email|unique:users,email," . $user->id,
             "city" => "required|max:255",
-            "role" => "required|in:admin,user,generator,uat,operator"
+            "role" => "required|in:admin,user,generator,uat,operator",
+            "device_id" => "nullable|exists:devices,id"
         ]));
 
         return redirect()->route("users.edit", [

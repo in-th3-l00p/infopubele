@@ -1,8 +1,13 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Create User') }}
-        </h2>
+        <div class="flex items-center gap-4">
+            <a href="{{ route("users.index") }}">
+                <x-button :title="__('Back')">Back</x-button>
+            </a>
+            <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+                {{ __('Create User') }}
+            </h2>
+        </div>
     </x-slot>
 
     <x-white-container>
