@@ -2,22 +2,21 @@
     <div class=" min-h-screen flex-col flex">
         <x-header></x-header>
         <div
-            class="w-full flex-grow bg-[url('/public/img.png')] bg-cover bg-center flex justify-center items-center">
+            class="w-full flex-grow bg-[url('/public/img.png')] bg-cover brightness-100 bg-center flex justify-center items-center">
             <div class="flex flex-col justify-center items-center">
                 <h1 class=" text-center text-5xl text-white font-bold drop-shadow-lg">BINE AI VENIT PE PLATFORMA
-                    <span class="text-red-800 font-bold">INFOPUBELE</span>
+                    <span class="text-yellow-400 font-bold">INFOPUBELE</span>
                 </h1>
-                <p class="mt-5 text-center text-lg text-white opacity-70">Aceasta platforma este utitlizata pentru tranzactii
-                    cu pubele noastre</p>
-                <a class="mt-8 px-12 py-3 bg-gradient-to-r from-amber-500 to-red-600 hover:from-amber-600 hover:to-red-700 text-xl text-white/70 font-semibold drop-shadow-lg rounded-full"
+                <p class="mt-5 text-center text-lg text-white ">Aceasta platforma este utitlizata pentru tranzactii cu pubele noastre</p>
+                <a class="mt-8 px-12 py-3 bg-green-500 hover:from-amber-600 hover:to-red-700 text-xl text-white/70 font-semibold drop-shadow-lg rounded-full"
                    href="#">Continua</a>
             </div>
         </div>
     </div>
     <div class="bg-gray-100">
-        <div class="py-5 mx-28 ">
+        <div class="py-8 sm:mx-28 mx-12">
             <div class="border rounded-2xl bg-white shadow-md">
-                <div class="ml-5 space-y-2">
+                <div class="px-12 space-y-2">
                     <h1 class=" mt-8 font-bold text-3xl">Reciclarea</h1>
                     <br>
                     <p>Reciclarea este un proces esențial pentru protejarea mediului înconjurător și pentru conservarea resurselor naturale. Este o practică prin care materialele utilizate sunt colectate, sortate, prelucrate și transformate în noi produse sau materii prime, în loc să fie aruncate la groapa de gunoi sau incinerate.</p>
@@ -50,7 +49,7 @@
         <div class="py-5 mx-28 ">
             <div class="border rounded-2xl bg-white shadow-md">
                 <div class="ml-5 space-y-2">
-                    <h1 class=" mt-8 font-bold text-4xl">Locatia pubelelor</h1>
+                    <h1 class=" mt-8 font-bold text-3xl">Locatia pubelelor</h1>
                 </div>
             </div>
         </div>

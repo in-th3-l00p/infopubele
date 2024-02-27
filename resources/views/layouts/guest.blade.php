@@ -5,6 +5,9 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
+        <link href="{{ asset('vendor/bladewind/css/bladewind-ui.min.css') }}" rel="stylesheet" />
+        <link href="{{ asset('vendor/bladewind/css/animate.min.css') }}" rel="stylesheet" />
+
         <title>{{ config('app.name', 'Laravel') }}</title>
 
         <!-- Fonts -->
@@ -25,5 +28,6 @@
         </div>
 
         @livewireScripts
+        <script src="{{ asset('vendor/bladewind/js/helpers.js') }}"></script>
     </body>
 </html>
