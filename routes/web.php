@@ -6,7 +6,18 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('welcome');
+Route::get('/about', function () {
+    return view('about');
+})->name('about');
+Route::get('/contact', function () {
+    return view('contact');
+})->name('contact');
+Route::post('/contact', function (\App\Http\Requests\ContactRequest $request) {
+    $contact=\App\Models\Contact::create($request->validated());
+
+    return redirect()->route('contact',['contact'=>$contact->id]);
+})->name('contact.store');
 
 Route::middleware([
     'auth:sanctum',

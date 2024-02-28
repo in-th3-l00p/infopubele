@@ -13,10 +13,7 @@
             </div>
         </div>
     </div>
-    <div class="bg-gray-100">
-        <div class="py-8 sm:mx-28 mx-12">
-            <div class="border rounded-2xl bg-white shadow-md">
-                <div class="px-12 space-y-2">
+    <x-text-card>
                     <h1 class=" mt-8 font-bold text-3xl">Reciclarea</h1>
                     <br>
                     <p>Reciclarea este un proces esențial pentru protejarea mediului înconjurător și pentru conservarea resurselor naturale. Este o practică prin care materialele utilizate sunt colectate, sortate, prelucrate și transformate în noi produse sau materii prime, în loc să fie aruncate la groapa de gunoi sau incinerate.</p>
@@ -43,16 +40,12 @@
                     <p class="font-extrabold pb-10">Prin utilizarea tehnologiei și a unei abordări inovatoare, Infopubele.ro își propune să transforme gestionarea deșeurilor într-un proces simplu, inteligent și sustenabil.
 
                     </p>
-                </div>
-            </div>
-        </div>
-        <div class="py-5 mx-28 ">
-            <div class="border rounded-2xl bg-white shadow-md">
+        </x-text-card>
+    <x-text-card>
                 <div class="ml-5 space-y-2">
                     <h1 class=" mt-8 font-bold text-3xl">Locatia pubelelor</h1>
                 </div>
-            </div>
-        </div>
-    </div>
+    </x-text-card>
+
     <x-footer></x-footer>
 </x-guest-layout>

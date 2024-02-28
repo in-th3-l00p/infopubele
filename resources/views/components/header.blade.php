@@ -7,7 +7,7 @@
         <div class="">
                         <x-bladewind.dropmenu>
                             <x-bladewind.dropmenu-item>
-                                <p class="text-black">Acasa</p>
+                                <p class="text-black"><a href="{{route('welcome')}}">Acasa</a></p>
                             </x-bladewind.dropmenu-item>
                             <x-bladewind.dropmenu-item>
                                 <p class="text-black">Despre noi</p>
@@ -22,17 +22,15 @@
                                 <p class="text-black">Inregistrare</p>
                             </x-bladewind.dropmenu-item>
                         </x-bladewind.dropmenu>
-
         </div>
-
     </div>
     <div class="hidden lg:flex space-x-3">
         <img src="/logo.png" alt="" class="h-10 ">
         <p class="my-auto ml-2 text-2xl">Infopubele.ro</p>
-        <x-nav-link href="" class="text-xl">
+        <x-nav-link href="{{route('welcome')}}" class="text-xl">
             Acasa
         </x-nav-link>
-        <x-nav-link href="" class="text-xl">
+        <x-nav-link href="{{route('about')}}" class="text-xl">
             Despre noi
         </x-nav-link>
         <x-nav-link href="" class="text-xl">
@@ -40,7 +38,7 @@
         </x-nav-link>
     </div>
     <div class="hidden lg:flex flex my-3">
-        <x-nav-link href="" class="text-xl">
+        <x-nav-link href="{{route('login')}}" class="text-xl">
             Logare
         </x-nav-link>
         <x-nav-link href="" class="text-xl">
