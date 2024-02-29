@@ -25,6 +25,8 @@ class DeviceController extends Controller
 //    {
 //    }
 
+
+
     public function createToken(Device $device) {
         $token = Str::random(64);
         while ($device->tokens()->where("token", $token)->exists())
