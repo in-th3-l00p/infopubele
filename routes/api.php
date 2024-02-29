@@ -7,3 +7,8 @@ Route::post(
     "/slots/{slot}/transaction",
     [\App\Http\Controllers\SlotController::class, "transaction"]
 )->name("slots.transaction");
+
+Route::put(
+    "/devices/{device}/location",
+    [\App\Http\Controllers\DeviceController::class, "updateLocation"]
+);

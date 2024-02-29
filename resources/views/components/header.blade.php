@@ -23,6 +23,7 @@
                             </x-bladewind.dropmenu-item>
                         </x-bladewind.dropmenu>
         </div>
+
     </div>
     <div class="hidden lg:flex space-x-3">
         <img src="/logo.png" alt="" class="h-10 ">
@@ -38,11 +39,19 @@
         </x-nav-link>
     </div>
     <div class="hidden lg:flex flex my-3">
+        @guest
         <x-nav-link href="{{route('login')}}" class="text-xl">
             Logare
         </x-nav-link>
         <x-nav-link href="" class="text-xl">
             Inregistrare
         </x-nav-link>
+        @endguest
+
+        @auth
+        <x-nav-link href="" class="text-xl">
+            Dashboard
+        </x-nav-link>
+        @endauth
     </div>
 </div>

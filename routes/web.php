@@ -19,8 +19,7 @@ Route::get('/', function () {
         ));
     }
 
-    dd($devices);
-    return view('welcome', [
+        return view('welcome', [
         "mid_point_x" => $mid_point[0],
         "mid_point_y" => $mid_point[1],
         "max_distance" => $max_distance,
