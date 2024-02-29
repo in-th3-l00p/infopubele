@@ -66,6 +66,31 @@ class DeviceController extends Controller
         //
     }
 
+    public function updateLocation(Request $request, Device $device) {
+        $request->validate([
+            "latitude" => "required|numeric",
+            "longitude" => "required|numeric",
+            "token" => "required|exists:device_tokens,token"
+        ]);
+
+
+        if (!$device
+            ->tokens()
+            ->where("token", $request->token)
+            ->exists()
+        )
+            return response()->json([
+                "message" => "Invalid token"
+            ], 401);
+
+        $device->update([
+            "latitude" => $request->latitude,
+            "longitude" => $request->longitude
+        ]);
+
+        return response("", 200);
+    }
+
     public function destroy(Device $device)
     {
         //
