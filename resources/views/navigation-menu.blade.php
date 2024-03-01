@@ -25,6 +25,15 @@
                             {{ __('Users') }}
                         </x-nav-link>
                     @endif
+
+                    @if (Request::user()->role === "admin" || Request::user()->role === "generator")
+                        <x-nav-link
+                            href="{{ route('device-reports.index') }}"
+                            :active="request()->routeIs('device-reports.index')"
+                        >
+                            {{ __('Device reports') }}
+                        </x-nav-link>
+                    @endif
                 </div>
             </div>
 
@@ -160,6 +169,15 @@
 
                 <x-responsive-nav-link href="{{ route('users.index') }}" :active="request()->routeIs('users.index')">
                     {{ __('Users') }}
+                </x-responsive-nav-link>
+            @endif
+
+            @if (Request::user()->role === "admin" || Request::user()->role === "generator")
+                <x-responsive-nav-link
+                    href="{{ route('device-reports.index') }}"
+                    :active="request()->routeIs('device-reports.index')"
+                >
+                    {{ __('Device reports') }}
                 </x-responsive-nav-link>
             @endif
         </div>

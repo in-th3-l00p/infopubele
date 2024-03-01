@@ -23,6 +23,10 @@ class Device extends Model
         return $this->hasMany(DeviceToken::class);
     }
 
+    public function reports(): HasMany {
+        return $this->hasMany(DeviceReport::class);
+    }
+
     public function scopeCoordinates($builder): void {
         $builder->whereNotNull("latitude")->whereNotNull("longitude");
     }

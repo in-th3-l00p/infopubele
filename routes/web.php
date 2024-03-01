@@ -19,7 +19,7 @@ Route::get('/', function () {
         ));
     }
 
-        return view('welcome', [
+    return view('welcome', [
         "mid_point_x" => $mid_point[0],
         "mid_point_y" => $mid_point[1],
         "max_distance" => $max_distance,
@@ -57,4 +57,6 @@ Route::middleware([
         Route::resource("devices.slots", SlotController::class)->shallow();
         Route::resource("users", \App\Http\Controllers\AdminUserController::class);
     });
+
+    Route::resource("device-reports", \App\Http\Controllers\DeviceReportController::class);
 });
