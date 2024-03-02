@@ -5,13 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Query\Builder;
 
 class Device extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        "name", "city"
+        "name", "city", "latitude", "longitude"
     ];
 
     public function slots(): HasMany {
@@ -20,5 +21,9 @@ class Device extends Model
 
     public function tokens(): HasMany {
         return $this->hasMany(DeviceToken::class);
+    }
+
+    public function scopeCoordinates($builder): void {
+        $builder->whereNotNull("latitude")->whereNotNull("longitude");
     }
 }
