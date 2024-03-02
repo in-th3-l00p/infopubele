@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-class AdminMiddleware
+class UatMiddleware
 {
     /**
      * Handle an incoming request.
@@ -15,10 +15,9 @@ class AdminMiddleware
      */
     public function handle(Request $request, Closure $next): Response {
         \Illuminate\Support\Facades\Gate::allowIf(
-            $request->user()?->role === "admin",
+            $request->user()?->role === "uat",
             __("You are not authorized to access this page.")
         );
         return $next($request);
     }
-
 }

@@ -25,6 +25,11 @@
                             {{ __('Users') }}
                         </x-nav-link>
                     @endif
+                    @if (Request::user()->role === "user")
+                        <x-nav-link href="{{ route('user.devices.show' ,['device' => Request::user()->device_id ] )}}" :active="request()->routeIs('devices.show')">
+                            {{ __('Device') }}
+                        </x-nav-link>
+                    @endif
                 </div>
             </div>
 

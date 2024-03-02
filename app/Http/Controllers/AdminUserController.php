@@ -55,4 +55,4 @@ class AdminUserController extends Controller
 
     public function destroy(User $user) {
     }
-}
+ }
