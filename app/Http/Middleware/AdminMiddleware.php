@@ -15,7 +15,7 @@ class AdminMiddleware
      */
     public function handle(Request $request, Closure $next): Response {
         \Illuminate\Support\Facades\Gate::allowIf(
-            $request->user()?->role === "admin",
+            $request->user()?->role === "admin" || "uat",
             __("You are not authorized to access this page.")
         );
         return $next($request);

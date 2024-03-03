@@ -56,22 +56,12 @@ Route::middleware([
 
     // admin
     Route::middleware("admin")->group(function () {
-        Route::resource("devices", DeviceController::class);
-        Route::post("/devices/{device}/tokens", [DeviceController::class, "createToken"])
-            ->name("devices.tokens.create");
-        Route::delete("/devices/{device}/tokens/{token}", [DeviceController::class, "deleteToken"])
-            ->name("devices.tokens.delete");
-        Route::resource("devices.slots", SlotController::class)->shallow();
-        Route::resource("users", \App\Http\Controllers\AdminUserController::class);
-    });
-
-    //uat
-    Route::middleware("uat")->group(function () {
-        Route::resource("devices", DeviceController::class);
-        Route::post("/devices/{device}/tokens", [DeviceController::class, "createToken"])
-            ->name("devices.tokens.create");
-        Route::delete("/devices/{device}/tokens/{token}", [DeviceController::class, "deleteToken"])
-            ->name("devices.tokens.delete");
-        Route::resource("devices.slots", SlotController::class)->shallow();
-    });
+            Route::resource("devices", DeviceController::class);
+            Route::post("/devices/{device}/tokens", [DeviceController::class, "createToken"])
+                ->name("devices.tokens.create");
+            Route::delete("/devices/{device}/tokens/{token}", [DeviceController::class, "deleteToken"])
+                ->name("devices.tokens.delete");
+            Route::resource("devices.slots", SlotController::class)->shallow();
+            Route::resource("users", \App\Http\Controllers\UserController::class);
+        });
 });
