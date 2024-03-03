@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Device;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class AdminUserController extends Controller
 {
@@ -18,13 +19,15 @@ class AdminUserController extends Controller
     }
 
     public function store(Request $request) {
-        $user = User::query()->create($request->validate([
+        $data = $request->validate([
             "name" => "required|max:255",
             "email" => "required|email|unique:users,email",
             "password" => "required|confirmed|min:8",
             "city" => "required|max:255",
             "role" => "required|in:admin,user,generator,uat,operator"
-        ]));
+        ]);
+        $data["password"] = Hash::make($data["password"]);
+        $user = User::query()->create($data);
 
         return redirect()->route("users.index");
     }

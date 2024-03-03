@@ -18,6 +18,8 @@ return new class extends Migration
             $table->string("device_city");
             $table->double("device_latitude")->nullable();
             $table->double("device_longitude")->nullable();
+
+            $table->string("spreadsheet_link")->nullable();
         });
     }
 

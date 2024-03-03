@@ -17,29 +17,28 @@ class DeviceReportController extends Controller
         return view("device-reports.create");
     }
 
-    public function store(Request $request) {
-        //
-    }
+//    public function store(Request $request) {
+//        //
+//    }
 
     public function show(DeviceReport $deviceReport) {
-        //
+        return view("device-reports.show", [
+            "report" => $deviceReport
+        ]);
     }
 
-    public function edit(DeviceReport $deviceReport) {
-        //
-    }
+//    public function edit(DeviceReport $deviceReport) {
+//        //
+//    }
+//
+//    /**
+//     * Update the specified resource in storage.
+//     */
+//    public function update(Request $request, DeviceReport $deviceReport)
+//    {
+//        //
+//    }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, DeviceReport $deviceReport)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(DeviceReport $deviceReport)
     {
         //

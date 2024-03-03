@@ -4,6 +4,7 @@ namespace App\Livewire;
 
 use App\Models\Device;
 use Livewire\Component;
+use Maatwebsite\Excel\Facades\Excel;
 
 class CreateDeviceReport extends Component
 {
@@ -43,6 +44,14 @@ class CreateDeviceReport extends Component
                 "device_id" => $device->id
             ]);
         }
+
+        Excel::store(
+            new \App\Exports\DeviceReportExport($report),
+            'deviceReports/' . $report->id . '.xlsx',
+            "public"
+        );
+        $report->spreadsheet_link = 'deviceReports/' . $report->id . '.xlsx';
+        $report->save();
 
         return redirect()->route('device-reports.show', [
             'device_report' => $report
