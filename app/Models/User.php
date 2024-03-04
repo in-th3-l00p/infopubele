@@ -66,4 +66,5 @@ class User extends Authenticatable
     public function device(): BelongsTo {
         return $this->belongsTo(Device::class, 'device_id');
     }
+
 }

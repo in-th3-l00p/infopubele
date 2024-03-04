@@ -4,25 +4,49 @@
         <div class="flex justify-between h-16">
             <div class="flex">
                 <!-- Logo -->
-                <div class="shrink-0 flex items-center">
-                    <a href="{{ route('dashboard') }}">
-                        <x-application-mark class="block h-9 w-auto" />
-                    </a>
+                <div class="flex my-3">
+                    <img src="/logo.png" alt="" class="h-10 ">
+                    <p class=" my-auto ml-2 text-2xl">Infopubele.ro</p>
                 </div>
 
                 <!-- Navigation Links -->
-                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
+                <div class="hidden space-x-3  sm:ms-4 sm:flex">
+                    <x-nav-link class="text-xl" href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
 
                     @if (Request::user()->role === "admin")
-                        <x-nav-link href="{{ route('devices.index') }}" :active="request()->routeIs('devices.index')">
+                        <x-nav-link class="text-xl" href="{{ route('devices.index') }}" :active="request()->routeIs('devices.index')">
                             {{ __('Devices') }}
                         </x-nav-link>
+                        <x-nav-link class="text-xl" href="{{ route('users.index' )}}" :active="request()->routeIs('users.index')">
 
-                        <x-nav-link href="{{ route('users.index') }}" :active="request()->routeIs('users.index')">
                             {{ __('Users') }}
+                        </x-nav-link>
+
+                    @endif
+                    @if (Request::user()->role === "user")
+                        <x-nav-link class="text-xl" href="{{ route('user.devices.show' ,['device' => Request::user()->device_id ] )}}" :active="request()->routeIs('devices.show')">
+                            {{ __('Device') }}
+                        </x-nav-link>
+                    @endif
+                    @if (Request::user()->role === "uat")
+                        <x-nav-link class="text-xl" href="{{ route('devices.index') }}" :active="request()->routeIs('devices.index')">
+                            {{ __('Devices') }}
+                        </x-nav-link>
+                        <x-nav-link class="text-xl" href="{{ route('users.index' )}}" :active="request()->routeIs('users.index')">
+
+                            {{ __('Users') }}
+                        </x-nav-link>
+                    @endif
+                        @if (Request::user()->role === "user")
+                        <x-nav-link class="text-xl" href="{{ route('user.devices.show' ,['device' => Request::user()->device_id ] )}}" :active="request()->routeIs('devices.show')">
+                            {{ __('Device') }}
+                        </x-nav-link>
+                    @endif
+                    @if (Request::user()->role === "operator")
+                        <x-nav-link class="text-xl" href="{{ route('user.devices.show' ,['device' => Request::user()->device_id ] )}}" :active="request()->routeIs('devices.show')">
+                            {{ __('Device') }}
                         </x-nav-link>
                     @endif
 
@@ -100,7 +124,7 @@
                                 </button>
                             @else
                                 <span class="inline-flex rounded-md">
-                                    <button type="button" class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none focus:bg-gray-50 active:bg-gray-50 transition ease-in-out duration-150">
+                                    <button type="button" class="text-xl inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none focus:bg-gray-50 active:bg-gray-50 transition ease-in-out duration-150">
                                         {{ Auth::user()->name }}
 
                                         <svg class="ms-2 -me-0.5 h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
@@ -166,9 +190,34 @@
                 <x-responsive-nav-link href="{{ route('devices.index') }}" :active="request()->routeIs('devices.index')">
                     {{ __('Devices') }}
                 </x-responsive-nav-link>
+                <x-responsive-nav-link href="{{ route('users.index' )}}" :active="request()->routeIs('users.index')">
 
-                <x-responsive-nav-link href="{{ route('users.index') }}" :active="request()->routeIs('users.index')">
                     {{ __('Users') }}
+                </x-responsive-nav-link>
+
+            @endif
+            @if (Request::user()->role === "user")
+                <x-responsive-nav-link href="{{ route('user.devices.show' ,['device' => Request::user()->device_id ] )}}" :active="request()->routeIs('devices.show')">
+                    {{ __('Device') }}
+                </x-responsive-nav-link>
+            @endif
+            @if (Request::user()->role === "uat")
+                <x-responsive-nav-link href="{{ route('devices.index') }}" :active="request()->routeIs('devices.index')">
+                    {{ __('Devices') }}
+                </x-responsive-nav-link>
+                <x-responsive-nav-link href="{{ route('users.index' )}}" :active="request()->routeIs('users.index')">
+
+                    {{ __('Users') }}
+                </x-responsive-nav-link>
+            @endif
+            @if (Request::user()->role === "user")
+                <x-responsive-nav-link href="{{ route('user.devices.show' ,['device' => Request::user()->device_id ] )}}" :active="request()->routeIs('devices.show')">
+                    {{ __('Device') }}
+                </x-responsive-nav-link>
+            @endif
+            @if (Request::user()->role === "operator")
+                <x-responsive-nav-link href="{{ route('user.devices.show' ,['device' => Request::user()->device_id ] )}}" :active="request()->routeIs('devices.show')">
+                    {{ __('Device') }}
                 </x-responsive-nav-link>
             @endif
 

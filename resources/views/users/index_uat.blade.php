@@ -15,7 +15,11 @@
         </div>
 
         @forelse ($users as $user)
-            <x-admin-user-display :user="$user" />
+@if($user->role==='operator')
+                <x-admin-user-display :user="$user" />
+            @endif
+
+
         @empty
             <p class="text-center">{{ __("No users found.") }}</p>
         @endforelse

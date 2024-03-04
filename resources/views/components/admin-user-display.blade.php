@@ -21,7 +21,7 @@
     <div x-show="showData" class="mt-4">
         <p>{{ __("Name") }}: <strong>{{ $user->name }}</strong></p>
         <p>{{ __("Email") }}: <strong>{{ $user->email }}</strong></p>
-        <p>{{ __("City") }}: <strong>{{ $user->role }}</strong></p>
+        <p>{{ __("City") }}: <strong>{{ $user->city }}</strong></p>
         <p>{{ __("Role") }}: <strong>{{ $user->role }}</strong></p>
         @if ($user->device_id !== null)
             <p>{{ __("Device") }}: <strong>{{ $user->device->name }}</strong></p>
