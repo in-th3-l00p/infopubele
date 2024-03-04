@@ -21,12 +21,6 @@ class DeviceController extends Controller
         return view("devices.create");
     }
 
-//    public function store(Request $request)
-//    {
-//    }
-
-
-
     public function createToken(Device $device) {
         $token = Str::random(64);
         while ($device->tokens()->where("token", $token)->exists())
