@@ -6,10 +6,8 @@
         <x-white-container class="w-full">
             <h2 class="text-lg font-medium">{{ __("Volume") }}</h2>
             <div class="aspect-square flex justify-center items-center text-2xl md:text-4xl">
-
                 <div class="me-2">{{ $slot->volume }} m<sup>3</sup></div>
                 <div class="text-zinc-400 font-light">/ {{ $slot->max_volume }} m<sup>3</sup></div>
-
             </div>
         </x-white-container>
 
@@ -20,6 +18,4 @@
             </div>
         </x-variable-container>
     </div>
-    <div>{{$slot}}</div>
-
 </x-app-layout>

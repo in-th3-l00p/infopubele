@@ -19,13 +19,13 @@ class UserController extends Controller
             $users = User::query()->where('role','=','operator')->paginate(10);
         }
 
-        return view('users.index',['users'=>$users]);
+        return view('users.index_admin',['users'=>$users]);
     }
 
     public function create() {
         if (Auth::user()->role==='admin')
         {
-            return view("users.create");
+            return view("users.create_admin");
         }
         elseif (Auth::user()->role==='uat')
         {
@@ -66,7 +66,7 @@ class UserController extends Controller
     public function edit(User $user) {
         if (Auth::user()->role==='admin')
         {
-            return view("users.edit", [
+            return view("users.edit_admin", [
                 "user" => $user,
                 "devices" => Device::all()
             ]);

@@ -2,13 +2,30 @@
 
 use App\Http\Controllers\DeviceController;
 use App\Http\Controllers\SlotController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/user_device/{device}', function (\App\Models\Device $device) {
-    return view('devices.user_show', ['device'=>$device]);
+    if (Auth::user()->role==='user')
+    {
+        return view('devices.user_show', ['device'=>$device]);
+    }
+    elseif (Auth::user()->role==='operator')
+    {
+        return view('devices.operator_show',['device'=>$device]);
+    }
+
 })->name('user.devices.show');
 Route::get('/user_device/{device}/slots/{slot}', function (\App\Models\Device $device, \App\Models\Slot $slot) {
-    return view('slots.user_show', ['device'=>$device,'slot'=>$slot]);
+    if (Auth::user()->role==='user')
+    {
+        return view('slots.user_show', ['device'=>$device,'slot'=>$slot]);
+    }
+    elseif (Auth::user()->role==='operator')
+    {
+        return view('slots.operator_show', ['device'=>$device,'slot'=>$slot]);
+    }
+
 })->name('user.devices.slot.show');
 
 Route::get('/', function () {
