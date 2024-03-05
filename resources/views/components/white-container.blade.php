@@ -1,5 +1,5 @@
 <div {{ $attributes->merge([
-        "class" => "py-12 max-w-7xl mx-auto "
+        "class" => "py-12 max-w-7xl mx-auto"
 ]) }}>
     <div @class([
         "bg-white overflow-hidden shadow-xl",

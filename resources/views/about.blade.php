@@ -1,5 +1,4 @@
 <x-guest-layout>
-    <x-header/>
     <x-text-card>
         <h1 class=" mt-8 font-bold text-3xl">Despre noi</h1>
         <br>
