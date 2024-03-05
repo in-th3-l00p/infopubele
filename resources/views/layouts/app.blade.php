@@ -46,4 +46,5 @@
         @livewireScripts
         <script src="{{ asset('vendor/bladewind/js/helpers.js') }}"></script>
     </body>
+    <x-footer/>
 </html>
