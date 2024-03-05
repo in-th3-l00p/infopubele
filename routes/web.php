@@ -1,7 +1,10 @@
 <?php
 
+use App\Http\Controllers\AdminUserController;
 use App\Http\Controllers\DeviceController;
+use App\Http\Controllers\DeviceReportController;
 use App\Http\Controllers\SlotController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -43,7 +46,7 @@ Route::get('/', function () {
         ));
     }
 
-        return view('welcome', [
+    return view('welcome', [
         "mid_point_x" => $mid_point[0],
         "mid_point_y" => $mid_point[1],
         "max_distance" => $max_distance,
@@ -73,12 +76,26 @@ Route::middleware([
 
     // admin
     Route::middleware("admin")->group(function () {
-            Route::resource("devices", DeviceController::class);
-            Route::post("/devices/{device}/tokens", [DeviceController::class, "createToken"])
-                ->name("devices.tokens.create");
-            Route::delete("/devices/{device}/tokens/{token}", [DeviceController::class, "deleteToken"])
-                ->name("devices.tokens.delete");
-            Route::resource("devices.slots", SlotController::class)->shallow();
-            Route::resource("users", \App\Http\Controllers\UserController::class);
-        });
+        Route::resource("devices", DeviceController::class);
+        Route::post("/devices/{device}/tokens", [DeviceController::class, "createToken"])
+            ->name("devices.tokens.create");
+        Route::delete("/devices/{device}/tokens/{token}", [DeviceController::class, "deleteToken"])
+            ->name("devices.tokens.delete");
+        Route::resource("devices.slots", SlotController::class)->shallow();
+        Route::resource("users", UserController::class);
+    });
+
+    Route::resource("devices", DeviceController::class)
+        ->except("edit", "update", "store");
+    Route::post("/devices/{device}/tokens", [DeviceController::class, "createToken"])
+        ->name("devices.tokens.create");
+    Route::delete("/devices/{device}/tokens/{token}", [DeviceController::class, "deleteToken"])
+        ->name("devices.tokens.delete");
+    Route::resource("devices.slots", SlotController::class)
+        ->only([ "create", "show" ])
+        ->shallow();
+    Route::resource("users", UserController::class);
+
+    Route::resource("device-reports", DeviceReportController::class)
+        ->only([ "index", "show", "create", "destroy" ]);
 });

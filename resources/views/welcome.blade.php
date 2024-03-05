@@ -4,7 +4,7 @@
             class="w-full flex-grow bg-[url('/public/img.jpg')] bg-cover bg-center flex justify-center ">
             <div class="flex flex-col pt-12 items-center">
                 <h1 class=" text-center text-5xl text-black font-bold drop-shadow-lg">{{__("BINE AI VENIT PE PLATFORMA")}}
-                    <span class="text-green-600 font-bold">INFOPUBELE</span>
+                    <span class="text-green-600 font-bold">{{__("INFOPUBELE")}}</span>
                 </h1>
                 <p class="mt-5 text-center text-lg text-black">{{__("Aceasta platforma este utitlizata pentru tranzactii cu pubele noastre")}}</p>
                 <a class="mt-8 px-12 py-3 bg-green-600 hover:from-amber-600 hover:to-red-700 text-xl text-white/70 font-semibold drop-shadow-lg rounded-full"
