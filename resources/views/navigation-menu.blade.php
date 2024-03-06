@@ -61,6 +61,15 @@
                             {{ __("Utilizatori") }}
                         </x-nav-link>
                     @endif
+                    @if (Request::user()->role === "operator")
+                        <x-nav-link
+                            class="text-xl"
+                            href="{{ route('operator.devices.index') }}"
+                            :active="request()->routeIs('uat.devices.index')"
+                        >
+                            {{ __('Dispozitive') }}
+                        </x-nav-link>
+                    @endif
                 </div>
             </div>
 
