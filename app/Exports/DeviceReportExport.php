@@ -31,7 +31,7 @@ class DeviceReportExport implements FromCollection
         }
         foreach ($this->deviceReport->slots()->get() as $slot) {
 
-        foreach ($this->deviceReport->slots() as $slot) {
+
             array_push($keys, $slot->name);
             array_push($values, number_format($slot->volume,2));
         }
