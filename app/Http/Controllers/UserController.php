@@ -30,7 +30,7 @@ class UserController extends Controller
         elseif (Auth::user()->role==='uat')
         {
             $devices = Device::get();
-            return view("users.create_operator",['devices'=>$devices]);
+            return view("users.create_uat",['devices'=>$devices]);
         }
     }
 
@@ -73,7 +73,7 @@ class UserController extends Controller
         }
         elseif (Auth::user()->role==='uat')
         {
-            return view("users.edit_operator", [
+            return view("users.edit_uat", [
                "user" => $user,
                 "devices" => Device::all()
             ]);
