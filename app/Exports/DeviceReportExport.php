@@ -29,10 +29,11 @@ class DeviceReportExport implements FromCollection
             array_push($values, $this->deviceReport->device_latitude);
             array_push($values, $this->deviceReport->device_longitude);
         }
+        foreach ($this->deviceReport->slots()->get() as $slot) {
 
-        foreach ($this->deviceReport->slots() as $slot) {
+
             array_push($keys, $slot->name);
-            array_push($values, $slot->volume);
+            array_push($values, number_format($slot->volume,2));
         }
 
         return collect([$keys, $values]);

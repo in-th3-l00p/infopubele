@@ -17,42 +17,37 @@
 
                     @if (Request::user()->role === "admin")
                         <x-nav-link class="text-xl" href="{{ route('devices.index') }}" :active="request()->routeIs('devices.index')">
-                            {{ __('Devices') }}
+                            {{ __('Dispozitive') }}
                         </x-nav-link>
                         <x-nav-link class="text-xl" href="{{ route('users.index' )}}" :active="request()->routeIs('users.index')">
 
-                            {{ __('Users') }}
+                            {{ __('Utilizatori') }}
                         </x-nav-link>
 
                     @endif
-                    @if (Request::user()->role === "user")
+                    @if (Request::user()->role === "user" && Request::user()->device)
                         <x-nav-link class="text-xl" href="{{ route('user.devices.show' ,['device' => Request::user()->device_id ] )}}" :active="request()->routeIs('devices.show')">
-                            {{ __('Device') }}
+                            {{ __('Dispozitiv') }}
                         </x-nav-link>
                     @endif
                     @if (Request::user()->role === "uat")
                         <x-nav-link class="text-xl" href="{{ route('devices.index') }}" :active="request()->routeIs('devices.index')">
-                            {{ __('Devices') }}
+                            {{ __('Dispozitive') }}
                         </x-nav-link>
                         <x-nav-link class="text-xl" href="{{ route('users.index' )}}" :active="request()->routeIs('users.index')">
 
-                            {{ __('Users') }}
-                        </x-nav-link>
-                    @endif
-                        @if (Request::user()->role === "user")
-                        <x-nav-link class="text-xl" href="{{ route('user.devices.show' ,['device' => Request::user()->device_id ] )}}" :active="request()->routeIs('devices.show')">
-                            {{ __('Device') }}
+                            {{ __('Utilizatori') }}
                         </x-nav-link>
                     @endif
                     @if (Request::user()->role === "operator")
                     @endif
 
                     @if (Request::user()->role === "admin" || Request::user()->role === "generator")
-                        <x-nav-link
+                        <x-nav-link class="text-xl"
                             href="{{ route('device-reports.index') }}"
                             :active="request()->routeIs('device-reports.index')"
                         >
-                            {{ __('Device reports') }}
+                            {{ __('Rapoarte dispozitive') }}
                         </x-nav-link>
                     @endif
                 </div>
@@ -160,7 +155,7 @@
 
                                 <x-dropdown-link href="{{ route('logout') }}"
                                          @click.prevent="$root.submit();">
-                                    {{ __('Log Out') }}
+                                    {{ __('Delogheaza-te') }}
                                 </x-dropdown-link>
                             </form>
                         </x-slot>
@@ -189,26 +184,26 @@
 
             @if (Request::user()->role === "admin")
                 <x-responsive-nav-link href="{{ route('devices.index') }}" :active="request()->routeIs('devices.index')">
-                    {{ __('Devices') }}
+                    {{ __('Dispozitive') }}
                 </x-responsive-nav-link>
                 <x-responsive-nav-link href="{{ route('users.index' )}}" :active="request()->routeIs('users.index')">
 
-                    {{ __('Users') }}
+                    {{ __('Utilizatori') }}
                 </x-responsive-nav-link>
 
             @endif
             @if (Request::user()->role === "user")
                 <x-responsive-nav-link href="{{ route('user.devices.show' ,['device' => Request::user()->device_id ] )}}" :active="request()->routeIs('devices.show')">
-                    {{ __('Device') }}
+                    {{ __('Dispozitiv') }}
                 </x-responsive-nav-link>
             @endif
             @if (Request::user()->role === "uat")
                 <x-responsive-nav-link href="{{ route('devices.index') }}" :active="request()->routeIs('devices.index')">
-                    {{ __('Devices') }}
+                    {{ __('Dispozitive') }}
                 </x-responsive-nav-link>
                 <x-responsive-nav-link href="{{ route('users.index' )}}" :active="request()->routeIs('users.index')">
 
-                    {{ __('Users') }}
+                    {{ __('Utilizatori') }}
                 </x-responsive-nav-link>
             @endif
             @if (Request::user()->role === "user")
@@ -224,7 +219,7 @@
                     href="{{ route('device-reports.index') }}"
                     :active="request()->routeIs('device-reports.index')"
                 >
-                    {{ __('Device reports') }}
+                    {{ __('Rapoarte dispozitive') }}
                 </x-responsive-nav-link>
             @endif
         </div>
