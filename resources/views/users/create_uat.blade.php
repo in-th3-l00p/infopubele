@@ -27,19 +27,6 @@
             </div>
 
             <div class="mt-4">
-                <x-label for="device" value="{{ __('Device') }}" />
-                <select
-                    id="device"
-                    name="device"
-                    class="select"
-                >
-                    @foreach($devices as $device)
-                        <option value="{{$device}}" selected>{{$device->name}}</option>
-                    @endforeach
-                </select>
-            </div>
-
-            <div class="mt-4">
                 <x-label for="city" value="{{ __('City') }}" />
                 <select
                     id="city" name="city"

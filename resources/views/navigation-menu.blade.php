@@ -45,9 +45,6 @@
                         </x-nav-link>
                     @endif
                     @if (Request::user()->role === "operator")
-                        <x-nav-link class="text-xl" href="{{ route('user.devices.show' ,['device' => Request::user()->device_id ] )}}" :active="request()->routeIs('devices.show')">
-                            {{ __('Device') }}
-                        </x-nav-link>
                     @endif
 
                     @if (Request::user()->role === "admin" || Request::user()->role === "generator")
@@ -220,9 +217,6 @@
                 </x-responsive-nav-link>
             @endif
             @if (Request::user()->role === "operator")
-                <x-responsive-nav-link href="{{ route('user.devices.show' ,['device' => Request::user()->device_id ] )}}" :active="request()->routeIs('devices.show')">
-                    {{ __('Device') }}
-                </x-responsive-nav-link>
             @endif
 
             @if (Request::user()->role === "admin" || Request::user()->role === "generator")

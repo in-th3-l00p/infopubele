@@ -6,69 +6,78 @@
                 <h1 class=" text-center text-5xl text-black font-bold drop-shadow-lg">{{__("BINE AI VENIT PE PLATFORMA")}}
                     <span class="text-green-600 font-bold">{{__("INFOPUBELE")}}</span>
                 </h1>
-                <p class="mt-5 text-center text-lg text-black">{{__("Aceasta platforma este utitlizata pentru tranzactii cu pubele noastre")}}</p>
-                <a class="mt-8 px-12 py-3 bg-green-600 hover:from-amber-600 hover:to-red-700 text-xl text-white/70 font-semibold drop-shadow-lg rounded-full"
-                   href="{{route('dashboard')}}">{{__("Dashboard")}}</a>
+                <p class="mt-5 text-center text-lg text-black">{{__("Aceasta platforma este utitlizata pentru tranzactii cu pubelele noastre")}}</p>
+                @auth
+                    <a class="mt-8 px-12 py-3 bg-green-600 hover:from-amber-600 hover:to-red-700 text-xl text-white/70 font-semibold drop-shadow-lg rounded-full"
+                       href="{{route('dashboard')}}">{{__("Dashboard")}}
+                    </a>
+                @endauth
+                @guest
+                    <a class="mt-8 px-12 py-3 bg-green-600 hover:from-amber-600 hover:to-red-700 text-xl text-white/70 font-semibold drop-shadow-lg rounded-full"
+                       href="{{route('about')}}">{{__("Despre noi")}}
+                    </a>
+                @endauth
             </div>
         </div>
     </div>
     <x-text-card>
-                    <h1 class=" mt-8 font-bold text-3xl">{{__("Reciclarea")}}</h1>
-                    <br>
-                    <p>{{__("Reciclarea este un proces esențial pentru protejarea mediului înconjurător și pentru conservarea
+        <h1 class=" mt-8 font-bold text-3xl">{{__("Reciclarea")}}</h1>
+        <br>
+        <p>{{__("Reciclarea este un proces esențial pentru protejarea mediului înconjurător și pentru conservarea
                         resurselor naturale. Este o practică prin care materialele utilizate sunt colectate, sortate,
                         prelucrate și transformate în noi produse sau materii prime, în loc să fie aruncate la groapa de
                         gunoi sau incinerate.")}}</p>
-                    <br>
-                    <p>{{__("Importanța reciclării este una crucială în lupta împotriva poluării și schimbărilor climatice.")}}</p>
-                    <br>
-                    <p>{{__("Iată câteva motive pentru care reciclarea este atât de importantă:")}}</p>
-                    <br>
-                    <ol class="list-decimal ml-12 space-y-2">
-                        <li>{{__("Protejarea mediului: Reciclarea reduce cantitatea de deșeuri care ajung în depozitele de
+        <br>
+        <p>{{__("Importanța reciclării este una crucială în lupta împotriva poluării și schimbărilor climatice.")}}</p>
+        <br>
+        <p>{{__("Iată câteva motive pentru care reciclarea este atât de importantă:")}}</p>
+        <br>
+        <ol class="list-decimal ml-12 space-y-2">
+            <li>{{__("Protejarea mediului: Reciclarea reduce cantitatea de deșeuri care ajung în depozitele de
                             gunoi sau în natură. Deșeurile care nu sunt reciclate pot polua solul, apa și aerul, având
                             un impact negativ asupra ecosistemelor și biodiversității.")}}</li>
-                        <li>{{__("Economisirea resurselor naturale: Reciclarea reduce dependența de materii prime noi, cum ar
+            <li>{{__("Economisirea resurselor naturale: Reciclarea reduce dependența de materii prime noi, cum ar
                             fi lemnul, petrolul sau mineralele. Prin reciclare, putem extrage și utiliza materialele
                             deja existente într-un ciclu continuu, evitând epuizarea resurselor naturale limitate ale
                             Pământului.")}}</li>
-                        <li>{{__("Reducerea emisiilor de gaze cu efect de seră: Producerea de noi produse din materiale
+            <li>{{__("Reducerea emisiilor de gaze cu efect de seră: Producerea de noi produse din materiale
                             reciclate necesită mai puțină energie decât producția din materii prime noi. Astfel,
                             reciclarea contribuie la reducerea emisiilor de gaze cu efect de seră și la combaterea
                             schimbărilor climatice.")}}</li>
-                        <li>{{__("Economisirea energiei: Procesul de reciclare necesită, în general, mai puțină energie decât
+            <li>{{__("Economisirea energiei: Procesul de reciclare necesită, în general, mai puțină energie decât
                             producția de materiale noi. De exemplu, reciclarea hârtiei poate economisi până la 60% din
                             energia necesară pentru fabricarea hârtiei noi.")}}</li>
-                        <li>{{__("Crearea de locuri de muncă și stimularea economiei circulare: Industria reciclării oferă
+            <li>{{__("Crearea de locuri de muncă și stimularea economiei circulare: Industria reciclării oferă
                             oportunități de angajare și contribuie la dezvoltarea unei economii circulare, în care
                             resursele sunt utilizate în mod eficient și durabil.")}}</li>
-                    </ol>
-                    <br>
-                    <p>{{__("Pentru a maximiza beneficiile reciclării, este important să fim conștienți de impactul pe care
+        </ol>
+        <br>
+        <p>{{__("Pentru a maximiza beneficiile reciclării, este important să fim conștienți de impactul pe care
                         îl avem asupra mediului și să adoptăm obiceiuri de consum responsabile. Sortarea corectă a
                         deșeurilor și reciclarea lor în mod regulat sunt pași simpli pe care îi putem face pentru a
                         contribui la protejarea mediului și la crearea unui viitor mai sustenabil.")}}
-                    </p>
-                    <br>
-                    <p><b class="font-extrabold">{{__("Infopubele.ro")}}</b> {{__("reprezintă o soluție inovatoare și eficientă
+        </p>
+        <br>
+        <p><b class="font-extrabold">{{__("Infopubele.ro")}}</b> {{__("reprezintă o soluție inovatoare și eficientă
                         pentru colectarea selectivă a deșeurilor, promovând transparența, responsabilitatea și
                         implicarea fiecărei persoane în protejarea mediului înconjurător.")}}
 
-                    </p>
-                    <br>
-                    <p class="font-extrabold pb-10">{{__("Prin utilizarea tehnologiei și a unei abordări inovatoare,
+        </p>
+        <br>
+        <p class="font-extrabold pb-10">{{__("Prin utilizarea tehnologiei și a unei abordări inovatoare,
                         Infopubele.ro își propune să transforme gestionarea deșeurilor într-un proces simplu, inteligent
                         și sustenabil.")}}
 
-                    </p>
-        </x-text-card>
+        </p>
+    </x-text-card>
     <x-text-card>
-                <div class="space-y-2">
-                    <h1 class=" mt-8 font-bold text-3xl">{{__("Locatia pubelelor")}}</h1>
-                        <x-maps-leaflet style="width:95%; aspect-ratio: 2/1; margin-inline: auto;"
-                            :zoomLevel="5" :centerPoint="['lat' => 45.9432, 'long' => 24.9668]" :markers="$devices->map(fn (\App\Models\Device $device) => [$device->latitude, $device->longitude])->all()"
-                        ></x-maps-leaflet>
-                </div>
+        <div class="space-y-2">
+            <h1 class=" mt-8 font-bold text-3xl">{{__("Locatia pubelelor")}}</h1>
+            <x-maps-leaflet style="width:95%; aspect-ratio: 2/1; margin-inline: auto;"
+                            :zoomLevel="5" :centerPoint="['lat' => 45.9432, 'long' => 24.9668]"
+                            :markers="$devices->map(fn (\App\Models\Device $device) => [$device->latitude, $device->longitude])->all()"
+            ></x-maps-leaflet>
+        </div>
 
     </x-text-card>
 

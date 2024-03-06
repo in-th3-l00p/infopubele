@@ -75,11 +75,7 @@
                 <x-input-error for="city" class="mt-2" />
             </div>
 
-            @if (
-                $user->role === "user" ||
-                $user->role === "uat" ||
-                $user->role === "operator"
-            )
+            @if ($user->role === "user")
                 <div class="mt-4">
                     <x-label for="device_id" value="{{ __('Device') }}" />
                     <select name="device_id" id="device_id" class="select">
