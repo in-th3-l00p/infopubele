@@ -15,8 +15,7 @@
         </div>
 
         @forelse ($users as $user)
-                <x-admin-user-display :user="$user" />
-
+            <x-admin-user-display :user="$user"/>
         @empty
             <p class="text-center">{{ __("No users found.") }}</p>
         @endforelse

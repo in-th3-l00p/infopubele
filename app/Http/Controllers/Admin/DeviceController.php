@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use App\Models\Device;
 use App\Models\DeviceToken;
-use App\Models\Slot;
 use App\Models\Transaction;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -12,13 +12,13 @@ use Illuminate\Support\Str;
 class DeviceController extends Controller
 {
     public function index() {
-        return view("devices.index", [
+        return view("roles.admin.devices.index", [
             "devices" => Device::query()->latest()->paginate(5)
         ]);
     }
 
     public function create() {
-        return view("devices.create");
+        return view("roles.admin.devices.create");
     }
 
     public function createToken(Device $device) {
@@ -29,16 +29,16 @@ class DeviceController extends Controller
             "token" => $token
         ]);
 
-        return redirect()->route("devices.show", $device);
+        return redirect()->route("roles.admin.devices.show", $device);
     }
 
     public function deleteToken(Device $device, DeviceToken $token) {
         $token->delete();
-        return redirect()->route("devices.show", $device);
+        return redirect()->route("roles.admin.devices.show", $device);
     }
 
     public function show(Device $device) {
-        return view("devices.show", [
+        return view("roles.admin.devices.show", [
             "device" => $device,
             "slots" => $device
                 ->slots()
@@ -89,6 +89,7 @@ class DeviceController extends Controller
 
     public function destroy(Device $device)
     {
-        //
+        $device->delete();
+        return redirect()->route("roles.admin.devices.index");
     }
 }

@@ -14,7 +14,15 @@
             <a href="{{ route("users.edit", [ "user" => $user ]) }}">
                 <x-button title="edit">{{ __("Edit") }}</x-button>
             </a>
-            <x-danger-button title="remove">{{ __("Remove") }}</x-danger-button>
+
+            <form method="POST" action="{{ route("users.destroy", [
+                "user" => $user
+            ]) }}">
+                @csrf
+                @method("DELETE")
+
+                <x-danger-button type="submit" title="remove">{{ __("Remove") }}</x-danger-button>
+            </form>
         </div>
     </div>
 

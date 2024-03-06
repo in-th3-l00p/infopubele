@@ -1,4 +1,4 @@
-<x-form-section submit="createDevice">
+<x-form-section submit="updateSlot">
     <x-slot name="title">
         {{ __('Slot Information') }}
     </x-slot>

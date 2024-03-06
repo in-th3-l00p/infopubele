@@ -20,13 +20,16 @@
                 href="{{ route('device-reports.show', $report) }}"
             >
                 <div>
-                    <h3 class="text-lg font-semibold">{{ $report->created_at }} - {{ __("Device") . " " . $report->device_id  }}</h3>
+                    <h3 class="text-lg font-semibold">{{ $report->created_at }}
+                        - {{ __("Device") . " " . $report->device_id  }}</h3>
                     <p class="text-sm text-gray-500">{{ __("Device name") }}: {{ $report->device_name }}</p>
                     <p class="text-sm text-gray-500">{{ __("Device city") }}: {{ $report->device_city }}</p>
 
                     @if ($report->device_latitude && $report->device_longitude)
-                        <p class="text-sm text-gray-500">{{ __("Device latitude") }}: {{ number_format($report->device_latitude, 2, ".", "") }}</p>
-                        <p class="text-sm text-gray-500">{{ __("Device longitude") }}: {{ number_format($report->device_longitude, 2, ". , ") }}</p>
+                        <p class="text-sm text-gray-500">{{ __("Device latitude") }}
+                            : {{ number_format($report->device_latitude, 2, ".", "") }}</p>
+                        <p class="text-sm text-gray-500">{{ __("Device longitude") }}
+                            : {{ number_format($report->device_longitude, 2, ". , ") }}</p>
                     @endif
                 </div>
                 <div>

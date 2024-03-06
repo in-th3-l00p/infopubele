@@ -11,7 +11,7 @@
                         <p class="text-3xl uppercase font-bold pl-12">{{$slot->name}} <b class="text-green-600">{{$slot->volume / $slot->max_volume * 100}}%</b></p>
                     @empty
                     @endforelse
-                @elseif(Request::user()->role === 'operator' || Request::user()->role === 'user')
+                @elseif(Request::user()->role === 'user')
                     <p class="text-3xl uppercase font-bold p-6">{{__("Nu ai un dispozitiv corespondent")}}</p>
                 @endif
             </div>

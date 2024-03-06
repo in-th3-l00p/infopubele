@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use App\Models\Device;
 use App\Models\Slot;
-use http\Env\Response;
 use Illuminate\Http\Request;
 
 class SlotController extends Controller
@@ -13,7 +13,7 @@ class SlotController extends Controller
     }
 
     public function create(Device $device) {
-        return view("slots.create", [
+        return view("roles.admin.slots.create", [
             "device" => $device
         ]);
     }
@@ -54,7 +54,7 @@ class SlotController extends Controller
     }
 
     public function show(Slot $slot) {
-        return view("slots.show", [
+        return view("roles.admin.slots.show", [
             "slot" => $slot,
             "transactions" => $slot->transactions()->paginate(5),
             "device" => $slot->device()->first()
@@ -68,5 +68,7 @@ class SlotController extends Controller
     }
 
     public function destroy(Slot $slot) {
+        $slot->delete();
+        return redirect()->route("roles.admin.devices.show", $slot->device()->first());
     }
 }

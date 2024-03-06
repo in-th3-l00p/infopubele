@@ -7,7 +7,7 @@
 
     <x-white-container>
         <div class="w-full flex gap-8 mb-8">
-            <a href="{{ route("users.create") }}">
+            <a href="{{ route("uat.users.create") }}">
                 <x-button class="aspect-square">
                     <img src="/icons/plus.svg" alt="plus" class="w-4 invert">
                 </x-button>
@@ -15,10 +15,9 @@
         </div>
 
         @forelse ($users as $user)
-@if($user->role==='operator')
-                <x-admin-user-display :user="$user" />
+            @if($user->role==='operator')
+                <x-admin-user-display :user="$user"/>
             @endif
-
 
         @empty
             <p class="text-center">{{ __("No users found.") }}</p>
