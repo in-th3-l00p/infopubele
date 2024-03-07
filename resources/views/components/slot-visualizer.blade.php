@@ -3,7 +3,7 @@
 
     <div class="flex flex-wrap justify-center items-center gap-8">
         @forelse($device->slots()->get() as $slot)
-            <div class="w-full h-full relative bg-white border-2 border-t-gray-50 flex flex-col justify-center items-center w-32 h-32 rounded-bl-lg rounded-br-lg z-10">
+            <div class="relative bg-white border-2 border-t-gray-50 flex flex-col justify-center items-center w-32 h-32 rounded-bl-lg rounded-br-lg z-10">
                 <p>{{ __("Slot ") . $slot->name }}</p>
 
                 @php $percentage = $slot->volume / $slot->max_volume * 100;  @endphp
