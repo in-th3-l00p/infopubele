@@ -29,12 +29,12 @@ class DeviceController extends Controller
             "token" => $token
         ]);
 
-        return redirect()->route("roles.admin.devices.show", $device);
+        return redirect()->route("devices.show", $device);
     }
 
     public function deleteToken(Device $device, DeviceToken $token) {
         $token->delete();
-        return redirect()->route("roles.admin.devices.show", $device);
+        return redirect()->route("devices.show", $device);
     }
 
     public function show(Device $device) {
@@ -90,6 +90,6 @@ class DeviceController extends Controller
     public function destroy(Device $device)
     {
         $device->delete();
-        return redirect()->route("roles.admin.devices.index");
+        return redirect()->route("devices.index");
     }
 }

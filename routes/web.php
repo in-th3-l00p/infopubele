@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\DeviceController;
 use App\Http\Controllers\Admin\SlotController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Generator\DeviceReportController;
+use App\Http\Controllers\Operator\NotificationController;
 use App\Http\Controllers\User\UserDeviceController;
 use App\Http\Controllers\User\UserSlotController;
 use Illuminate\Support\Facades\Route;
@@ -108,17 +109,16 @@ Route::middleware([
                 "show" => "operator.devices.show"
             ]);
         Route::resource("devices.slots", \App\Http\Controllers\Operator\SlotController::class)
-            ->only([ "show"  ])
+            ->only([ "show" ])
             ->shallow()
             ->names([
                 "show" => "operator.devices.slots.show"
             ]);
-        Route::resource("slots.notifications",\App\Http\Controllers\Operator\NotificationController::class)
-            ->only(["index","store","update"])
+        Route::resource("notifications", NotificationController::class)
+            ->only([ "index" ])
             ->names([
-                "index"=>"operator.slots.notifications.index",
-                "store"=>"operator.slots.notifications.store",
-                "update"=>"operator.slots.notifications.update"
-            ]);
+                "index" => "operator.notifications.index"
+            ])
+            ->shallow();
     });
 });

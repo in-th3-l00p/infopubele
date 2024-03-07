@@ -3,9 +3,12 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Mail\DeviceNotificationMail;
 use App\Models\Device;
 use App\Models\Slot;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class SlotController extends Controller
 {
@@ -50,6 +53,17 @@ class SlotController extends Controller
         $slot->update([
             "volume" => $slot->volume + $request->amount
         ]);
+        if (($slot->volume / $slot->max_volume) * 100 > 90) {
+            $operators = User::query()
+                ->where("role", "=", "operator")
+                ->where("city", "=", $slot->device()->first()->city)
+                ->get();
+            foreach ($operators as $operator) {
+                Mail
+                    ::to($operator->email)
+                    ->queue(new DeviceNotificationMail($slot));
+            }
+        }
         return response("", 201);
     }
 

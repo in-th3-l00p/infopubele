@@ -4,13 +4,21 @@ namespace App\Http\Controllers\Operator;
 
 use App\Http\Controllers\Controller;
 use App\Models\Notification;
+use App\Models\Slot;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class NotificationController extends Controller
 {
     public function index() {
+        Gate::allowIf(function () {
+            return auth()->user()->role === "operator" || auth()->user()->role === "admin";
+        });
         return view("roles.operator.notifications.index", [
-            "notifications" => Notification::query()->where("completed","=","false")->paginate(5)
+            "slots" => Slot::query()
+                ->join("devices", "slots.device_id", "=", "devices.id")
+                ->where("devices.city", "=", auth()->user()->city)
+                ->get()
         ]);
     }
     public function store(Request $request)

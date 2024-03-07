@@ -9,12 +9,15 @@ class Notification extends Model
 {
     use HasFactory;
 
-    protected $fillable =[
-        "completed"
+    protected $fillable = [
+        "user_id", "slot_id"
     ];
 
-    public function slot()
-    {
+    public function user() {
+        return $this->belongsTo(User::class);
+    }
+
+    public function slot() {
         return $this->belongsTo(Slot::class);
     }
 }

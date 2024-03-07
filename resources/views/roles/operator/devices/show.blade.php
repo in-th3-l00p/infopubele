@@ -34,20 +34,23 @@
     <x-white-container>
         <h2 class="text-lg font-semibold">{{ __("Notificari") }}:</h2>
         <ul>
-            @forelse ($device->slots as $slot)
+            @php $exists = false; @endphp
+            @foreach ($device->slots as $slot)
                 @if(($slot->volume / $slot->max_volume * 100 )>=90)
                     <li>
                         <a
                             class="flex items-center justify-between my-4 p-4 border-2 rounded-md shadow-md hover:shadow-lg hover:bg-zinc-100 transition ease-in-out"
-                            href="{{ route('user.devices.slot.show', [$device,$slot]) }}"
+                            href="{{ route('user.devices.slots.show', [$device,$slot]) }}"
                         >
-                            <h1>{{__("Slotul")}} <b>{{$slot->name}}</b> {{__("a ajuns la 90%")}}</h1>
+                            <h1>{{__("Slotul")}} <b>{{$slot->name}}</b> {{__("a depasit la 90%")}}</h1>
                         </a>
                     </li>
+                    @php $exists = true; @endphp
                 @endif
-            @empty
-                <p>{{ __("There are no slots configured.") }}</p>
-            @endforelse
+            @endforeach
+            @if (!$exists)
+                <p>{{ __("Nu exista notificari") }}</p>
+            @endif
         </ul>
     </x-white-container>
 

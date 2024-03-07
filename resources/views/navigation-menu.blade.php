@@ -65,9 +65,17 @@
                         <x-nav-link
                             class="text-xl"
                             href="{{ route('operator.devices.index') }}"
-                            :active="request()->routeIs('uat.devices.index')"
+                            :active="request()->routeIs('operator.devices.index')"
                         >
                             {{ __('Dispozitive') }}
+                        </x-nav-link>
+
+                        <x-nav-link
+                            class="text-xl"
+                            href="{{ route('operator.notifications.index') }}"
+                            :active="request()->routeIs('operator.notifications.index')"
+                        >
+                            {{ __('Notificari') }}
                         </x-nav-link>
                     @endif
                 </div>
@@ -236,6 +244,24 @@
                     :active="request()->routeIs('uat.users.index')"
                 >
                     {{ __("Utilizatori") }}
+                </x-responsive-nav-link>
+            @endif
+
+            @if (Request::user()->role === "operator")
+                <x-responsive-nav-link
+                    class="text-xl"
+                    href="{{ route('operator.devices.index') }}"
+                    :active="request()->routeIs('operator.devices.index')"
+                >
+                    {{ __('Dispozitive') }}
+                </x-responsive-nav-link>
+
+                <x-responsive-nav-link
+                    class="text-xl"
+                    href="{{ route('operator.notifications.index') }}"
+                    :active="request()->routeIs('operator.notifications.index')"
+                >
+                    {{ __('Notificari') }}
                 </x-responsive-nav-link>
             @endif
         </div>
