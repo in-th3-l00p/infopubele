@@ -45,6 +45,8 @@
         {{ $slots->links() }}
     </x-white-container>
 
+    <x-slot-visualizer :device="$device" />
+
     <x-white-container>
         <h2 class="text-lg font-semibold mb-8">{{ __("Transactions") }}</h2>
 

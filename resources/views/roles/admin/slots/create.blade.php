@@ -6,6 +6,6 @@
     <x-white-container>
         @livewire("create-slot", [
             "device" => $device
-        ]);
+        ])
     </x-white-container>
 </x-app-layout>

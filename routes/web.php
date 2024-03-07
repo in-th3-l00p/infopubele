@@ -61,7 +61,7 @@ Route::middleware([
         Route::delete("/devices/{device}/tokens/{token}", [DeviceController::class, "deleteToken"])
             ->name("devices.tokens.delete");
         Route::resource("devices.slots", SlotController::class)
-            ->only([ "create", "show" ])
+            ->only([ "create", "show", "destroy" ])
             ->shallow();
         Route::resource("users", UserController::class);
     });

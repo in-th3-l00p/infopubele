@@ -80,5 +80,5 @@
         </ul>
     </x-white-container>
 
-
+    <x-slot-visualizer :device="$device" />
 </x-app-layout>

@@ -83,6 +83,6 @@ class SlotController extends Controller
 
     public function destroy(Slot $slot) {
         $slot->delete();
-        return redirect()->route("roles.admin.devices.show", $slot->device()->first());
+        return redirect()->route("devices.show", $slot->device()->first());
     }
 }
