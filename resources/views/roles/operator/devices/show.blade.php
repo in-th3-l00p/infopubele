@@ -31,6 +31,8 @@
         </x-form-section>
     </x-white-container>
 
+    <x-device-map :device="$device" />
+
     <x-white-container>
         <h2 class="text-lg font-semibold">{{ __("Notificari") }}:</h2>
         <ul>
@@ -39,7 +41,7 @@
                 @if(($slot->volume / $slot->max_volume * 100 )>=90)
                     <li>
                         <a
-                            class="flex items-center justify-between my-4 p-4 border-2 rounded-md shadow-md hover:shadow-lg hover:bg-zinc-100 transition ease-in-out"
+                            class="ml-8 flex items-center justify-between my-4 p-4 border-2 rounded-md shadow-md hover:shadow-lg hover:bg-zinc-100 transition ease-in-out"
                             href="{{ route('user.devices.slots.show', [$device,$slot]) }}"
                         >
                             <h1>{{__("Slotul")}} <b>{{$slot->name}}</b> {{__("a depasit la 90%")}}</h1>

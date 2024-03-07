@@ -31,6 +31,8 @@
         </x-form-section>
     </x-white-container>
 
+    <x-device-map :device="$device" />
+
     <x-white-container>
         <h2 class="text-lg font-semibold">{{ __("Slots") }}:</h2>
         <ul class="ml-8">

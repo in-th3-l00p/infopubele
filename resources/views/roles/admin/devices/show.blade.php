@@ -9,6 +9,8 @@
         <livewire:update-device :device="$device" />
     </x-white-container>
 
+    <x-device-map :device="$device" />
+
     <x-white-container>
         <div class="flex justify-between items-center mb-8">
             <h2 class="text-lg font-semibold">{{ __("Slots") }}:</h2>
