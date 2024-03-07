@@ -18,7 +18,6 @@ class DeviceController extends Controller
         Gate::allowIf(function () {
             return auth()->user()->role === "admin" || auth()->user()->role === "uat";
         });
-
         return view('roles.uat.devices.index', [
             "devices" => Device::query()
                 ->latest()
@@ -28,10 +27,16 @@ class DeviceController extends Controller
     }
 
     public function create() {
+        Gate::allowIf(function () {
+            return auth()->user()->role === "admin" || auth()->user()->role === "uat";
+        });
         return view("roles.uat.devices.create");
     }
 
     public function show(Device $device) {
+        Gate::allowIf(function () {
+            return auth()->user()->role === "admin" || auth()->user()->role === "uat";
+        });
         return view("roles.uat.devices.show", [
             "device" => $device,
             "slots" => $device

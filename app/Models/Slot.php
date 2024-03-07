@@ -20,4 +20,9 @@ class Slot extends Model
     public function transactions() {
         return $this->hasMany(Transaction::class);
     }
+
+    public function notification()
+    {
+        return $this->hasMany(Notification::class);
+    }
 }

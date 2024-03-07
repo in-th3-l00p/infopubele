@@ -14,15 +14,26 @@
             <a href="{{ route("users.edit", [ "user" => $user ]) }}">
                 <x-button title="edit">{{ __("Edit") }}</x-button>
             </a>
-
-            <form method="POST" action="{{ route("users.destroy", [
+            @if(Request::user()->role==='admin')
+                <form method="POST" action="{{ route("users.destroy", [
                 "user" => $user
             ]) }}">
-                @csrf
-                @method("DELETE")
+                    @csrf
+                    @method("DELETE")
 
-                <x-danger-button type="submit" title="remove">{{ __("Remove") }}</x-danger-button>
-            </form>
+                    <x-danger-button type="submit" title="remove">{{ __("Remove") }}</x-danger-button>
+                </form>
+            @elseif(Request::user()->role==='uat')
+                <form method="POST" action="{{ route("uat.users.destroy", [
+                "user" => $user
+            ]) }}">
+                    @csrf
+                    @method("DELETE")
+
+                    <x-danger-button type="submit" title="remove">{{ __("Remove") }}</x-danger-button>
+                </form>
+            @endif
+
         </div>
     </div>
 

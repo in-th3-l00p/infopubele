@@ -3,7 +3,6 @@
 use App\Http\Controllers\Admin\DeviceController;
 use App\Http\Controllers\Admin\SlotController;
 use App\Http\Controllers\Admin\UserController;
-use App\Http\Controllers\AdminUserController;
 use App\Http\Controllers\Generator\DeviceReportController;
 use App\Http\Controllers\User\UserDeviceController;
 use App\Http\Controllers\User\UserSlotController;
@@ -92,11 +91,34 @@ Route::middleware([
                 "show" => "uat.devices.slots.show"
             ]);
         Route::resource("users", \App\Http\Controllers\Uat\UserController::class)
-            ->only([ "index", "create", "store" ])
+            ->only([ "index", "create", "store","destroy" ])
             ->names([
                 "index" => "uat.users.index",
                 "create" => "uat.users.create",
-                "store" => "uat.users.store"
+                "store" => "uat.users.store",
+                "destroy" => "uat.users.destroy"
+            ]);
+    });
+    //operator
+    Route::prefix("operator")->group(function () {
+        Route::resource("devices", \App\Http\Controllers\Operator\DeviceController::class)
+            ->only([ "index", "show" ])
+            ->names([
+                "index" => "operator.devices.index",
+                "show" => "operator.devices.show"
+            ]);
+        Route::resource("devices.slots", \App\Http\Controllers\Operator\SlotController::class)
+            ->only([ "show"  ])
+            ->shallow()
+            ->names([
+                "show" => "operator.devices.slots.show"
+            ]);
+        Route::resource("slots.notifications",\App\Http\Controllers\Operator\NotificationController::class)
+            ->only(["index","store","update"])
+            ->names([
+                "index"=>"operator.slots.notifications.index",
+                "store"=>"operator.slots.notifications.store",
+                "update"=>"operator.slots.notifications.update"
             ]);
     });
 });
