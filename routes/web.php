@@ -113,5 +113,12 @@ Route::middleware([
             ->names([
                 "show" => "operator.devices.slots.show"
             ]);
+        Route::resource("slots.notifications",\App\Http\Controllers\Operator\NotificationController::class)
+            ->only(["index","store","update"])
+            ->names([
+                "index"=>"operator.slots.notifications.index",
+                "store"=>"operator.slots.notifications.store",
+                "update"=>"operator.slots.notifications.update"
+            ]);
     });
 });
