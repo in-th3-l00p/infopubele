@@ -210,6 +210,16 @@
                 {{ __('Dashboard') }}
             </x-responsive-nav-link>
 
+            @if (Request::user()->role === "user" && Request::user()->device_id !== null)
+                <x-responsive-nav-link
+                    class="text-xl"
+                    href="{{ route('user.devices.show') }}"
+                    :active="request()->routeIs('user.devices.show')"
+                >
+                    {{ __("Dispozitiv") }}
+                </x-responsive-nav-link>
+            @endif
+
             @if (Request::user()->role === "admin")
                 <x-responsive-nav-link href="{{ route('devices.index') }}" :active="request()->routeIs('devices.index')">
                     {{ __('Dispozitive') }}
