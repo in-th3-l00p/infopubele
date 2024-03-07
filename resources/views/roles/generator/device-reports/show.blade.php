@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Device report') . ' - ' . $report->created_at }}
+            {{ __('Raport Dispozitiv') . ' - ' . $report->created_at }}
         </h2>
     </x-slot>
 
@@ -11,32 +11,32 @@
                 type="button" class="btn" title="{{ __("Download") }}"
                 href="{{ "/storage/" . $report->spreadsheet_link }}"
             >
-                {{ __("Download") }}
+                {{ __("Descarca") }}
             </a>
 
             <form action="{{ route('device-reports.destroy', $report) }}" method="POST">
                 @csrf
                 @method('DELETE')
                 <x-danger-button type="submit">
-                    {{ __("Remove") }}
+                    {{ __("Sterge") }}
                 </x-danger-button>
             </form>
         </div>
 
-        <h3 class="text-lg font-semibold">{{ __("Device") . " " . $report->device_id  }}</h3>
-        <p class="text-sm text-gray-500">{{ __("Device name") }}: {{ $report->device_name }}</p>
-        <p class="text-sm text-gray-500">{{ __("Device city") }}: {{ $report->device_city }}</p>
+        <h3 class="text-lg font-semibold">{{ __("Dispozitiv") . " " . $report->device_id  }}</h3>
+        <p class="text-sm text-gray-500">{{ __("Numele dispozitivului") }}: {{ $report->device_name }}</p>
+        <p class="text-sm text-gray-500">{{ __("Orasul dispozitivului") }}: {{ $report->device_city }}</p>
 
         @if ($report->device_latitude && $report->device_longitude)
-            <p class="text-sm text-gray-500">{{ __("Device latitude") }}
+            <p class="text-sm text-gray-500">{{ __("Latitudinea dispozitivului") }}
                 : {{ number_format($report->device_latitude, 2, ".", "") }}</p>
-            <p class="text-sm text-gray-500">{{ __("Device longitude") }}
+            <p class="text-sm text-gray-500">{{ __("Longitudinea dispozitivului") }}
                 : {{ number_format($report->device_longitude, 2, ". , ") }}</p>
         @endif
     </x-white-container>
 
     <x-white-container>
-        <h3 class="text-lg font-semibold">{{ __("Slots") }}</h3>
+        <h3 class="text-lg font-semibold">{{ __("Sloturi") }}</h3>
         @forelse ($report->slots as $slot)
             <div
                 class="flex items-center justify-between my-4 p-4 border-2 rounded-md shadow-md hover:shadow-lg transition ease-in-out"
@@ -44,12 +44,12 @@
             >
                 <div>
                     <h3 class="text-lg font-semibold">{{ __("Slot") . " " . $slot->id }}</h3>
-                    <p class="text-sm text-gray-500">{{ __("Slot volume") }}: {{ $slot->volume }}</p>
-                    <p class="text-sm text-gray-500">{{ __("Slot max volume") }}: {{ $slot->max_volume }}</p>
+                    <p class="text-sm text-gray-500">{{ __("Volumul slotului") }}: {{ $slot->volume }}</p>
+                    <p class="text-sm text-gray-500">{{ __("Volumul maxim al slotului") }}: {{ $slot->max_volume }}</p>
                 </div>
             </div>
         @empty
-            <p class="text-center">{{ __("No slots found.") }}</p>
+            <p class="text-center">{{ __("Nu s-au gasit sloturi.") }}</p>
         @endforelse
     </x-white-container>
 </x-app-layout>

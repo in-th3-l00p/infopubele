@@ -5,7 +5,7 @@
                 <x-button :title="__('Back')">Back</x-button>
             </a>
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                {{ __('Create User') }}
+                {{ __('Creeaza Utilizator') }}
             </h2>
         </div>
     </x-slot>

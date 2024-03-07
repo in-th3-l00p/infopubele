@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Users') }}
+            {{ __('Utilizatori') }}
         </h2>
     </x-slot>
 
@@ -17,7 +17,7 @@
         @forelse ($users as $user)
             <x-admin-user-display :user="$user"/>
         @empty
-            <p class="text-center">{{ __("No users found.") }}</p>
+            <p class="text-center">{{ __("Nu s-au gasit utilizatori.") }}</p>
         @endforelse
 
         {{ $users->links() }}

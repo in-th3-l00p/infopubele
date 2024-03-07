@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Devices reports') }}
+            {{ __('Rapoarte pentru Dispozitive') }}
         </h2>
     </x-slot>
 
@@ -21,23 +21,23 @@
             >
                 <div>
                     <h3 class="text-lg font-semibold">{{ $report->created_at }}
-                        - {{ __("Device") . " " . $report->device_id  }}</h3>
-                    <p class="text-sm text-gray-500">{{ __("Device name") }}: {{ $report->device_name }}</p>
-                    <p class="text-sm text-gray-500">{{ __("Device city") }}: {{ $report->device_city }}</p>
+                        - {{ __("Dispozitive") . " " . $report->device_id  }}</h3>
+                    <p class="text-sm text-gray-500">{{ __("Numele dispozitivului") }}: {{ $report->device_name }}</p>
+                    <p class="text-sm text-gray-500">{{ __("Orasul dispozitivului") }}: {{ $report->device_city }}</p>
 
                     @if ($report->device_latitude && $report->device_longitude)
-                        <p class="text-sm text-gray-500">{{ __("Device latitude") }}
+                        <p class="text-sm text-gray-500">{{ __("Latitudinea dispozitivului") }}
                             : {{ number_format($report->device_latitude, 2, ".", "") }}</p>
-                        <p class="text-sm text-gray-500">{{ __("Device longitude") }}
+                        <p class="text-sm text-gray-500">{{ __("Longitudinea dispozitivului") }}
                             : {{ number_format($report->device_longitude, 2, ". , ") }}</p>
                     @endif
                 </div>
                 <div>
-                    <p class="text-sm text-gray-500">{{ __("Slots") . ": " . $report->slots()->count() }}</p>
+                    <p class="text-sm text-gray-500">{{ __("Sloturi") . ": " . $report->slots()->count() }}</p>
                 </div>
             </a>
         @empty
-            <p class="text-center">{{ __("No reports found.") }}</p>
+            <p class="text-center">{{ __("Nu s-au gasit rapoarte.") }}</p>
         @endforelse
 
         {{ $reports->links() }}

@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Device') }}: <span class="font-bold">{{ $device->name }}</span>
+            {{ __('Dispozitiv') }}: <span class="font-bold">{{ $device->name }}</span>
         </h2>
     </x-slot>
 
@@ -13,7 +13,7 @@
 
     <x-white-container>
         <div class="flex justify-between items-center mb-8">
-            <h2 class="text-lg font-semibold">{{ __("Slots") }}:</h2>
+            <h2 class="text-lg font-semibold">{{ __("Sloturi") }}:</h2>
         </div>
 
         <ul class="ml-8">
@@ -33,7 +33,7 @@
                     </a>
                 </li>
             @empty
-                <p>{{ __("There are no slots configured.") }}</p>
+                <p>{{ __("Nu sunt sloturi configurate.") }}</p>
             @endforelse
         </ul>
 
@@ -43,7 +43,7 @@
     <x-slot-visualizer :device="$device" />
 
     <x-white-container>
-        <h2 class="text-lg font-semibold mb-8">{{ __("Transactions") }}</h2>
+        <h2 class="text-lg font-semibold mb-8">{{ __("Tranzactii") }}</h2>
 
         <ul class="ml-8">
             @forelse ($transactions as $transaction)
@@ -52,7 +52,7 @@
                     :device="$device"
                 />
             @empty
-                <p>{{ __("There are no transactions.") }}</p>
+                <p>{{ __("Nu sunt tranzactii.") }}</p>
             @endforelse
         </ul>
     </x-white-container>

@@ -19,7 +19,7 @@ class DeviceNotificationMail extends Mailable
 
     public function envelope(): Envelope {
         return new Envelope(
-            subject: 'Notificare dispozitiv',
+            subject: 'Notificare Dispozitiv',
         );
     }
 

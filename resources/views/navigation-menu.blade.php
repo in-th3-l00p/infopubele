@@ -40,7 +40,7 @@
                             href="{{ route('device-reports.index') }}"
                             :active="request()->routeIs('device-reports.index')"
                         >
-                            {{ __('Rapoarte dispozitive') }}
+                            {{ __('Rapoarte Dispozitive') }}
                         </x-nav-link>
                     @endif
 
@@ -158,7 +158,7 @@
                         <x-slot name="content">
                             <!-- Account Management -->
                             <div class="block px-4 py-2 text-xs text-gray-400">
-                                {{ __('Manage Account') }}
+                                {{ __('Gestioneaza Cont') }}
                             </div>
 
                             <x-dropdown-link href="{{ route('welcome') }}">
@@ -166,7 +166,7 @@
                             </x-dropdown-link>
 
                             <x-dropdown-link href="{{ route('profile.show') }}">
-                                {{ __('Profile') }}
+                                {{ __('Profil') }}
                             </x-dropdown-link>
 
                             @if (Laravel\Jetstream\Jetstream::hasApiFeatures())
@@ -235,7 +235,7 @@
                     href="{{ route('device-reports.index') }}"
                     :active="request()->routeIs('device-reports.index')"
                 >
-                    {{ __('Rapoarte dispozitive') }}
+                    {{ __('Rapoarte Dispozitive') }}
                 </x-responsive-nav-link>
             @endif
 
@@ -294,7 +294,7 @@
             <div class="mt-3 space-y-1">
                 <!-- Account Management -->
                 <x-responsive-nav-link href="{{ route('profile.show') }}" :active="request()->routeIs('profile.show')">
-                    {{ __('Profile') }}
+                    {{ __('Profil') }}
                 </x-responsive-nav-link>
 
                 @if (Laravel\Jetstream\Jetstream::hasApiFeatures())
@@ -309,7 +309,7 @@
 
                     <x-responsive-nav-link href="{{ route('logout') }}"
                                    @click.prevent="$root.submit();">
-                        {{ __('Log Out') }}
+                        {{ __('Delogheaza-te') }}
                     </x-responsive-nav-link>
                 </form>
 

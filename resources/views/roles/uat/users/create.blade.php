@@ -5,7 +5,7 @@
                 <x-button :title="__('Back')">Back</x-button>
             </a>
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                {{ __('Create Operator') }}
+                {{ __('Creaza operator') }}
             </h2>
         </div>
     </x-slot>
@@ -17,7 +17,7 @@
             @csrf
 
             <div>
-                <x-label for="name" value="{{ __('Name') }}" />
+                <x-label for="name" value="{{ __('Nume') }}" />
                 <x-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
             </div>
 
@@ -27,7 +27,7 @@
             </div>
 
             <div class="mt-4">
-                <x-label for="city" value="{{ __('City') }}" />
+                <x-label for="city" value="{{ __('Oras') }}" />
                 <select
                     id="city" name="city"
                     class="select"
@@ -41,17 +41,17 @@
             </div>
 
             <div class="mt-4">
-                <x-label for="password" value="{{ __('Password') }}" />
+                <x-label for="password" value="{{ __('Parola') }}" />
                 <x-input id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="new-password" />
             </div>
 
             <div class="mt-4">
-                <x-label for="password_confirmation" value="{{ __('Confirm Password') }}" />
+                <x-label for="password_confirmation" value="{{ __('Confirmare Parola') }}" />
                 <x-input id="password_confirmation" class="block mt-1 w-full" type="password" name="password_confirmation" required autocomplete="new-password" />
             </div>
 
             <div class="flex items-center justify-center mt-4">
-                <x-button>{{ __('Create') }}</x-button>
+                <x-button>{{ __('Creeaza') }}</x-button>
             </div>
         </form>
     </x-white-container>

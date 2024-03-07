@@ -5,7 +5,7 @@
                 <x-button :title="__('Back')">Back</x-button>
             </a>
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                {{ __('Update User') . ": " . $user->name  }}
+                {{ __('Modifica Utilizator') . ": " . $user->name  }}
             </h2>
         </div>
     </x-slot>
@@ -20,7 +20,7 @@
             @method("PUT")
 
             <div>
-                <x-label for="name" value="{{ __('Name') }}" />
+                <x-label for="name" value="{{ __('Nume') }}" />
                 <x-input
                     id="name"
                     class="block mt-1 w-full"
@@ -46,7 +46,7 @@
             </div>
 
             <div class="mt-4">
-                <x-label for="city" value="{{ __('City') }}" />
+                <x-label for="city" value="{{ __('Oras') }}" />
                 <select
                     id="city"
                     name="city"
@@ -62,10 +62,10 @@
 
             @if ($user->role === "user")
                 <div class="mt-4">
-                    <x-label for="device_id" value="{{ __('Device') }}" />
+                    <x-label for="device_id" value="{{ __('Dispozitiv') }}" />
                     <select name="device_id" id="device_id" class="select">
                         <option value="" @selected($user->device === null)>
-                            {{ __("No device") }}
+                            {{ __("Nu exista Dispozitiv alocat") }}
                         </option>
 
                         @foreach ($devices as $device)
@@ -81,7 +81,7 @@
             @endif
 
             <div class="flex items-center justify-center mt-4">
-                <x-button>{{ __('Edit') }}</x-button>
+                <x-button>{{ __('Editeaza') }}</x-button>
             </div>
         </form>
     </x-white-container>

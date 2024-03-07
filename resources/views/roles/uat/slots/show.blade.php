@@ -11,7 +11,7 @@
 
     <div class="grid grid-cols-1 md:grid-cols-2 gap-16 max-w-7xl mx-auto">
         <x-white-container class="w-full">
-            <h2 class="text-lg font-medium">{{ __("Volume") }}</h2>
+            <h2 class="text-lg font-medium">{{ __("Volum") }}</h2>
             <div class="aspect-square flex justify-center items-center text-2xl md:text-4xl">
                 <div class="me-2">{{ $slot->volume }} m<sup>3</sup></div>
                 <div class="text-zinc-400 font-light">/ {{ $slot->max_volume }} m<sup>3</sup></div>
@@ -19,7 +19,7 @@
         </x-white-container>
 
         <x-white-container class="w-full">
-            <h2 class="text-lg font-medium">{{ __("Percentage") }}</h2>
+            <h2 class="text-lg font-medium">{{ __("Procentaj") }}</h2>
             <div class="aspect-square flex justify-center items-center text-2xl md:text-4xl">
                 <div class="me-2">{{ $slot->volume / $slot->max_volume * 100 }}%</div>
             </div>
@@ -27,7 +27,7 @@
     </div>
 
     <x-white-container>
-        <h2 class="text-lg font-semibold mb-8">{{ __("Transactions") }}</h2>
+        <h2 class="text-lg font-semibold mb-8">{{ __("Tranzactii") }}</h2>
 
         <ul class="ml-8">
             @forelse ($transactions as $transaction)
@@ -36,7 +36,7 @@
                     :device="$device"
                 />
             @empty
-                <p>{{ __("There are no transactions.") }}</p>
+                <p>{{ __("Nu exista tranzactii.") }}</p>
             @endforelse
         </ul>
     </x-white-container>

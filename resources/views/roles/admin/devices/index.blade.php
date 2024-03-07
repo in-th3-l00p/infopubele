@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Devices') }}
+            {{ __('Dispozitive') }}
         </h2>
     </x-slot>
 
@@ -24,11 +24,11 @@
                     <p class="text-sm text-gray-500">{{ $device->city }}</p>
                 </div>
                 <div>
-                    <p class="text-sm text-gray-500">{{ __("Slots") . ": " . $device->slots()->count() }}</p>
+                    <p class="text-sm text-gray-500">{{ __("Sloturi") . ": " . $device->slots()->count() }}</p>
                 </div>
             </a>
         @empty
-            <p class="text-center">{{ __("No devices found.") }}</p>
+            <p class="text-center">{{ __("Nu s-au gasit dispozitive.") }}</p>
         @endforelse
 
         {{ $devices->links() }}

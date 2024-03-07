@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Device') }}: <span class="font-bold">{{ $device->name }}</span>
+            {{ __('Dispozitive') }}: <span class="font-bold">{{ $device->name }}</span>
         </h2>
     </x-slot>
 
@@ -13,7 +13,7 @@
 
     <x-white-container>
         <div class="flex justify-between items-center mb-8">
-            <h2 class="text-lg font-semibold">{{ __("Slots") }}:</h2>
+            <h2 class="text-lg font-semibold">{{ __("Sloturi") }}:</h2>
             <a href="{{ route('devices.slots.create', ['device' => $device]) }}">
                 <x-button class="aspect-square">
                     <img src="/icons/plus.svg" alt="plus" class="w-4 invert">
@@ -38,7 +38,7 @@
                     </a>
                 </li>
             @empty
-                <p>{{ __("There are no slots configured.") }}</p>
+                <p>{{ __("Nu exista sloturi configurate.") }}</p>
             @endforelse
         </ul>
 
@@ -48,7 +48,7 @@
     <x-slot-visualizer :device="$device" />
 
     <x-white-container>
-        <h2 class="text-lg font-semibold mb-8">{{ __("Transactions") }}</h2>
+        <h2 class="text-lg font-semibold mb-8">{{ __("Tranzactii") }}</h2>
 
         <ul class="ml-8">
             @forelse ($transactions as $transaction)
@@ -57,14 +57,14 @@
                     :device="$device"
                 />
             @empty
-                <p>{{ __("There are no transactions.") }}</p>
+                <p>{{ __("Nu exista tranzactii.") }}</p>
             @endforelse
         </ul>
     </x-white-container>
 
     <x-white-container>
         <div class="flex justify-between items-center mb-8">
-            <h2 class="text-lg font-semibold">{{ __("Access tokens") }}:</h2>
+            <h2 class="text-lg font-semibold">{{ __("Token de acces") }}:</h2>
             <form
                 method="POST"
                 action="{{ route("devices.tokens.create", [
@@ -93,7 +93,7 @@
                         <h3 class="text-lg font-semibold" x-show="showToken">{{ $token->token }}</h3>
                         <div
                             class="w-full p-4 bg-zinc-600 animate-pulse rounded-lg max-w-[400px] hover:cursor-help"
-                            title="{{ __("Press the \"Show\" button to see the token") }}"
+                            title="{{ __("Apasa pe butonul \"Arata\" pentru a vedea tokenul") }}"
                             x-show="!showToken"
                         ></div>
                     </div>
@@ -103,7 +103,7 @@
                             type="button"
                             class="btn"
                             @click="showToken = !showToken"
-                            x-text="showToken ? '{{ __("Hide") }}' : '{{ __("Show") }}'"
+                            x-text="showToken ? '{{ __("Ascunde") }}' : '{{ __("Arata") }}'"
                         >
                         </button>
 
@@ -114,12 +114,12 @@
                             @csrf
                             @method("DELETE")
 
-                            <x-danger-button type="submit" title="remove">Remove</x-danger-button>
+                            <x-danger-button type="submit" title="remove">{{__("Sterge")}}</x-danger-button>
                         </form>
                     </div>
                 </li>
             @empty
-                <p>{{ __("There are no tokens created.") }}</p>
+                <p>{{ __("Nu sunt tokenuri create.") }}</p>
             @endforelse
         </ul>
 

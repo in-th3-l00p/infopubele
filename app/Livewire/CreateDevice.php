@@ -26,7 +26,7 @@ class CreateDevice extends Component
         ]);
 
         return redirect()->route('devices.index')->with([
-            "success" => "Device created successfully."
+            "success" => "Dispozitiv creat cu succes."
         ]);
     }
 }
