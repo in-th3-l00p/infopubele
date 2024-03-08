@@ -4,8 +4,8 @@
             <div class="flex">
                 <!-- Logo -->
                 <div class="flex my-3">
-                    <img src="/logo.png" alt="" class="h-10 ">
-                    <p class=" my-auto ml-2 text-2xl">Infopubele.ro</p>
+                    <a href="{{route("welcome")}}"><img src="/logo.png" alt="" class="h-10 "></a>
+                    <a class="my-auto ml-2" href="{{route("welcome")}}"><p class="  text-2xl">Infopubele.ro</p></a>
                 </div>
 
                 <!-- Navigation Links -->

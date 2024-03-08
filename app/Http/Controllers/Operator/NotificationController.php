@@ -23,7 +23,9 @@ class NotificationController extends Controller
     }
     public function store(Request $request)
     {
-        $data = $request->validated();
+        $data = $request->validated([
+            "slot_id" => $data->slot
+        ]);
         $notification = Notification::query()->create([
             ...$data,
             "completed"=>"false"

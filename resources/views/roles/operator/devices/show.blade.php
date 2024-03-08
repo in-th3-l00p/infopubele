@@ -24,35 +24,30 @@
                 </div>
 
                 <div class="col-span-6 sm:col-span-4">
-                    <x-label for="city" value="{{ __('Oras') }}" />
+                    <x-label for="city" value="{{ __('City') }}" />
                     <h1>{{$device->city}}</h1>
                 </div>
             </x-slot>
         </x-form-section>
     </x-white-container>
 
-    <x-device-map :device="$device" />
-
     <x-white-container>
         <h2 class="text-lg font-semibold">{{ __("Notificari") }}:</h2>
         <ul>
-            @php $exists = false; @endphp
-            @foreach ($device->slots as $slot)
+            @forelse ($device->slots as $slot)
                 @if(($slot->volume / $slot->max_volume * 100 )>=90)
                     <li>
                         <a
-                            class="ml-8 flex items-center justify-between my-4 p-4 border-2 rounded-md shadow-md hover:shadow-lg hover:bg-zinc-100 transition ease-in-out"
-                            href="{{ route('user.devices.slots.show', [$device,$slot]) }}"
+                            class="flex items-center justify-between my-4 p-4 border-2 rounded-md shadow-md hover:shadow-lg hover:bg-zinc-100 transition ease-in-out"
+                            href="{{ route('user.devices.slot.show', [$device,$slot]) }}"
                         >
-                            <h1>{{__("Slotul")}} <b>{{$slot->name}}</b> {{__("a depasit la 90%")}}</h1>
+                            <h1>{{__("Slotul")}} <b>{{$slot->name}}</b> {{__("a ajuns la 90%")}}</h1>
                         </a>
                     </li>
-                    @php $exists = true; @endphp
                 @endif
-            @endforeach
-            @if (!$exists)
-                <p>{{ __("Nu exista notificari") }}</p>
-            @endif
+            @empty
+                <p>{{ __("There are no slots configured.") }}</p>
+            @endforelse
         </ul>
     </x-white-container>
 
