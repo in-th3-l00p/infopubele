@@ -40,7 +40,7 @@
     <div x-show="showData" class="mt-4">
         <p>{{ __("Nume") }}: <strong>{{ $user->name }}</strong></p>
         <p>{{ __("Email") }}: <strong>{{ $user->email }}</strong></p>
-        <p>{{ __("Oras") }}: <strong>{{ $user->city }}</strong></p>
+        <p>{{ __("Oraș") }}: <strong>{{ $user->city }}</strong></p>
         <p>{{ __("Rol") }}: <strong>{{ $user->role }}</strong></p>
         @if ($user->device_id !== null)
             <p>{{ __("Dispozitiv") }}: <strong>{{ $user->device->name }}</strong></p>

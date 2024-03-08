@@ -85,10 +85,10 @@
     </style>
 </head>
 <body class="roboto-regular">
-    <h1 style="text-align: center">Infopubele.ro</h1>
-    <p style="margin-bottom: 0.3rem">Slotul {{ $slot->name }}, a dispozitivului {{ $slot->device()->first()->name }}, a depasit procentajul de 90%</p>
-    <p style="margin-bottom: 0.3rem">Va rugam sa verificati dispozitivul si sa goliti cosul de gunoi</p>
+    <h1 style="text-align: center">{{__("Infopubele.ro")}}</h1>
+    <p style="margin-bottom: 0.3rem">{{__("Slotul")}} {{ $slot->name }}{{__(", a dispozitivului ")}}{{ $slot->device()->first()->name }}{{__(",a depasit procentajul de 90%")}}</p>
+    <p style="margin-bottom: 0.3rem">{{__("Va rugam sa verificati dispozitivul si sa goliti cosul de gunoi")}}</p>
 
-    <p style="margin-bottom: 0.3rem">Va multumim!</p>
+    <p style="margin-bottom: 0.3rem">{{__("Va multumim!")}}</p>
 </body>
 </html>

@@ -24,7 +24,7 @@
                 </div>
 
                 <div class="col-span-6 sm:col-span-4">
-                    <x-label for="city" value="{{ __('Oras') }}" />
+                    <x-label for="city" value="{{ __('Oraș') }}" />
                     <h1>{{$device->city}}</h1>
                 </div>
             </x-slot>

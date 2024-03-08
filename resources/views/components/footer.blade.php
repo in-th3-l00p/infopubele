@@ -1,26 +1,26 @@
 <div class="bg-black h-[25%]">
     <div class="flex flex-col items-center pt-6 text-white">
-        <p class="mb-4">Infopubele.ro - Plătești cât arunci</p>
+        <p class="mb-4">{{__("Infopubele.ro - Plătești cât arunci")}}</p>
         <hr width="40%" color="white">
         <ol class=" flex md:list-disc sm:space-x-10 py-4" >
             <li >
                 <x-nav-link class="text-[16px]">
-                    A.N.P.C.
+                    {{__("A.N.P.C.")}}
                 </x-nav-link>
             </li>
             <li >
                 <x-nav-link class="text-[16px]">
-                    Termeni și condiții
+                    {{__("Termeni și condiții")}}
                 </x-nav-link>
             </li>
             <li >
                 <x-nav-link class="text-[16px]">
-                    Prelucrarea datelor cu caracter personal
+                    {{__("Prelucrarea datelor cu caracter personal")}}
                 </x-nav-link>
             </li>
             <li >
                 <x-nav-link class="text-[16px]">
-                    Politica de cookies
+                    {{__("Politica de cookies")}}
                 </x-nav-link>
             </li>
         </ol>

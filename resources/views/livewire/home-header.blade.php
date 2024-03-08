@@ -70,16 +70,16 @@
             <div class="mt-3 space-y-1">
                 @guest
                     <x-responsive-nav-link href="{{route('login')}}" class="text-xl">
-                        Logare
+                        {{__("Conecteaza-te")}}
                     </x-responsive-nav-link>
                     <x-responsive-nav-link href="" class="text-xl">
-                        Inregistrare
+                        {{__("Inregistreaza-te")}}
                     </x-responsive-nav-link>
                 @endguest
 
                 @auth
                     <x-responsive-nav-link href="{{route('dashboard')}}" class="text-xl">
-                        Dashboard
+                        {{__("Dashboard")}}
                     </x-responsive-nav-link>
                 @endauth
             </div>

@@ -27,7 +27,7 @@
             </div>
 
             <div class="mt-4">
-                <x-label for="city" value="{{ __('Oras') }}" />
+                <x-label for="city" value="{{ __('Oraș') }}" />
                 @php
                     $cities = \App\Models\City::query()->orderBy("name")->get()
                 @endphp

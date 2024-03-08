@@ -304,7 +304,7 @@
 
                     <x-responsive-nav-link href="{{ route('logout') }}"
                                    @click.prevent="$root.submit();">
-                        {{ __('Delogheaza-te') }}
+                        {{ __('Deconectare') }}
                     </x-responsive-nav-link>
                 </form>
 

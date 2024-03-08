@@ -25,7 +25,7 @@
 
         <h3 class="text-lg font-semibold">{{ __("Dispozitiv") . " " . $report->device_id  }}</h3>
         <p class="text-sm text-gray-500">{{ __("Numele dispozitivului") }}: {{ $report->device_name }}</p>
-        <p class="text-sm text-gray-500">{{ __("Orasul dispozitivului") }}: {{ $report->device_city }}</p>
+        <p class="text-sm text-gray-500">{{ __("Orașul dispozitivului") }}: {{ $report->device_city }}</p>
 
         @if ($report->device_latitude && $report->device_longitude)
             <p class="text-sm text-gray-500">{{ __("Latitudinea dispozitivului") }}
