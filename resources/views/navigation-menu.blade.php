@@ -204,15 +204,14 @@
     </div>
 
     <!-- Responsive Navigation Menu -->
-    <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
+    <div :class="{'block': open, 'hidden': ! open}" class=" hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
-            <x-responsive-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
+            <x-responsive-nav-link  href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
                 {{ __('Dashboard') }}
             </x-responsive-nav-link>
 
             @if (Request::user()->role === "user" && Request::user()->device_id !== null)
                 <x-responsive-nav-link
-                    class="text-xl"
                     href="{{ route('user.devices.show') }}"
                     :active="request()->routeIs('user.devices.show')"
                 >
@@ -241,7 +240,6 @@
 
             @if (Request::user()->role === "uat")
                 <x-responsive-nav-link
-                    class="text-xl"
                     href="{{ route('uat.devices.index') }}"
                     :active="request()->routeIs('uat.devices.index')"
                 >
@@ -249,7 +247,6 @@
                 </x-responsive-nav-link>
 
                 <x-responsive-nav-link
-                    class="text-xl"
                     href="{{ route('uat.users.index') }}"
                     :active="request()->routeIs('uat.users.index')"
                 >
@@ -259,7 +256,6 @@
 
             @if (Request::user()->role === "operator")
                 <x-responsive-nav-link
-                    class="text-xl"
                     href="{{ route('operator.devices.index') }}"
                     :active="request()->routeIs('operator.devices.index')"
                 >
@@ -267,7 +263,6 @@
                 </x-responsive-nav-link>
 
                 <x-responsive-nav-link
-                    class="text-xl"
                     href="{{ route('operator.notifications.index') }}"
                     :active="request()->routeIs('operator.notifications.index')"
                 >
@@ -286,8 +281,8 @@
                 @endif
 
                 <div>
-                    <div class="font-medium text-base text-gray-800">{{ Auth::user()->name }}</div>
-                    <div class="font-medium text-sm text-gray-500">{{ Auth::user()->email }}</div>
+                    <div class="font-medium  text-gray-800">{{ Auth::user()->name }}</div>
+                    <div class="font-medium  text-gray-500">{{ Auth::user()->email }}</div>
                 </div>
             </div>
 
