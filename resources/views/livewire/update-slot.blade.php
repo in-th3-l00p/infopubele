@@ -1,10 +1,10 @@
 <x-form-section submit="updateSlot">
     <x-slot name="title">
-        {{ __('Slot Information') }}
+        {{ __('Informatiile Slotului') }}
     </x-slot>
 
     <x-slot name="description">
-        {{ __('Read or update the slot\'s information') }}
+        {{ __('Citește sau actualizează informațiile slotului.') }}
     </x-slot>
 
     <x-slot name="form">
@@ -18,7 +18,7 @@
         </div>
 
         <div class="col-span-6 sm:col-span-4">
-            <x-label for="name" value="{{ __('Name') }}" />
+            <x-label for="name" value="{{ __('Nume') }}" />
             <x-input
                 id="name" type="text" class="mt-1 block w-full"
                 required autocomplete="name"
@@ -28,7 +28,7 @@
         </div>
 
         <div class="col-span-6 sm:col-span-4">
-            <x-label for="capacity" value="{{ __('Max Capacity') }}" />
+            <x-label for="capacity" value="{{ __('Capacitate Maxima') }}" />
             <x-input
                 id="capacity" type="number" class="mt-1 block w-full"
                 required autocomplete="capacity"
@@ -40,11 +40,11 @@
 
     <x-slot name="actions">
         <x-action-message class="me-3" on="saved">
-            {{ __('Saved.') }}
+            {{ __('Salvat') }}
         </x-action-message>
 
         <x-button wire:loading.attr="disabled" wire:target="photo">
-            {{ __('Save') }}
+            {{ __('Salveaza') }}
         </x-button>
     </x-slot>
 </x-form-section>

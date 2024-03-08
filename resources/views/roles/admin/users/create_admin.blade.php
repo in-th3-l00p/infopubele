@@ -17,7 +17,7 @@
             @csrf
 
             <div>
-                <x-label for="name" value="{{ __('Name') }}" />
+                <x-label for="name" value="{{ __('Nume') }}" />
                 <x-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
             </div>
 
@@ -27,7 +27,7 @@
             </div>
 
             <div class="mt-4">
-                <x-label for="role" value="{{ __('Role') }}" />
+                <x-label for="role" value="{{ __('Rol') }}" />
                 <select
                     id="role"
                     name="role"
@@ -42,31 +42,34 @@
             </div>
 
             <div class="mt-4">
-                <x-label for="city" value="{{ __('City') }}" />
+                <x-label for="city" value="{{ __('Oras') }}" />
+                @php
+                    $cities = \App\Models\City::query()->orderBy("name")->get()
+                @endphp
                 <select
                     id="city" name="city"
                     class="select"
+                    wire:model="city"
                 >
-                    <option value="New York" selected>New York</option>
-                    <option value="San Francisco">San Francisco</option>
-                    <option value="Austin">Austin</option>
-                    <option value="Seattle">Seattle</option>
+                    @foreach($cities as $city)
+                        <option value="{{$city->name}}" >{{$city->name}}</option>
+                    @endforeach
                 </select>
                 <x-input-error for="city" class="mt-2" />
             </div>
 
             <div class="mt-4">
-                <x-label for="password" value="{{ __('Password') }}" />
+                <x-label for="password" value="{{ __('Parola') }}" />
                 <x-input id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="new-password" />
             </div>
 
             <div class="mt-4">
-                <x-label for="password_confirmation" value="{{ __('Confirm Password') }}" />
+                <x-label for="password_confirmation" value="{{ __('Confirmare Parola') }}" />
                 <x-input id="password_confirmation" class="block mt-1 w-full" type="password" name="password_confirmation" required autocomplete="new-password" />
             </div>
 
             <div class="flex items-center justify-center mt-4">
-                <x-button>{{ __('Create') }}</x-button>
+                <x-button>{{ __('Creeaza') }}</x-button>
             </div>
         </form>
     </x-white-container>

@@ -47,15 +47,17 @@
 
             <div class="mt-4">
                 <x-label for="city" value="{{ __('Oras') }}" />
+                @php
+                    $cities = \App\Models\City::query()->orderBy("name")->get()
+                @endphp
                 <select
-                    id="city"
-                    name="city"
+                    id="city" name="city"
                     class="select"
+                    wire:model="city"
                 >
-                    <option value="New York" @selected($user->city === "New York")>New York</option>
-                    <option value="San Francisco" @selected($user->city === "San Francisco")>San Francisco</option>
-                    <option value="Austin" @selected($user->city === "Austin")>Austin</option>
-                    <option value="Seattle" @selected($user->city === "New York")>New York</option>
+                    @foreach($cities as $city)
+                        <option value="{{$city->name}}" @selected($user->city===$city) >{{$city->name}}</option>
+                    @endforeach
                 </select>
                 <x-input-error for="city" class="mt-2" />
             </div>

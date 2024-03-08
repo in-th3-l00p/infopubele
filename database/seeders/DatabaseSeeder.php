@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\City;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -34,5 +35,8 @@ class DatabaseSeeder extends Seeder
             'email' => 'operator@example.com',
             'role' => 'operator',
         ]);
+        City::factory()->create(['name'=>'Brasov']);
+        City::factory()->create(['name'=>'Bucuresti']);
+
     }
 }

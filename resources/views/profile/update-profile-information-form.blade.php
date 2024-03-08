@@ -1,10 +1,10 @@
 <x-form-section submit="updateProfileInformation">
     <x-slot name="title">
-        {{ __('Profile Information') }}
+        {{ __('Informatii profil') }}
     </x-slot>
 
     <x-slot name="description">
-        {{ __('Update your account\'s profile information and email address.') }}
+        {{ __('Modifica informatii despre profil.') }}
     </x-slot>
 
     <x-slot name="form">
@@ -54,23 +54,25 @@
 
         <!-- Name -->
         <div class="col-span-6 sm:col-span-4">
-            <x-label for="name" value="{{ __('Name') }}" />
+            <x-label for="name" value="{{ __('Nume') }}" />
             <x-input id="name" type="text" class="mt-1 block w-full" wire:model="state.name" required autocomplete="name" />
             <x-input-error for="name" class="mt-2" />
         </div>
 
         <!--City-->
         <div class="col-span-6 sm:col-span-4">
-            <x-label for="city" value="{{ __('City') }}" />
+            <x-label for="city" value="{{ __('Oras') }}" />
+            @php
+                $cities = \App\Models\City::query()->orderBy("name???")->get()
+            @endphp
             <select
                 id="city" name="city"
                 class="select"
-                wire:model="state.city"
+                wire:model="city"
             >
-                <option value="New York" selected>New York</option>
-                <option value="San Francisco">San Francisco</option>
-                <option value="Austin">Austin</option>
-                <option value="Seattle">Seattle</option>
+                @foreach($cities as $city)
+                    <option value="{{$city->name}}" >{{$city->name}}</option>
+                @endforeach
             </select>
             <x-input-error for="city" class="mt-2" />
         </div>
@@ -84,16 +86,15 @@
 
             @if (Laravel\Fortify\Features::enabled(Laravel\Fortify\Features::emailVerification()) && ! $this->user->hasVerifiedEmail())
                 <p class="text-sm mt-2">
-                    {{ __('Your email address is unverified.') }}
+                    {{ __('Emailul nu este verificat.') }}
 
                     <button type="button" class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" wire:click.prevent="sendEmailVerification">
-                        {{ __('Click here to re-send the verification email.') }}
-                    </button>
+                        {{ __('Apasa aici pentru a retrimite link de verificare email')}}
                 </p>
 
                 @if ($this->verificationLinkSent)
                     <p class="mt-2 font-medium text-sm text-green-600">
-                        {{ __('A new verification link has been sent to your email address.') }}
+                        {{ __('Un nou link de verificare a fost trimis.') }}
                     </p>
                 @endif
             @endif
@@ -102,11 +103,11 @@
 
     <x-slot name="actions">
         <x-action-message class="me-3" on="saved">
-            {{ __('Saved.') }}
+            {{ __('Salvat.') }}
         </x-action-message>
 
         <x-button wire:loading.attr="disabled" wire:target="photo">
-            {{ __('Save') }}
+            {{ __('Salveaza') }}
         </x-button>
     </x-slot>
 </x-form-section>

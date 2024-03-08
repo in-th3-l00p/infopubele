@@ -1,10 +1,10 @@
 <x-form-section submit="updateDevice">
     <x-slot name="title">
-        {{ __('Device Information') }}
+        {{ __('Informatii despre Dispozitiv') }}
     </x-slot>
 
     <x-slot name="description">
-        {{ __('Complete with the initial device\'s information.') }}
+        {{ __('Completeaza cu informatiile initiale ale dispozitivului.') }}
     </x-slot>
 
     <x-slot name="form">
@@ -15,8 +15,8 @@
                     role="alert"
                 >
                     <div>
-                        <strong class="font-bold">{{ __("Device updated successfully!") }}</strong>
-                        <span class="block sm:inline">{{ __("The device has been updated successfully.") }}</span>
+                        <strong class="font-bold">{{ __("Dispozitiv modifica cu succes!") }}</strong>
+                        <span class="block sm:inline">{{ __("Dispozitivul a fost modificat cu succes.") }}</span>
                     </div>
 
                     <x-button
@@ -31,7 +31,7 @@
         @endif
 
         <div class="col-span-6 sm:col-span-4">
-            <x-label for="name" value="{{ __('Name') }}" />
+            <x-label for="name" value="{{ __('Nume') }}" />
             <x-input
                 id="name" type="text" class="mt-1 block w-full"
                 required autocomplete="name"
@@ -41,16 +41,18 @@
         </div>
 
         <div class="col-span-6 sm:col-span-4">
-            <x-label for="city" value="{{ __('City') }}" />
+            <x-label for="city" value="{{ __('Oras') }}" />
+            @php
+                $cities = \App\Models\City::query()->orderBy("name")->get()
+            @endphp
             <select
                 id="city" name="city"
-                class="mt-1 block w-full border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm"
+                class="select"
                 wire:model="city"
             >
-                <option value="New York">New York</option>
-                <option value="San Francisco">San Francisco</option>
-                <option value="Austin">Austin</option>
-                <option value="Seattle">Seattle</option>
+                @foreach($cities as $city)
+                    <option value="{{$city->name}}" >{{$city->name}}</option>
+                @endforeach
             </select>
             <x-input-error for="city" class="mt-2" />
         </div>
@@ -58,11 +60,11 @@
 
     <x-slot name="actions">
         <x-action-message class="me-3" on="saved">
-            {{ __('Saved.') }}
+            {{ __('Salvat.') }}
         </x-action-message>
 
         <x-button wire:loading.attr="disabled" wire:target="photo">
-            {{ __('Save') }}
+            {{ __('Salveaza') }}
         </x-button>
     </x-slot>
 </x-form-section>
