@@ -84,13 +84,13 @@
             @forelse ($tokens as $token)
                 <li
                     @class([
-                        "flex items-center justify-between my-4 p-4 border-2 rounded-md shadow-md",
+                        "block md:flex items-center justify-between my-4 p-4 border-2 rounded-md shadow-md",
                         "hover:shadow-lg hover:bg-zinc-100 transition ease-in-out gap-8"
                     ])
                     x-data="{ showToken: false }"
                 >
                     <div class="flex-grow">
-                        <h3 class="text-lg font-semibold" x-show="showToken">{{ $token->token }}</h3>
+                        <h3 class="break-all text-lg font-semibold" x-show="showToken">{{ $token->token }}</h3>
                         <div
                             class="w-full p-4 bg-zinc-600 animate-pulse rounded-lg max-w-[400px] hover:cursor-help"
                             title="{{ __("Apasa pe butonul \"Arata\" pentru a vedea tokenul") }}"
@@ -98,10 +98,10 @@
                         ></div>
                     </div>
 
-                    <div class="flex items-center gap-4">
+                    <div class="flex items-center gap-4 pt-4 md:pt-0">
                         <button
                             type="button"
-                            class="btn"
+                            class="btn "
                             @click="showToken = !showToken"
                             x-text="showToken ? '{{ __("Ascunde") }}' : '{{ __("Arata") }}'"
                         >
