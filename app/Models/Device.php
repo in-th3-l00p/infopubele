@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Query\Builder;
+use Illuminate\Database\Eloquent\Builder;
 
 class Device extends Model
 {
@@ -30,4 +30,14 @@ class Device extends Model
     public function scopeCoordinates($builder): void {
         $builder->whereNotNull("latitude")->whereNotNull("longitude");
     }
+
+    public function scopePopular(Builder $query)
+    {
+        return $query->withCount('transactions');
+    }
+    public function scopePopularDevice(Builder $query) : Builder
+    {
+        return $query->
+    }
+
 }
