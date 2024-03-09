@@ -31,13 +31,9 @@ class Device extends Model
         $builder->whereNotNull("latitude")->whereNotNull("longitude");
     }
 
-    public function scopePopular(Builder $query)
+    public function scopePopular(Builder $query) : Builder
     {
-        return $query->withCount('transactions');
-    }
-    public function scopePopularDevice(Builder $query) : Builder
-    {
-        return $query->
+        return $query->withCount('transactions')->orderBy('transactions_count','desc')->latest(2);
     }
 
 }

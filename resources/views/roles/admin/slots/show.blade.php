@@ -42,7 +42,7 @@
     </x-white-container>
 
     <x-white-container>
-        <h2 class="text-lg font-semibold mb-8">{{ __("Delete slot") }}</h2>
+        <h2 class="text-lg font-semibold mb-8">{{ __("Ștergeți slotul") }}</h2>
         <div class="mx-8 flex flex-wrap items-center justify-between gap-8">
             <p class="mb-4">{{ __("Esti sigur ca vrei sa stergi slotul?") }}</p>
 
