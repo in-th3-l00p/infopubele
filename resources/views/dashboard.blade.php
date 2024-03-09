@@ -1,7 +1,7 @@
 <x-app-layout>
-    <div class=" min-h-screen flex-col flex">
+    <div class=" min-h-screen flex-col flex ">
         <div
-            class="w-full flex-grow bg-[url('/public/img.jpg')] bg-cover brightness-100 bg-center flex items-center lg:items-left">
+            class="w-full flex-grow bg-[url('/public/img.jpg')] bg-cover brightness-100 bg-center flex justify-center  lg:justify-start">
             <div class="flex flex-col ">
                 <h1 class="px-16 pt-16 text-center text-5xl text-black font-bold drop-shadow-lg uppercase">{{__("BINE AI VENIT, ")}} <b class="text-green-600">{{Request::user()->name}}</b>
                 </h1>
