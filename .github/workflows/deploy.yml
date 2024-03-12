@@ -13,4 +13,8 @@ jobs:
         username: ${{ secrets.USERNAME }}
         password: ${{ secrets.PASSWORD }}
         port: ${{ secrets.PORT }}
-        script: ls
+        script: |
+          cd /var/www/infopubele
+          git pull origin main
+          npm run build
+          php artisan migrate
