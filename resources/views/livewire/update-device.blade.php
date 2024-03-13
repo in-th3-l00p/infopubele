@@ -29,6 +29,15 @@
                 </div>
             </div>
         @endif
+            <div class="col-span-6 sm:col-span-4">
+                <label for="id">{{ __("ID") }}</label>
+                <x-input
+                    id="id" type="text" class="mt-1 block w-full"
+                    required autocomplete="id"
+                    disabled value="{{ $device->id }}"
+                />
+            </div>
+
 
         <div class="col-span-6 sm:col-span-4">
             <x-label for="name" value="{{ __('Nume') }}" />
