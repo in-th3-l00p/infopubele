@@ -19,8 +19,8 @@ class ContactRequest extends FormRequest
         return [
             'nume' => 'required|max:255',
             'prenume' => 'required|max:255',
-            'email'=>'required|email|max:255',
-            'numar-de-telefon'=>'required|numeric|min:10|max:20',
+            'email'=>'required|email:rfc,dns|max:255',
+            'numar-de-telefon'=>'required|numeric|digits:10',
             'mesaj'=>'required|max:3000'
         ];
     }
