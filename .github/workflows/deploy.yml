@@ -14,7 +14,8 @@ jobs:
         password: ${{ secrets.PASSWORD }}
         port: ${{ secrets.PORT }}
         script: |
+          source ~/.bashrc
           cd /var/www/infopubele
           git pull origin main
-          /root/.nvm/versions/node/v14.21.3/bin/npm run build
+          npm run build
           php artisan migrate
