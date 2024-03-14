@@ -8,7 +8,7 @@ use Livewire\Component;
 class CreateDevice extends Component
 {
     public string $name;
-    public string $city = "New York";
+    public string $city;
 
     public function render() {
         return view('livewire.create-device');
@@ -18,6 +18,9 @@ class CreateDevice extends Component
         $this->validate([
             'name' => 'required|min:1|max:255|unique:devices,name',
             'city' => 'required|min:1|max:255',
+        ],[
+            'city.required' => 'Orașul este obligatoriu.',
+            'name.required' => 'Numele este obligatoriu.',
         ]);
 
         Device::create([

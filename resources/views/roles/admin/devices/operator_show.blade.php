@@ -8,7 +8,7 @@
     <x-white-container>
         <x-form-section submit="updateDevice">
             <x-slot name="title">
-                {{ __('Informatii Dispozitiv') }}
+                {{ __('Informații Dispozitiv') }}
             </x-slot>
 
             <x-slot name="description">

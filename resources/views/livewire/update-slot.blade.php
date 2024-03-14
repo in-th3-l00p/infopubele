@@ -1,6 +1,6 @@
 <x-form-section submit="updateSlot">
     <x-slot name="title">
-        {{ __('Informatiile Slotului') }}
+        {{ __('Informațiile Slotului') }}
     </x-slot>
 
     <x-slot name="description">

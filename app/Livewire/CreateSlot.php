@@ -20,7 +20,7 @@ class CreateSlot extends Component
     public function createSlot() {
         $this->validate([
             "name" => "required|min:3|max:255|alpha",
-            "capacity" => "required|numeric|min:0.1|max:100"
+            "capacity" => "required|numeric|min:1|max:1100"
         ], [
             "name.required" => __("Name is required"),
             "name.min" => __("Name must have at least 3 characters"),
@@ -28,8 +28,8 @@ class CreateSlot extends Component
             "name.alpha" => __("Name must contain only letters"),
             "capacity.required" => __("Capacity is required"),
             "capacity.numeric" => __("Capacity must be a number"),
-            "capacity.min" => __("Capacity must be at least 0.1"),
-            "capacity.max" => __("Capacity must be at most 100")
+            "capacity.min" => __("Capacity must be at least 1"),
+            "capacity.max" => __("Capacity must be at most 1100")
         ]);
 
         $slot = Slot::create([

@@ -14,7 +14,7 @@
                 ></div>
             </div>
         @empty
-            <p>{{ __("There are no slots configured.") }}</p>
+            <p>{{ __("Nu sunt sloturi configurate.") }}</p>
         @endforelse
     </div>
 </x-white-container>

@@ -1,9 +1,9 @@
 <x-guest-layout>
         <x-text-card>
             <h1 class=" mt-8 font-bold text-3xl">Contact</h1>
-            <p>Trimite echipei Infopubele.ro intrebarea sau comentariul tau.
-                Te rugam sa completezi formularul de mai jos. Vei primi un raspuns in maxim 24 ore lucratoare.</p>
-            <br>
+                <p>Trimite echipei Infopubele.ro intrebarea sau comentariul tau.
+                    Te rugam sa completezi formularul de mai jos. Vei primi un raspuns in maxim 24 ore lucratoare.</p>
+                <br>
             <form action="" method="POST">
                 @csrf
                 <div class="mb-4 flex flex-col space-y-3">

@@ -1,10 +1,10 @@
 <x-form-section submit="updateProfileInformation">
     <x-slot name="title">
-        {{ __('Informatii profil') }}
+        {{ __('Informații profil') }}
     </x-slot>
 
     <x-slot name="description">
-        {{ __('Modifica informatii despre profil.') }}
+        {{ __('Modifica informații despre profil.') }}
     </x-slot>
 
     <x-slot name="form">
@@ -63,13 +63,16 @@
         <div class="col-span-6 sm:col-span-4">
             <x-label for="city" value="{{ __('Oraș') }}" />
             @php
-                $cities = \App\Models\City::query()->orderBy("name???")->get()
+                $cities = \App\Models\City::query()->orderBy('name')->get()
             @endphp
             <select
                 id="city" name="city"
                 class="select"
-                wire:model="city"
+                wire:model="state.city"
             >
+                @if(!$this->user->city)
+                    <option  value="" >{{ __('Alege orașul') }}</option>
+                @endif
                 @foreach($cities as $city)
                     <option value="{{$city->name}}" >{{$city->name}}</option>
                 @endforeach

@@ -1,30 +1,30 @@
 <x-app-layout>
-    <x-slot name="header">
+    <x-slot name="sticky_header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Device') }}: <span class="font-bold">{{ $device->name }}</span>
+            {{ __('Dispozitiv') }}: <span class="font-bold">{{ $device->name }}</span> ({{ $device->id }})
         </h2>
     </x-slot>
 
     <x-white-container>
         <x-form-section submit="updateDevice">
             <x-slot name="title">
-                {{ __('Device Information') }}
+                {{ __('Informații despre Dispozitiv') }}
             </x-slot>
 
             <x-slot name="description">
-                {{ __('Complete with the initial device\'s information.') }}
+                {{ __('Completează cu informațiile inițiale ale dispozitivului.') }}
             </x-slot>
 
 
             <x-slot name="form">
 
                 <div class="col-span-6 sm:col-span-4">
-                    <x-label for="name" value="{{ __('Name') }}" />
+                    <x-label for="name" value="{{ __('Nume') }}" />
                     <h1>{{$device->name}}</h1>
                 </div>
 
                 <div class="col-span-6 sm:col-span-4">
-                    <x-label for="city" value="{{ __('City') }}" />
+                    <x-label for="city" value="{{ __('Oraș') }}" />
                     <h1>{{$device->city}}</h1>
                 </div>
             </x-slot>
@@ -34,7 +34,7 @@
     <x-device-map :device="$device" />
 
     <x-white-container>
-        <h2 class="text-lg font-semibold">{{ __("Slots") }}:</h2>
+        <h2 class="text-lg font-semibold">{{ __("Sloturi") }}:</h2>
         <ul class="ml-8">
             @forelse ($device->slots as $slot)
                 <li>
@@ -52,7 +52,7 @@
                     </a>
                 </li>
             @empty
-                <p>{{ __("There are no slots configured.") }}</p>
+                <p>{{ __("Nu sunt sloturi configurate.") }}</p>
             @endforelse
         </ul>
     </x-white-container>

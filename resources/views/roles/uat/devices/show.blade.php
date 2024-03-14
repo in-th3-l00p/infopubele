@@ -1,7 +1,7 @@
 <x-app-layout>
-    <x-slot name="header">
+    <x-slot name="sticky_header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Dispozitiv') }}: <span class="font-bold">{{ $device->name }}</span>
+            {{ __('Dispozitiv') }}: <span class="font-bold">{{ $device->name }}</span> ({{ $device->id }})
         </h2>
     </x-slot>
 

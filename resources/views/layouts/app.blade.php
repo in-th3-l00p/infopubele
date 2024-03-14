@@ -34,6 +34,13 @@
                     </div>
                 </header>
             @endif
+            @if (isset($sticky_header))
+                <header id="sticky-header" class="bg-white shadow">
+                    <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+                        {{ $sticky_header }}
+                    </div>
+                </header>
+            @endif
 
             <!-- Page Content -->
             <main>
@@ -45,6 +52,22 @@
 
         @livewireScripts
         <script src="{{ asset('vendor/bladewind/js/helpers.js') }}"></script>
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                var header = document.getElementById("sticky-header");
+                var navBar = document.getElementById("navigation-bar");
+
+                var navBarHeight = navBar.offsetHeight;
+
+                window.addEventListener('scroll', function () {
+                    if (window.scrollY > navBarHeight) {
+                        header.classList.add('sticky');
+                    } else {
+                        header.classList.remove('sticky');
+                    }
+                });
+            });
+        </script>
     </body>
     <x-footer/>
 </html>
