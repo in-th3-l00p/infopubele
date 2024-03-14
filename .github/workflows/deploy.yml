@@ -16,5 +16,5 @@ jobs:
         script: |
           cd /var/www/infopubele
           git pull origin main
-          npm run build
+          /root/.nvm/versions/node/v14.21.3/bin/npm run build
           php artisan migrate
