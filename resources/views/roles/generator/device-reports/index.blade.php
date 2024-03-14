@@ -37,7 +37,7 @@
                 </div>
             </a>
         @empty
-            <p class="text-center">{{ __("Nu s-au gasit rapoarte.") }}</p>
+            <p class="text-center">{{ __("Nu s-au găsit rapoarte.") }}</p>
         @endforelse
 
         {{ $reports->links() }}

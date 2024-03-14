@@ -27,7 +27,7 @@
     </div>
 
     <x-white-container>
-        <h2 class="text-lg font-semibold mb-8">{{ __("Tranzactii") }}</h2>
+        <h2 class="text-lg font-semibold mb-8">{{ __("Tranzacții") }}</h2>
 
         <ul class="ml-8">
             @forelse ($transactions as $transaction)
@@ -36,7 +36,7 @@
                     :device="$device"
                 />
             @empty
-                <p>{{ __("Nu exista tranzactii.") }}</p>
+                <p>{{ __("Nu exista tranzacții.") }}</p>
             @endforelse
         </ul>
     </x-white-container>
@@ -44,7 +44,7 @@
     <x-white-container>
         <h2 class="text-lg font-semibold mb-8">{{ __("Ștergeți slotul") }}</h2>
         <div class="mx-8 flex flex-wrap items-center justify-between gap-8">
-            <p class="mb-4">{{ __("Esti sigur ca vrei sa stergi slotul?") }}</p>
+            <p class="mb-4">{{ __("Ești sigur că vrei să ștergi slotul?") }}</p>
 
             <form
                 method="POST"

@@ -35,7 +35,7 @@
         </x-action-message>
 
         <x-button wire:loading.attr="disabled" wire:target="photo">
-            {{ __('Salveaza') }}
+            {{ __('Salvează') }}
         </x-button>
     </x-slot>
 </x-form-section>

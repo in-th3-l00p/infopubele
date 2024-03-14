@@ -12,7 +12,7 @@
             </x-slot>
 
             <x-slot name="description">
-                {{ __('Completeaza cu informatiile initiale ale dispozitivului.') }}
+                {{ __('Completează cu informațiile inițiale ale dispozitivului.') }}
             </x-slot>
 
 

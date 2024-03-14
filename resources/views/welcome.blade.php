@@ -6,7 +6,7 @@
                 <h1 class=" text-center text-5xl text-black font-bold drop-shadow-lg">{{__("BINE AI VENIT PE PLATFORMA")}}
                     <span class="text-green-600 font-bold">{{__("INFOPUBELE")}}</span>
                 </h1>
-                <p class="mt-5 text-center text-lg text-black">{{__("Aceasta platforma este utitlizata pentru tranzactii cu pubelele noastre")}}</p>
+                <p class="mt-5 text-center text-lg text-black">{{__("Această platformă este utilizată pentru tranzacții cu pubelele noastre.")}}</p>
                 @auth
                     <a class="mt-8 px-12 py-3 bg-green-600 hover:from-amber-600 hover:to-red-700 text-xl text-white/70 font-semibold drop-shadow-lg rounded-full"
                        href="{{route('dashboard')}}">{{__("Dashboard")}}
@@ -72,7 +72,7 @@
     </x-text-card>
     <x-text-card>
         <div class="space-y-2">
-            <h1 class=" mt-8 font-bold text-3xl">{{__("Locatia pubelelor")}}</h1>
+            <h1 class=" mt-8 font-bold text-3xl">{{__("Locația pubelelor")}}</h1>
             <x-maps-leaflet style="width:95%; aspect-ratio: 2/1; margin-inline: auto;"
                             :zoomLevel="6" :centerPoint="['lat' => 45.9432, 'long' => 24.9668]"
                             :markers="$devices->map(fn (\App\Models\Device $device) => [$device->latitude, $device->longitude])->all()"

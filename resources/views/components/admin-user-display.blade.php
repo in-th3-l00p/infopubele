@@ -8,7 +8,7 @@
         <div class="flex flex-wrap items-center gap-2">
             <button
                 title="edit" class="btn"
-                x-text="showData ? '{{ __("Ascunde")}}' : '{{ __("Arata")}}'"
+                x-text="showData ? '{{ __("Ascunde")}}' : '{{ __("Arată")}}'"
                 x-on:click="showData = !showData"
             ></button>
             <a href="{{ route("users.edit", [ "user" => $user ]) }}">
@@ -21,7 +21,7 @@
                     @csrf
                     @method("DELETE")
 
-                    <x-danger-button type="submit" title="remove">{{ __("Sterge") }}</x-danger-button>
+                    <x-danger-button type="submit" title="remove">{{ __("Șterge") }}</x-danger-button>
                 </form>
             @elseif(Request::user()->role==='uat')
                 <form method="POST" action="{{ route("uat.users.destroy", [
@@ -30,7 +30,7 @@
                     @csrf
                     @method("DELETE")
 
-                    <x-danger-button type="submit" title="remove">{{ __("Sterge") }}</x-danger-button>
+                    <x-danger-button type="submit" title="remove">{{ __("Șterge") }}</x-danger-button>
                 </form>
             @endif
 

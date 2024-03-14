@@ -15,7 +15,7 @@
                 class="select"
                 wire:model="device_id"
             >
-                <option :value="-1" selected>{{ __("Selecteaza un dispozitiv") }}</option>
+                <option :value="-1" selected>{{ __("Selectează un dispozitiv") }}</option>
                 @foreach ($devices as $device)
                     <option value="{{ $device->id }}">{{ $device->name }}</option>
                 @endforeach
@@ -30,7 +30,7 @@
         </x-action-message>
 
         <x-button wire:loading.attr="disabled">
-            {{ __('Salveaza') }}
+            {{ __('Salvează') }}
         </x-button>
     </x-slot>
 </x-form-section>

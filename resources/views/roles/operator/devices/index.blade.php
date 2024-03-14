@@ -20,7 +20,7 @@
                 </div>
             </a>
         @empty
-            <p class="text-center">{{ __("Nu s-au gasit dispozitive.") }}</p>
+            <p class="text-center">{{ __("Nu s-au găsit dispozitive.") }}</p>
         @endforelse
 
         {{ $devices->links() }}

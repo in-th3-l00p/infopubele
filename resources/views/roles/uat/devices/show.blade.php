@@ -43,7 +43,7 @@
     <x-slot-visualizer :device="$device" />
 
     <x-white-container>
-        <h2 class="text-lg font-semibold mb-8">{{ __("Tranzactii") }}</h2>
+        <h2 class="text-lg font-semibold mb-8">{{ __("Tranzacții") }}</h2>
 
         <ul class="ml-8">
             @forelse ($transactions as $transaction)
@@ -52,7 +52,7 @@
                     :device="$device"
                 />
             @empty
-                <p>{{ __("Nu sunt tranzactii.") }}</p>
+                <p>{{ __("Nu sunt tranzacții.") }}</p>
             @endforelse
         </ul>
     </x-white-container>

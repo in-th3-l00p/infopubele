@@ -27,7 +27,7 @@
     </div>
 
     <x-white-container>
-        <h2 class="text-lg font-semibold mb-8">{{ __("Tranzactii") }}</h2>
+        <h2 class="text-lg font-semibold mb-8">{{ __("Tranzacții") }}</h2>
 
         <ul class="ml-8">
             @forelse ($transactions as $transaction)
@@ -36,7 +36,7 @@
                     :device="$device"
                 />
             @empty
-                <p>{{ __("Nu exista tranzactii.") }}</p>
+                <p>{{ __("Nu exista tranzacții.") }}</p>
             @endforelse
         </ul>
     </x-white-container>

@@ -1,10 +1,10 @@
 <x-form-section submit="updateDevice">
     <x-slot name="title">
-        {{ __('Informatii despre Dispozitiv') }}
+        {{ __('Informații despre Dispozitiv') }}
     </x-slot>
 
     <x-slot name="description">
-        {{ __('Completeaza cu informatiile initiale ale dispozitivului.') }}
+        {{ __('Completează cu informațiile inițiale ale dispozitivului.') }}
     </x-slot>
 
     <x-slot name="form">
@@ -64,7 +64,7 @@
         </x-action-message>
 
         <x-button wire:loading.attr="disabled" wire:target="photo">
-            {{ __('Salveaza') }}
+            {{ __('Salvează') }}
         </x-button>
     </x-slot>
 </x-form-section>

@@ -5,7 +5,7 @@
                 <x-button :title="__('Back')">Back</x-button>
             </a>
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                {{ __('Creeaza Utilizator') }}
+                {{ __('Creează Utilizator') }}
             </h2>
         </div>
     </x-slot>
@@ -69,7 +69,7 @@
             </div>
 
             <div class="flex items-center justify-center mt-4">
-                <x-button>{{ __('Creeaza') }}</x-button>
+                <x-button>{{ __('Creează') }}</x-button>
             </div>
         </form>
     </x-white-container>

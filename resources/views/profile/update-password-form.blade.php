@@ -33,7 +33,7 @@
         </x-action-message>
 
         <x-button>
-            {{ __('Salveaza') }}
+            {{ __('Salvează') }}
         </x-button>
     </x-slot>
 </x-form-section>

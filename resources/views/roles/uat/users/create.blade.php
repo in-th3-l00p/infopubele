@@ -54,7 +54,7 @@
             </div>
 
             <div class="flex items-center justify-center mt-4">
-                <x-button>{{ __('Creeaza') }}</x-button>
+                <x-button>{{ __('Creează') }}</x-button>
             </div>
         </form>
     </x-white-container>

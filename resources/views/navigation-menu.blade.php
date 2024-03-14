@@ -158,11 +158,11 @@
                         <x-slot name="content">
                             <!-- Account Management -->
                             <div class="block px-4 py-2 text-xs text-gray-400">
-                                {{ __('Gestioneaza Cont') }}
+                                {{ __('Gestionează Cont') }}
                             </div>
 
                             <x-dropdown-link href="{{ route('welcome') }}">
-                                {{ __('Acasa') }}
+                                {{ __('Acasă') }}
                             </x-dropdown-link>
 
                             <x-dropdown-link href="{{ route('profile.show') }}">

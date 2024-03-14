@@ -18,7 +18,7 @@
                 <x-admin-user-display :user="$user"/>
 
         @empty
-            <p class="text-center">{{ __("Nu s-au gasit utilizatori.") }}</p>
+            <p class="text-center">{{ __("Nu s-au găsit utilizatori.") }}</p>
         @endforelse
 
         {{ $users->links() }}

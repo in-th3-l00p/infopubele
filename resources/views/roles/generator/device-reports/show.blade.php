@@ -11,14 +11,14 @@
                 type="button" class="btn" title="{{ __("Download") }}"
                 href="{{ "/storage/" . $report->spreadsheet_link }}"
             >
-                {{ __("Descarca") }}
+                {{ __("Descarcă") }}
             </a>
 
             <form action="{{ route('device-reports.destroy', $report) }}" method="POST">
                 @csrf
                 @method('DELETE')
                 <x-danger-button type="submit">
-                    {{ __("Sterge") }}
+                    {{ __("Șterge") }}
                 </x-danger-button>
             </form>
         </div>
@@ -49,7 +49,7 @@
                 </div>
             </div>
         @empty
-            <p class="text-center">{{ __("Nu s-au gasit sloturi.") }}</p>
+            <p class="text-center">{{ __("Nu s-au găsit sloturi.") }}</p>
         @endforelse
     </x-white-container>
 </x-app-layout>

@@ -11,13 +11,13 @@
                 <!-- Navigation Links -->
                 <div class="hidden space-x-3  sm:ms-4 sm:flex">
                     <x-nav-link href="{{route('welcome')}}" class="text-xl">
-                        Acasa
+                        {{__("Acasă")}}
                     </x-nav-link>
                     <x-nav-link href="{{route('about')}}" class="text-xl">
-                        Despre noi
+                        {{__("Despre noi")}}
                     </x-nav-link>
                     <x-nav-link href="{{route('contact')}}" class="text-xl">
-                        Contact
+                        {{__("Contact")}}
                     </x-nav-link>
                 </div>
             </div>
@@ -25,16 +25,16 @@
             <div class="hidden sm:flex sm:items-center sm:ms-6">
                 @guest
                     <x-nav-link href="{{route('login')}}" class="text-xl">
-                        Logare
+                        {{__("Conectează-te")}}
                     </x-nav-link>
                     <x-nav-link href="" class="text-xl">
-                        Inregistrare
+                        {{__("Înregistrează-te")}}
                     </x-nav-link>
                 @endguest
 
                 @auth
                     <x-nav-link href="{{route('dashboard')}}" class="text-xl">
-                        Dashboard
+                        {{__("Dashboard")}}
                     </x-nav-link>
                 @endauth
             </div>
@@ -55,13 +55,13 @@
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
             <x-responsive-nav-link href="{{route('welcome')}}" class="text-xl">
-                Acasa
+                {{__("Acasă")}}
             </x-responsive-nav-link>
             <x-responsive-nav-link href="{{route('about')}}" class="text-xl">
-                Despre noi
+                {{__("Despre noi")}}
             </x-responsive-nav-link>
             <x-responsive-nav-link href="{{route('contact')}}" class="text-xl">
-                Contact
+                {{__("Contact")}}
             </x-responsive-nav-link>
         </div>
 
@@ -70,10 +70,10 @@
             <div class="mt-3 space-y-1">
                 @guest
                     <x-responsive-nav-link href="{{route('login')}}" class="text-xl">
-                        {{__("Conecteaza-te")}}
+                        {{__("Conectează-te")}}
                     </x-responsive-nav-link>
                     <x-responsive-nav-link href="" class="text-xl">
-                        {{__("Inregistreaza-te")}}
+                        {{__("Înregistrează-te")}}
                     </x-responsive-nav-link>
                 @endguest
 

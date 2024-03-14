@@ -51,7 +51,7 @@
                                                     {{(" de la dispozitivul ")}}
                                                     {{$transaction->slot()->first()->device()->first()->name}}</a></p>
                                         @empty
-                                            <p>{{__("Nu exista tranzactii")}}</p>
+                                            <p>{{__("Nu exista tranzacții")}}</p>
                                         @endforelse
                                     </div>
                                 </x-white-container>
