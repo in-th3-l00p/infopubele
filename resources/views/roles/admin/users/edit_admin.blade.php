@@ -98,7 +98,7 @@
             @endif
 
             <div class="flex items-center justify-center mt-4">
-                <x-button>{{ __('Editeaza') }}</x-button>
+                <x-button>{{ __('Editează') }}</x-button>
             </div>
         </form>
     </x-white-container>

@@ -12,7 +12,7 @@
                 x-on:click="showData = !showData"
             ></button>
             <a href="{{ route("users.edit", [ "user" => $user ]) }}">
-                <x-button title="edit">{{ __("Editeaza") }}</x-button>
+                <x-button title="edit">{{ __("Editează") }}</x-button>
             </a>
             @if(Request::user()->role==='admin')
                 <form method="POST" action="{{ route("users.destroy", [
