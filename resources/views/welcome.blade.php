@@ -80,6 +80,5 @@
         </div>
 
     </x-text-card>
-    <p>hello world hellfjasdlkfhjasdkl;fhasd;jkfhnsdjkan</p>
     <x-footer></x-footer>
 </x-guest-layout>

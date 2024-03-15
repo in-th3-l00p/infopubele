@@ -19,7 +19,7 @@
         <br>
         <p>{{__("Unul dintre aspectele revoluționare ale serviciului Infopubele.ro este utilizarea containerelor inteligente,
             echipate cu senzori care monitorizează gradul de umplere și transmit datele în timp real către aplicația
-            web, Infopubele.ro fiind un instrument esențial pentru utilizatorii săi. </p>")}}<br>
+            web, Infopubele.ro fiind un instrument esențial pentru utilizatorii săi.")}}<br>
         <p>{{__("Astfel,")}}<b class="font-extrabold"> {{__("fiecare persoană înregistrată")}} </b> {{__("are un cont
         personal în care poate vedea cantitatea de deșeuri aruncate pe categorii (hârtie, plastic, sticlă, deșeuri
         menajere etc.) și costul asociat fiecărei categorii.")}}
