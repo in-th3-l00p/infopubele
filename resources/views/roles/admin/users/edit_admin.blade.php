@@ -70,6 +70,7 @@
                     class="select"
                     wire:model="city"
                 >
+                    <option  value="" >{{ __('Alege orașul') }}</option>
                     @foreach($cities as $city)
                         <option value="{{$city->name}}" >{{$city->name}}</option>
                     @endforeach

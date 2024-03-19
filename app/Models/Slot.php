@@ -21,7 +21,7 @@ class Slot extends Model
         return $this->hasMany(Transaction::class);
     }
 
-    public function notification()
+    public function notifications()
     {
         return $this->hasMany(Notification::class);
     }

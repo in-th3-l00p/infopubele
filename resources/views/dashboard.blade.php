@@ -38,18 +38,23 @@
                                     <div class="w-full]">
                                         @php
                                             $transactions = \App\Models\Transaction::query()->latest()->take(2)->get()
+
                                         @endphp
                                         @forelse($transactions as $transaction)
-                                            <p class="text-2xl uppercase font-bold p-6"><a href="{{route("devices.show",['device'=>$transaction->slot()->first()->device()->first()])}}">
+                                            @php
+                                            $slot=$transaction->slot()->first();
+                                            $device=$slot->device()->first();
+                                            @endphp
+                                            <p class="text-2xl uppercase font-bold p-6"><a href="{{route("devices.show",['device'=>$device])}}">
                                                     {{__("Tranzacție de ")}}
                                                     {{$transaction->amount}}
                                                     m<sup>3</sup>
                                                     <br>
                                                     {{__("la slotul ")}}
-                                                    {{$transaction->slot()->first()->name}}
+                                                    {{$slot->name}}
                                                     <br>
                                                     {{(" de la dispozitivul ")}}
-                                                    {{$transaction->slot()->first()->device()->first()->name}}</a></p>
+                                                    {{$device->name}}</a></p>
                                         @empty
                                             <p>{{__("Nu exista tranzacții")}}</p>
                                         @endforelse
