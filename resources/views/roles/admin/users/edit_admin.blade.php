@@ -70,9 +70,15 @@
                     class="select"
                     wire:model="city"
                 >
-                    <option  value="" >{{ __('Alege orașul') }}</option>
+                    @if($user->city === null)
+                        <option value="" selected>{{ __("Nu exista Oras alocat") }}</option>
+                    @endif
                     @foreach($cities as $city)
-                        <option value="{{$city->name}}" >{{$city->name}}</option>
+                        @if($city->name !== $user->city)
+                            <option value="{{$city->name}}" >{{$city->name}}</option>
+                            @else
+                                <option value="{{$user->city}}" selected>{{$user->city}}</option>
+                            @endif
                     @endforeach
                 </select>
                 <x-input-error for="city" class="mt-2" />
@@ -99,7 +105,7 @@
             @endif
 
             <div class="flex items-center justify-center mt-4">
-                <x-button>{{ __('Editează') }}</x-button>
+                <x-button>{{ __('Salvează') }}</x-button>
             </div>
         </form>
     </x-white-container>
