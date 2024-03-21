@@ -64,6 +64,10 @@ Route::middleware([
             ->only([ "create", "show", "destroy" ])
             ->shallow();
         Route::resource("users", UserController::class);
+        Route::put("/users/device/{device}", [UserController::class, "assignDevice"])
+            ->name("users.devices.assign");
+        Route::delete("/users/{user}/device", [UserController::class, "removeDevice"])
+            ->name("users.devices.remove");
     });
 
     // user

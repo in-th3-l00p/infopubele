@@ -31,5 +31,7 @@ class Device extends Model
         $builder->whereNotNull("latitude")->whereNotNull("longitude");
     }
 
-
+    public function users(): HasMany {
+        return $this->hasMany(User::class);
+    }
 }
