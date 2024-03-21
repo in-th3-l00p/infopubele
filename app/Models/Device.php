@@ -12,7 +12,7 @@ class Device extends Model
     use HasFactory;
 
     protected $fillable = [
-        "name", "city", "latitude", "longitude"
+        "name", "city", "latitude", "longitude","association_id"
     ];
 
     public function slots(): HasMany {
@@ -27,9 +27,16 @@ class Device extends Model
         return $this->hasMany(DeviceReport::class);
     }
 
+    public function association() : BelongsTo {
+        return $this->belongsTo(Association::class);
+    }
+
+
     public function scopeCoordinates($builder): void {
         $builder->whereNotNull("latitude")->whereNotNull("longitude");
     }
+
+
 
 
 }

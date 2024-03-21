@@ -64,6 +64,8 @@ Route::middleware([
             ->only([ "create", "show", "destroy" ])
             ->shallow();
         Route::resource("users", UserController::class);
+        Route::resource("associations", \App\Http\Controllers\Admin\AssociationController::class)
+        ->except("edit", "update","store");
     });
 
     // user
@@ -76,7 +78,7 @@ Route::middleware([
     Route::resource("device-reports", DeviceReportController::class)
         ->only([ "index", "show", "create", "destroy" ]);
 
-    // uat index
+    // uat
     Route::prefix("uat")->group(function () {
         Route::resource("devices", \App\Http\Controllers\Uat\DeviceController::class)
             ->only([ "index", "create", "show" ])
@@ -101,6 +103,7 @@ Route::middleware([
                 "edit" => "uat.users.edit",
                 "update" => "uat.users.update"
             ]);
+        Route::resource("associations", \App\Http\Controllers\Uat\AssociationController::class);
     });
     //operator
     Route::prefix("operator")->group(function () {
@@ -122,5 +125,6 @@ Route::middleware([
                 "index" => "operator.notifications.index"
             ])
             ->shallow();
+
     });
 });

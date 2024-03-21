@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string("city");
             $table->double("latitude")->nullable();
             $table->double("longitude")->nullable();
+            $table->foreignId("association_id")->nullable();
         });
     }
 

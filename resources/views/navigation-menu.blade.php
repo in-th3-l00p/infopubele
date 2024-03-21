@@ -23,6 +23,9 @@
 
                             {{ __('Utilizatori') }}
                         </x-nav-link>
+                        <x-nav-link class="text-xl" href="{{ route('associations.index') }}" :active="request()->routeIs('associations.index')">
+                            {{ __('Asociatii') }}
+                        </x-nav-link>
                     @endif
 
                     @if (Request::user()->role === "user" && Request::user()->device_id !== null)
