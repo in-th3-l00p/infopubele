@@ -9,9 +9,11 @@
         <livewire:update-device :device="$device" />
     </x-white-container>
 
+    <x-devices.users-display :device="$device" />
+
     <x-white-container>
         <div class="flex justify-between items-center mb-8">
-            <h2 class="text-lg font-semibold">{{ __("Token de acces") }}:</h2>
+            <h2 class="text-lg font-semibold">{{ __("Token de acces") }}</h2>
             <form
                 method="POST"
                 action="{{ route("devices.tokens.create", [
@@ -78,7 +80,7 @@
 
     <x-white-container>
         <div class="flex justify-between items-center mb-8">
-            <h2 class="text-lg font-semibold">{{ __("Sloturi") }}:</h2>
+            <h2 class="text-lg font-semibold">{{ __("Sloturi") }}</h2>
             <a href="{{ route('devices.slots.create', ['device' => $device]) }}">
                 <x-button class="aspect-square">
                     <img src="/icons/plus.svg" alt="plus" class="w-4 invert">

@@ -59,7 +59,7 @@ class UserController extends Controller
         $user->update($request->validate([
             "name" => "required|max:255",
             "email" => "required|email|unique:users,email," . $user->id,
-            "city" => "required|max:255",
+            "city" => "nullable|max:255",
             "role" => "required|in:admin,user,generator,uat,operator",
             "device_id" => "nullable|exists:devices,id"
         ]));
@@ -72,5 +72,24 @@ class UserController extends Controller
     {
         $user->delete();
         return redirect()->route("users.index");
+    }
+
+    public function assignDevice(Request $request, Device $device)
+    {
+        $request->validate([
+            "user" => "required|exists:users,id"
+        ]);
+
+        $user = User::query()->where("id", $request->user)->firstOrFail();
+        $user->device_id = $device->id;
+        $user->save();
+        return redirect()->back();
+    }
+
+    public function removeDevice(User $user)
+    {
+        $user->device_id = null;
+        $user->save();
+        return redirect()->back();
     }
 }

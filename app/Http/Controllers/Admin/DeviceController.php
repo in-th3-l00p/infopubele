@@ -53,22 +53,12 @@ class DeviceController extends Controller
         ]);
     }
 
-    public function edit(Device $device) {
-        //
-    }
-
-    public function update(Request $request, Device $device)
-    {
-        //
-    }
-
     public function updateLocation(Request $request, Device $device) {
         $request->validate([
             "latitude" => "required|numeric",
             "longitude" => "required|numeric",
             "token" => "required|exists:device_tokens,token"
         ]);
-
 
         if (!$device
             ->tokens()

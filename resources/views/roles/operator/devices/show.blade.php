@@ -51,8 +51,10 @@
         </ul>
     </x-white-container>
 
+    <x-devices.users-display :device="$device" />
+
     <x-white-container>
-        <h2 class="text-lg font-semibold">{{ __("Sloturi") }}:</h2>
+        <h2 class="text-lg font-semibold mb-4">{{ __("Sloturi") }}:</h2>
         <ul class="ml-8">
             @forelse ($device->slots as $slot)
                 <li>

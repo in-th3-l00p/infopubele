@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Slot extends Model
 {
@@ -13,11 +15,13 @@ class Slot extends Model
         "name", "volume", "max_volume", "device_id", "order"
     ];
 
-    public function device() {
+    public function device(): BelongsTo
+    {
         return $this->belongsTo(Device::class);
     }
 
-    public function transactions() {
+    public function transactions(): HasMany
+    {
         return $this->hasMany(Transaction::class);
     }
 

@@ -12,7 +12,7 @@ class Device extends Model
     use HasFactory;
 
     protected $fillable = [
-        "name", "city", "latitude", "longitude","association_id"
+        "name", "city", "latitude", "longitude"
     ];
 
     public function slots(): HasMany {
@@ -36,7 +36,7 @@ class Device extends Model
         $builder->whereNotNull("latitude")->whereNotNull("longitude");
     }
 
-
-
-
+    public function users(): HasMany {
+        return $this->hasMany(User::class);
+    }
 }
