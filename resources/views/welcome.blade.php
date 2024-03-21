@@ -21,7 +21,7 @@
         </div>
     </div>
     <x-text-card>
-        <h1 class=" mt-8 font-bold text-3xl">{{__("Reciclarea")}}</h1>
+        <h2 class=" mt-8 font-bold text-3xl">{{__("Reciclarea")}}</h2>
         <br>
         <p>{{__("Reciclarea este un proces esențial pentru protejarea mediului înconjurător și pentru conservarea
                         resurselor naturale. Este o practică prin care materialele utilizate sunt colectate, sortate,
@@ -72,14 +72,13 @@
     </x-text-card>
     <x-text-card>
         <div class="space-y-2">
-            <h1 class=" mt-8 font-bold text-3xl">{{__("Locația pubelelor")}}</h1>
+            <h2 class=" mt-8 font-bold text-3xl">{{__("Locația pubelelor")}}</h2>
             <x-maps-google style="width:95%; aspect-ratio: 2/1; margin-inline: auto;"
                             :mapType="'roadmap'"
-                            :zoomLevel="6" :centerPoint="['lat' => 45.9432, 'long' => 24.9668]"
-                            :markers="$devices->map(fn (\App\Models\Device $device) => [$device->latitude, $device->longitude])->all()"
+                            :zoomLevel="12" :centerPoint="['lat' => 44.4259534, 'long' => 26.1098351]"
+                            :markers="[[ 44.4172634,26.028211 ], [ 44.4261628,26.0251783 ]]"
             ></x-maps-google>
         </div>
-
     </x-text-card>
     <x-footer></x-footer>
 </x-guest-layout>

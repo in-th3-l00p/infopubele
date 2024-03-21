@@ -11,7 +11,7 @@ class CreateAssociation extends Component
     public string $address;
     public string $city;
     public string $device_id;
-    public int $fiscal_code;
+    public string $fiscal_code;
     public string $person_name;
     public string $phone;
     public string $email;
@@ -20,12 +20,52 @@ class CreateAssociation extends Component
     {
         return view('livewire.create-association');
     }
+
+    function validateCIF($cif){
+        // Daca este string, elimina atributul fiscal si spatiile
+        if(!is_int($cif)){
+            $cif = strtoupper($cif);
+            if(strpos($cif, 'RO') === 0){
+                $cif = substr($cif, 2);
+            }
+            $cif = (int) trim($cif);
+        }
+
+        // daca are mai mult de 10 cifre sau mai putin de 2, nu-i valid
+        if(strlen($cif) > 10 || strlen($cif) < 2){
+            return false;
+        }
+        // numarul de control
+        $v = 753217532;
+
+        // extrage cifra de control
+        $c1 = $cif % 10;
+        $cif = (int) ($cif / 10);
+
+        // executa operatiile pe cifre
+        $t = 0;
+        while($cif > 0){
+            $t += ($cif % 10) * ($v % 10);
+            $cif = (int) ($cif / 10);
+            $v = (int) ($v / 10);
+        }
+
+        // aplica inmultirea cu 10 si afla modulo 11
+        $c2 = $t * 10 % 11;
+
+        // daca modulo 11 este 10, atunci cifra de control este 0
+        if($c2 == 10){
+            $c2 = 0;
+        }
+        return $c1 === $c2;
+    }
+
     public function createAssociation()
     {
         $this->validate([
             'address' => 'required|min:1|max:255',
             'city' => 'required|min:1|max:255',
-            'fiscal_code' => 'required',
+            'fiscal_code' => 'required|max:13',
             'person_name' => 'required|min:1|max:255',
             'phone' => 'required|numeric|digits:10',
             'email' => 'required|email:rfc,dns|max:255',
@@ -42,6 +82,12 @@ class CreateAssociation extends Component
             'email.email' => 'Emailul trebuie să fie valid.',
             'inhabitants.required' => 'Numărul de locuitori este obligatoriu.',
         ]);
+
+        if ($this->validateCIF($this->fiscal_code) === false) {
+            return redirect(route('associations.create'))->with([
+                "error" => "Codul fiscal nu este valid."
+            ]);
+        }
 
         $association = Association::create([
             'address' => $this->address,
