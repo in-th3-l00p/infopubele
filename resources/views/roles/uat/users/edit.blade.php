@@ -1,7 +1,7 @@
 <x-app-layout>
-    <x-slot name="header">
+    <x-slot name="sticky_header">
         <div class="flex items-center gap-4">
-            <a href="{{ route("users.index") }}">
+            <a href="{{ route("uat.users.index") }}">
                 <x-button :title="__('Back')">Back</x-button>
             </a>
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
@@ -13,7 +13,7 @@
     <x-white-container>
         <x-validation-errors class="mb-4" />
 
-        <form method="POST" action="{{ route('users.update', [
+        <form method="POST" action="{{ route('uat.users.update', [
             "user" => $user
         ]) }}">
             @csrf
@@ -56,7 +56,11 @@
                     wire:model="city"
                 >
                     @foreach($cities as $city)
-                        <option value="{{$city->name}}" @selected($user->city===$city) >{{$city->name}}</option>
+                        @if($city->name !== $user->city)
+                            <option value="{{$city->name}}" >{{$city->name}}</option>
+                        @else
+                            <option value="{{$user->city}}" selected>{{$user->city}}</option>
+                        @endif
                     @endforeach
                 </select>
                 <x-input-error for="city" class="mt-2" />
@@ -83,7 +87,7 @@
             @endif
 
             <div class="flex items-center justify-center mt-4">
-                <x-button>{{ __('Editează') }}</x-button>
+                <x-button>{{ __('Salvează') }}</x-button>
             </div>
         </form>
     </x-white-container>

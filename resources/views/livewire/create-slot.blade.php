@@ -19,7 +19,7 @@
         </div>
 
         <div class="col-span-6 sm:col-span-4">
-            <x-label for="capacity" value="{{ __('Capacitate Maxima') }}" />
+            <x-label for="capacity" value="{{ __('Capacitate Maximă(L)') }}" />
             <x-input
                 id="capacity" type="number" class="mt-1 block w-full"
                 required autocomplete="capacity"

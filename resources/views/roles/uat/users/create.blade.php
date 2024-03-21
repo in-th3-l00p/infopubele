@@ -1,5 +1,5 @@
 <x-app-layout>
-    <x-slot name="header">
+    <x-slot name="sticky_header">
         <div class="flex items-center gap-4">
             <a href="{{ route("uat.users.index") }}">
                 <x-button :title="__('Back')">Back</x-button>
@@ -26,23 +26,14 @@
                 <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autocomplete="username" />
             </div>
 
-            <div class="mt-4">
-                <x-label for="city" value="{{ __('Oraș') }}" />
-                @php
-                    $cities = \App\Models\City::query()->orderBy("name")->get()
-                @endphp
-                <select
-                    id="city" name="city"
-                    class="select"
-                    wire:model="city"
-                >
-                    @foreach($cities as $city)
-                        <option value="{{$city->name}}" >{{$city->name}}</option>
-                    @endforeach
-                </select>
-                <x-input-error for="city" class="mt-2" />
+            <div class="mt-4>
+                <x-label for="city" value="{{ __('Oras') }}" />
+            <x-input
+                id="id" type="text" class="mt-1 block w-full"
+                required autocomplete="id"
+                disabled value="{{ Request::user()->city}}"
+            />
             </div>
-
             <div class="mt-4">
                 <x-label for="password" value="{{ __('Parola') }}" />
                 <x-input id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="new-password" />

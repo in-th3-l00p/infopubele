@@ -9,59 +9,6 @@
         <livewire:update-device :device="$device" />
     </x-white-container>
 
-    <x-device-map :device="$device" />
-
-    <x-white-container>
-        <div class="flex justify-between items-center mb-8">
-            <h2 class="text-lg font-semibold">{{ __("Sloturi") }}:</h2>
-            <a href="{{ route('devices.slots.create', ['device' => $device]) }}">
-                <x-button class="aspect-square">
-                    <img src="/icons/plus.svg" alt="plus" class="w-4 invert">
-                </x-button>
-            </a>
-        </div>
-
-        <ul class="ml-8">
-            @forelse ($slots as $slot)
-                <li>
-                    <a
-                        class="flex items-center justify-between my-4 p-4 border-2 rounded-md shadow-md hover:shadow-lg hover:bg-zinc-100 transition ease-in-out"
-                        href="{{ route('slots.show', $slot) }}"
-                    >
-                        <div>
-                            <h3 class="text-lg font-semibold">{{ $slot->name }}</h3>
-                            <p class="text-sm text-gray-500">{{ $slot->city }}</p>
-                        </div>
-                        <div>
-                            <p class="text-sm text-gray-500">{{ number_format($slot->volume / $slot->max_volume * 100, 2) }}%</p>
-                        </div>
-                    </a>
-                </li>
-            @empty
-                <p>{{ __("Nu exista sloturi configurate.") }}</p>
-            @endforelse
-        </ul>
-
-        {{ $slots->links() }}
-    </x-white-container>
-
-    <x-slot-visualizer :device="$device" />
-
-    <x-white-container>
-        <h2 class="text-lg font-semibold mb-8">{{ __("Tranzacții") }}</h2>
-
-        <ul class="ml-8">
-            @forelse ($transactions as $transaction)
-                <x-transaction-display
-                    :transaction="$transaction"
-                    :device="$device"
-                />
-            @empty
-                <p>{{ __("Nu exista tranzacții.") }}</p>
-            @endforelse
-        </ul>
-    </x-white-container>
-
     <x-white-container>
         <div class="flex justify-between items-center mb-8">
             <h2 class="text-lg font-semibold">{{ __("Token de acces") }}:</h2>
@@ -125,5 +72,58 @@
         </ul>
 
         {{ $tokens->links() }}
+    </x-white-container>
+
+    <x-device-map :device="$device" />
+
+    <x-white-container>
+        <div class="flex justify-between items-center mb-8">
+            <h2 class="text-lg font-semibold">{{ __("Sloturi") }}:</h2>
+            <a href="{{ route('devices.slots.create', ['device' => $device]) }}">
+                <x-button class="aspect-square">
+                    <img src="/icons/plus.svg" alt="plus" class="w-4 invert">
+                </x-button>
+            </a>
+        </div>
+
+        <ul class="ml-8">
+            @forelse ($slots as $slot)
+                <li>
+                    <a
+                        class="flex items-center justify-between my-4 p-4 border-2 rounded-md shadow-md hover:shadow-lg hover:bg-zinc-100 transition ease-in-out"
+                        href="{{ route('slots.show', $slot) }}"
+                    >
+                        <div>
+                            <h3 class="text-lg font-semibold">{{ $slot->name }}</h3>
+                            <p class="text-sm text-gray-500">{{ $slot->city }}</p>
+                        </div>
+                        <div>
+                            <p class="text-sm text-gray-500">{{ number_format($slot->volume / $slot->max_volume * 100, 2) }}%</p>
+                        </div>
+                    </a>
+                </li>
+            @empty
+                <p>{{ __("Nu exista sloturi configurate.") }}</p>
+            @endforelse
+        </ul>
+
+        {{ $slots->links() }}
+    </x-white-container>
+
+    <x-slot-visualizer :device="$device" />
+
+    <x-white-container>
+        <h2 class="text-lg font-semibold mb-8">{{ __("Tranzacții") }}</h2>
+
+        <ul class="ml-8">
+            @forelse ($transactions as $transaction)
+                <x-transaction-display
+                    :transaction="$transaction"
+                    :device="$device"
+                />
+            @empty
+                <p>{{ __("Nu exista tranzacții.") }}</p>
+            @endforelse
+        </ul>
     </x-white-container>
 </x-app-layout>

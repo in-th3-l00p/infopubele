@@ -18,7 +18,10 @@ class UserController extends Controller
         return view("roles.uat.users.index", [
             "users" => User::query()
                 ->latest()
-                ->where("role", "=", "operator")
+                ->where([
+                    ['role', '=', 'operator'],
+                    ['city', '=', auth()->user()->city],
+                ])
                 ->paginate(10)
         ]);
     }
@@ -44,10 +47,35 @@ class UserController extends Controller
         $data["password"] = Hash::make($data['password']);
         $user = User::query()->create([
             ...$data,
-            "role" => "operator"
+            "role" => "operator",
+            "city" => auth()->user()->city
         ]);
 
         return redirect()->route("uat.users.index");
+    }
+    public function edit(User $user)
+    {
+        Gate::allowIf(function () {
+            return auth()->user()->role === "admin" || auth()->user()->role === "uat";
+        });
+        return view("roles.uat.users.edit", [
+            "user" => $user
+        ]);
+    }
+    public function update()
+    {
+        Gate::allowIf(function () {
+            return auth()->user()->role === "admin" || auth()->user()->role === "uat";
+        });
+        $user->update($request->validate([
+            "name" => "required|max:255",
+            "email" => "required|email|unique:users,email," . $user->id,
+            "city" => "required|max:255",
+        ]));
+        return redirect()->route("uat.users.edit", [
+            "user" => $user
+        ]);
+
     }
     public function destroy(User $user)
     {

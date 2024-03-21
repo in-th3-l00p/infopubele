@@ -15,6 +15,6 @@
         </a>
     </div>
     <div>
-        <p>{{ $transaction->amount }} m<sup>3</sup></p>
+        <p>{{ $transaction->amount }} dm<sup>3</sup></p>
     </div>
 </li>

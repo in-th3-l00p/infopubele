@@ -11,9 +11,15 @@
                 x-text="showData ? '{{ __("Ascunde")}}' : '{{ __("Arată")}}'"
                 x-on:click="showData = !showData"
             ></button>
-            <a href="{{ route("users.edit", [ "user" => $user ]) }}">
-                <x-button title="edit">{{ __("Editează") }}</x-button>
-            </a>
+            @if(Request::user()->role==='admin')
+                <a href="{{ route("users.edit", [ "user" => $user ]) }}">
+                    <x-button title="edit">{{ __("Editează") }}</x-button>
+                </a>
+                @elseif(Request::user()->role==='uat')
+                <a href="{{ route("uat.users.edit", [ "user" => $user ]) }}">
+                    <x-button title="edit">{{ __("Editează") }}</x-button>
+                </a>
+            @endif
             @if(Request::user()->role==='admin')
                 <form method="POST" action="{{ route("users.destroy", [
                 "user" => $user

@@ -48,7 +48,7 @@
                                             <p class="text-2xl uppercase font-bold p-6"><a href="{{route("devices.show",['device'=>$device])}}">
                                                     {{__("Tranzacție de ")}}
                                                     {{$transaction->amount}}
-                                                    m<sup>3</sup>
+                                                    dm<sup>3</sup>
                                                     <br>
                                                     {{__("la slotul ")}}
                                                     {{$slot->name}}

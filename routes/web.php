@@ -92,12 +92,14 @@ Route::middleware([
                 "show" => "uat.devices.slots.show"
             ]);
         Route::resource("users", \App\Http\Controllers\Uat\UserController::class)
-            ->only([ "index", "create", "store","destroy" ])
+            ->only([ "index","edit","update", "create", "store","destroy" ])
             ->names([
                 "index" => "uat.users.index",
                 "create" => "uat.users.create",
                 "store" => "uat.users.store",
-                "destroy" => "uat.users.destroy"
+                "destroy" => "uat.users.destroy",
+                "edit" => "uat.users.edit",
+                "update" => "uat.users.update"
             ]);
     });
     //operator

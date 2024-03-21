@@ -1,5 +1,5 @@
 <x-app-layout>
-    <x-slot name="header">
+    <x-slot name="sticky_header">
         <div class="flex items-center gap-4">
             <a href="{{ route("users.index") }}">
                 <x-button :title="__('Back')">Back</x-button>

@@ -19,17 +19,17 @@ class CreateSlot extends Component
 
     public function createSlot() {
         $this->validate([
-            "name" => "required|min:3|max:255|alpha",
+            "name" => "required|min:3|max:255|unique:slots,name,NULL,id,device_id," . $this->device->id,
             "capacity" => "required|numeric|min:1|max:1100"
         ], [
-            "name.required" => __("Name is required"),
-            "name.min" => __("Name must have at least 3 characters"),
-            "name.max" => __("Name must have at most 255 characters"),
-            "name.alpha" => __("Name must contain only letters"),
-            "capacity.required" => __("Capacity is required"),
-            "capacity.numeric" => __("Capacity must be a number"),
-            "capacity.min" => __("Capacity must be at least 1"),
-            "capacity.max" => __("Capacity must be at most 1100")
+            "name.unique" => __("Numele trebuie să fie unic"),
+            "name.required" => __("Numele este obligatoriu"),
+            "name.min" => __("Numele trebuie să aibă cel puțin 3 caractere"),
+            "name.max" => __("Numele trebuie să aibă cel mult 255 de caractere"),
+            "capacity.required" => __("Capacitatea este obligatorie"),
+            "capacity.numeric" => __("Capacitatea trebuie să fie un număr"),
+            "capacity.min" => __("Capacitatea trebuie să fie de cel puțin 1"),
+            "capacity.max" => __("Capacitatea trebuie să fie de cel mult 1100")
         ]);
 
         $slot = Slot::create([
