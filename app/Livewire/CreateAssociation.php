@@ -10,7 +10,7 @@ class CreateAssociation extends Component
 {
     public string $address;
     public string $city;
-    public Device $device;
+    public string $device_id;
     public int $fiscal_code;
     public string $person_name;
     public string $phone;
@@ -20,28 +20,30 @@ class CreateAssociation extends Component
     {
         return view('livewire.create-association');
     }
-
     public function createAssociation()
     {
         $this->validate([
             'address' => 'required|min:1|max:255',
             'city' => 'required|min:1|max:255',
-            'fiscal_code' => 'required|numeric',
+            'fiscal_code' => 'required',
             'person_name' => 'required|min:1|max:255',
-            'phone' => 'required|min:1|max:255',
-            'email' => 'required|email',
+            'phone' => 'required|numeric|digits:10',
+            'email' => 'required|email:rfc,dns|max:255',
             'inhabitants' => 'required|numeric',
         ], [
             'address.required' => 'Adresa este obligatorie.',
             'city.required' => 'Orașul este obligatoriu.',
-            'fiscal_code.required' => 'Codul fiscal este obligatoriu.',
             'person_name.required' => 'Persoana de contact este obligatorie.',
+            'fiscal_code.required' => 'Codul fiscal este obligatoriu.',
             'phone.required' => 'Telefonul este obligatoriu.',
+            'phone.numeric' => 'Telefonul trebuie să fie numeric.',
+            'phone.digits' => 'Telefonul trebuie să aibă 10 cifre.',
             'email.required' => 'Emailul este obligatoriu.',
+            'email.email' => 'Emailul trebuie să fie valid.',
             'inhabitants.required' => 'Numărul de locuitori este obligatoriu.',
         ]);
 
-        Association::create([
+        $association = Association::create([
             'address' => $this->address,
             'city' => $this->city,
             'fiscal_code' => $this->fiscal_code,
@@ -49,10 +51,11 @@ class CreateAssociation extends Component
             'phone' => $this->phone,
             'email' => $this->email,
             'inhabitants' => $this->inhabitants,
+            'device_id' => $this->device_id,
         ]);
 
         redirect(route('associations.index'))->with([
             "success" => "Asociație creată cu succes."
-        ];
+        ]);
     }
 }

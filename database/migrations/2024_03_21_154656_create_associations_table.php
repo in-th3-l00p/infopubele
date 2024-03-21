@@ -13,6 +13,14 @@ return new class extends Migration
     {
         Schema::create('associations', function (Blueprint $table) {
             $table->id();
+            $table->string('fiscal_code')->unique();
+            $table->string('person_name');
+            $table->string('phone');
+            $table->string('email');
+            $table->string('address');
+            $table->string('city');
+            $table->integer('inhabitants');
+            $table->foreignId('device_id');
             $table->timestamps();
         });
     }

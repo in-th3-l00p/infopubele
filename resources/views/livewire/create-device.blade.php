@@ -27,7 +27,7 @@
                 id="city" name="city"
                 class="select"
                 wire:model="city"
-            >N
+            >
                 <option  value="" >{{ __('Alege orașul') }}</option>
                 @foreach($cities as $city)
                     <option value="{{$city->name}}" >{{$city->name}}</option>

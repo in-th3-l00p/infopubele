@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Association;
 use Illuminate\Http\Request;
 
 class AssociationController extends Controller
@@ -21,7 +22,7 @@ class AssociationController extends Controller
 
     public function create()
     {
-        return view("roles.admin.associations.create");
+        //
     }
 
     public function show(string $id)
