@@ -69,7 +69,7 @@ Route::middleware([
         Route::delete("/users/{user}/device", [UserController::class, "removeDevice"])
             ->name("users.devices.remove");
         Route::resource("associations", \App\Http\Controllers\Admin\AssociationController::class)
-        ->except("edit", "update","store");
+        ->except("update","store");
     });
 
     // user

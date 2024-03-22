@@ -13,7 +13,7 @@ class Association extends Model
         "fiscal_code", "person_name", "phone", "email", "address", "city", "inhabitants", "device_id"
     ];
 
-    public function devices()
+    public function device()
     {
         return $this->hasOne(Device::class);
     }

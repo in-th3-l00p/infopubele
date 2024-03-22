@@ -8,10 +8,11 @@ use Livewire\Component;
 
 class CreateAssociation extends Component
 {
+    public string $device_id;
     public string $address;
     public string $city;
-    public string $device_id;
-    public int $fiscal_code;
+
+    public string $fiscal_code;
     public string $person_name;
     public string $phone;
     public string $email;
@@ -22,6 +23,7 @@ class CreateAssociation extends Component
     }
     public function createAssociation()
     {
+        $device= Device::find($this->device_id);
         $this->validate([
             'address' => 'required|min:1|max:255',
             'city' => 'required|min:1|max:255',
@@ -51,7 +53,7 @@ class CreateAssociation extends Component
             'phone' => $this->phone,
             'email' => $this->email,
             'inhabitants' => $this->inhabitants,
-            'device_id' => $this->device_id,
+            'device_id' => $device->id,
         ]);
 
         redirect(route('associations.index'))->with([

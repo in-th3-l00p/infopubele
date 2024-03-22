@@ -47,7 +47,7 @@
             >
                 <option  value="" >{{ __('Alege dispozitivul') }}</option>
                 @foreach($devices as $device)
-                    <option value="{{$device}}" >{{$device->name}}</option>
+                    <option value="{{$device->id}}" >{{$device->name}}</option>
                 @endforeach
             </select>
             <x-input-error for="device_id" class="mt-2" />

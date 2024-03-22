@@ -1,51 +1,39 @@
 <x-app-layout>
-    <x-slot name="header">
+    <x-slot name="sticky_header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __('Asociatii') }}
         </h2>
     </x-slot>
 
-    <x-white-container>
-        @livewire('create-association')
-    </x-white-container>
 
     <x-white-container>
-        <div class="py-12">
-                @if (session('status'))
-                    <div class="mb-4 font-medium text-sm text-green-600">
-                        {{ session('status') }}
-                    </div>
-                @endif
-
-                <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
-                    <div class="p-6 sm:px-20 bg-white border-b border-gray-200">
-                        <div class="text-2xl">
-                            {{ __('Asociatii') }}
-                        </div>
-                    </div>
-                    <div class="p-6 sm:px-20 bg-white border-b border-gray-200">
-                        @foreach($associations as $association)
-                            <div class="flex justify-between p-4">
-                                <div>
-                                    <div class="text-xl">
-                                        {{ $association->address }}
-                                    </div>
-                                    <div class="text-md">
-                                        {{ $association->city }}
-                                    </div>
-                                </div>
-                                <div>
-                                    <x-button>
-                                        <a href="">
-                                            {{ __('Modifica') }}
-                                        </a>
-                                    </x-button>
-                                </div>
-                            </div>
-                            <div class="border-b p-4"></div>
-                        @endforeach
-                    </div>
+        <div class="w-full flex gap-8 mb-8">
+            <a href="{{ route("associations.create") }}">
+                <x-button class="aspect-square">
+                    <img src="/icons/plus.svg" alt="plus" class="w-4 invert">
+                </x-button>
+            </a>
+        </div>
+        @forelse ($associations as $association)
+            @php
+            $device=\App\Models\Device::find($association->device_id);
+            @endphp
+            <a
+                class="flex items-center justify-between my-4 p-4 border-2 rounded-md shadow-md hover:shadow-lg hover:bg-zinc-100 transition ease-in-out"
+{{--                href="{{ route('association.show', $association) }}"--}}
+            >
+                <div>
+                    <h3 class="text-lg font-semibold">{{ $association->city }}</h3>
+                    <p class="text-sm text-gray-500">{{ $association->address }}</p>
                 </div>
-            </div>
+                <div>
+                    <p class="text-sm text-gray-500">{{ __("Dispozitiv") . ": " . $device }}</p>
+                </div>
+            </a>
+        @empty
+            <p class="text-center">{{ __("Nu s-au găsit dispozitive.") }}</p>
+        @endforelse
+
+        {{ $associations->links() }}
     </x-white-container>
 </x-app-layout>

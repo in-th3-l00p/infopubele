@@ -22,9 +22,15 @@ class AssociationController extends Controller
 
     public function create()
     {
-        //
+        return view('roles.admin.associations.create');
     }
 
+    public function edit(Association $association,)
+    {
+        return view('roles.admin.associations.edit', [
+            'association' => Association::findOrFail($id)
+        ]);
+    }
     public function show(string $id)
     {
         //
