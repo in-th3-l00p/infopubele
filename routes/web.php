@@ -60,9 +60,11 @@ Route::middleware([
             ->name("devices.tokens.create");
         Route::delete("/devices/{device}/tokens/{token}", [DeviceController::class, "deleteToken"])
             ->name("devices.tokens.delete");
-        Route::resource("devices.slots", SlotController::class)
-            ->only([ "create", "show", "destroy" ])
-            ->shallow();
+        Route::prefix("devices/{device}")->group(function () {
+            Route::resource("slots", SlotController::class)
+                ->only([ "create", "show", "destroy" ])
+                ->shallow();
+        });
         Route::resource("users", UserController::class);
         Route::put("/users/device/{device}", [UserController::class, "assignDevice"])
             ->name("users.devices.assign");
@@ -76,7 +78,7 @@ Route::middleware([
     Route::get("/user/devices", [UserDeviceController::class, "show"])
         ->name("user.devices.show");
     Route::get("/user/devices/slots/{slot}", [UserSlotController::class, "show"])
-        ->name("user.devices.slots.show");
+        ->name("user.slots.show");
 
     // generator
     Route::resource("device-reports", DeviceReportController::class)
@@ -91,11 +93,11 @@ Route::middleware([
                 "create" => "uat.devices.create",
                 "show" => "uat.devices.show"
             ]);
-        Route::resource("devices.slots", \App\Http\Controllers\Uat\SlotController::class)
+        Route::resource("slots", \App\Http\Controllers\Uat\SlotController::class)
             ->only([ "show"  ])
             ->shallow()
             ->names([
-                "show" => "uat.devices.slots.show"
+                "show" => "uat.slots.show"
             ]);
         Route::resource("users", \App\Http\Controllers\Uat\UserController::class)
             ->only([ "index","edit","update", "create", "store","destroy" ])
@@ -116,11 +118,11 @@ Route::middleware([
                 "index" => "operator.devices.index",
                 "show" => "operator.devices.show"
             ]);
-        Route::resource("devices.slots", \App\Http\Controllers\Operator\SlotController::class)
+        Route::resource("slots", \App\Http\Controllers\Operator\SlotController::class)
             ->only([ "show" ])
             ->shallow()
             ->names([
-                "show" => "operator.devices.slots.show"
+                "show" => "operator.slots.show"
             ]);
         Route::resource("notifications", NotificationController::class)
             ->only([ "index" ])

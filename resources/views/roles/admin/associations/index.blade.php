@@ -20,14 +20,14 @@
             @endphp
             <a
                 class="flex items-center justify-between my-4 p-4 border-2 rounded-md shadow-md hover:shadow-lg hover:bg-zinc-100 transition ease-in-out"
-{{--                href="{{ route('association.show', $association) }}"--}}
+                href="{{ route('associations.show', $association) }}"
             >
                 <div>
                     <h3 class="text-lg font-semibold">{{ $association->city }}</h3>
                     <p class="text-sm text-gray-500">{{ $association->address }}</p>
                 </div>
                 <div>
-                    <p class="text-sm text-gray-500">{{ __("Dispozitiv") . ": " . $device }}</p>
+                    <p class="text-sm text-gray-500">{{ __("Dispozitiv") . ": " . $device->name }}</p>
                 </div>
             </a>
         @empty

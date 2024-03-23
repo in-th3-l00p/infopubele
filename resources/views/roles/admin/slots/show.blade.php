@@ -49,7 +49,8 @@
             <form
                 method="POST"
                 action="{{ route("slots.destroy", [
-                    "slot" => $slot
+                    "slot" => $slot,
+                    "device" => $slot->device()->first()
                 ]) }}"
             >
                 @csrf

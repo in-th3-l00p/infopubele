@@ -13,7 +13,7 @@
                     <li>
                         <a
                             class="flex items-center justify-between my-4 p-4 border-2 rounded-md shadow-md hover:shadow-lg hover:bg-zinc-100 transition ease-in-out"
-                            href="{{ route('user.devices.slots.show', [$slot->device()->first(), $slot]) }}"
+                            href="{{ route('user.slots.show', [$slot->device()->first(), $slot]) }}"
                         >
                             <h1>{{__("Slotul")}} <b>{{$slot->name}}</b> {{__("a depasit la 90%")}}</h1>
                         </a>

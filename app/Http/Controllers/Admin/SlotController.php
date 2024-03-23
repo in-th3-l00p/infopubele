@@ -67,7 +67,7 @@ class SlotController extends Controller
         return response("", 201);
     }
 
-    public function show(Slot $slot) {
+    public function show(Device $device,Slot $slot) {
         return view("roles.admin.slots.show", [
             "slot" => $slot,
             "transactions" => $slot->transactions()->paginate(5),
@@ -81,7 +81,7 @@ class SlotController extends Controller
     public function update(Request $request, Slot $slot) {
     }
 
-    public function destroy(Slot $slot) {
+    public function destroy(Device $device,Slot $slot) {
         $slot->delete();
         return redirect()->route("devices.show", $slot->device()->first());
     }
