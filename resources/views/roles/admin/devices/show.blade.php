@@ -9,6 +9,12 @@
         <livewire:update-device :device="$device" />
     </x-white-container>
 
+    <x-white-container>
+        <livewire:update-device-location :device="$device" />
+    </x-white-container>
+
+    <x-device-map :device="$device" />
+
     <x-devices.users-display :device="$device" />
 
     <x-white-container>
@@ -75,8 +81,6 @@
 
         {{ $tokens->links() }}
     </x-white-container>
-
-    <x-device-map :device="$device" />
 
     <x-white-container>
         <div class="flex justify-between items-center mb-8">

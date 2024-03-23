@@ -15,7 +15,7 @@
                     role="alert"
                 >
                     <div>
-                        <strong class="font-bold">{{ __("Dispozitiv modifica cu succes!") }}</strong>
+                        <strong class="font-bold">{{ __("Dispozitiv modificat cu succes!") }}</strong>
                         <span class="block sm:inline">{{ __("Dispozitivul a fost modificat cu succes.") }}</span>
                     </div>
 

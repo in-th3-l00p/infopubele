@@ -1,7 +1,7 @@
 @if ($device->latitude !== null && $device->longitude !== null)
     <x-white-container>
         <div class="space-y-2">
-            <h1 class="font-bold text-3xl mb-4">{{__("Locatie")}}</h1>
+            <h1 class="font-bold text-xl mb-4">{{__("Locatie")}}</h1>
             <x-maps-google style="width:95%; aspect-ratio: 2/1; margin-inline: auto;"
                             :mapType="'roadmap'"
                             :zoomLevel="8"
