@@ -1,6 +1,6 @@
-<x-form-section submit="createAssociation">
+<x-form-section submit="updateAssociation">
     <x-slot name="title">
-        {{ __('Creaza asociatie') }}
+        {{ __('Modifica asociația') }} {{ $association->address }} ({{ $association->city }})
     </x-slot>
 
     <x-slot name="description">
@@ -9,6 +9,27 @@
 
 
     <x-slot name="form">
+        @if ($updated)
+            <div class="col-span-6 sm:col-span-4">
+                <div
+                    class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded flex justify-between"
+                    role="alert"
+                >
+                    <div>
+                        <strong class="font-bold">{{ __("Asociație modificat cu succes!") }}</strong>
+                        <span class="block sm:inline">{{ __("Asociația a fost modificat cu succes.") }}</span>
+                    </div>
+
+                    <x-button
+                        type="button"
+                        class="aspect-square"
+                        wire:click="closeUpdated"
+                    >
+                        X
+                    </x-button>
+                </div>
+            </div>
+        @endif
         <div class="col-span-6 sm:col-span-4">
             <x-label for="address" value="{{ __('Adresă') }}" />
             <x-input
@@ -63,11 +84,11 @@
             <x-input-error for="inhabitants" class="mt-2" />
         </div>
         @if(session('error'))
-            <div class="col-span-6 sm:col-span-4 text-red-500">
+        <div class="col-span-6 sm:col-span-4 text-red-500">
                 <div class="alert alert-danger">
                     {{ session('error') }}
                 </div>
-            </div>
+        </div>
         @endif
         <div class="col-span-6 sm:col-span-4">
             <x-label for="person_name" value="{{ __('Nume persoană de contact') }}" />

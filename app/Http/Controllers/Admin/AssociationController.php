@@ -25,15 +25,11 @@ class AssociationController extends Controller
         return view('roles.admin.associations.create');
     }
 
-    public function edit(Association $association,)
+    public function show(Association $association)
     {
-        return view('roles.admin.associations.edit', [
-            'association' => Association::findOrFail($id)
+        return view('roles.admin.associations.show', [
+            'association' => $association
         ]);
-    }
-    public function show(string $id)
-    {
-        //
     }
 
     public function destroy(string $id)

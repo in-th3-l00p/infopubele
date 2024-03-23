@@ -23,18 +23,10 @@ class UpdateDevice extends Component
     }
 
     public function updateDevice() {
-        if ($this->device->name === $this->name) {
-            $this->validate([
-                'name' => 'required|min:1|max:255',
-                'city' => 'required'
-            ]);
-        } else {
-            $this->validate([
-                'name' => 'required|min:1|max:255|unique:devices,name',
-                'city' => 'required'
-            ]);
-        }
-
+        $this->validate([
+            'name' => 'required|min:1|max:255|unique:devices,name,' . $this->device->id,
+            'city' => 'required'
+        ]);
 
         $this->device->update([
             'name' => $this->name,
