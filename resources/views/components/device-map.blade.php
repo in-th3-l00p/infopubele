@@ -1,7 +1,7 @@
 @if ($device->latitude !== null && $device->longitude !== null)
     <x-white-container>
         <div class="space-y-4">
-            <h1 class="font-bold text-xl">{{__("Locatie")}}</h1>
+            <h1 class="font-bold text-xl">{{__("Locație")}}</h1>
 
             <div class="py-4 border-t border-b flex gap-4 items-center flex-wrap">
                 <a
