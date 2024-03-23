@@ -12,8 +12,8 @@ class UpdateDeviceLocation extends Component
     public float $longitude;
 
     public function mount() {
-        $this->latitude = $this->device->latitude;
-        $this->longitude = $this->device->longitude;
+        $this->latitude = $this->device->latitude !== null ? $this->device->latitude : 0;
+        $this->longitude = $this->device->longitude !== null ? $this->device->longitude : 0;
     }
 
     public function render()
