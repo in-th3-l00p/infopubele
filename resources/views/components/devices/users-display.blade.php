@@ -2,7 +2,7 @@
     <h2 class="text-lg font-semibold">{{ __("Utilizatori arondați") }}</h2>
 
     <form
-        class="my-8 py-4 border-t-2 border-b-2"
+        class="my-8 py-4 border-t border-b mx-8"
         method="POST"
         action="{{ route("users.devices.assign", [
             "device" => $device,
@@ -31,7 +31,7 @@
         </x-button>
     </form>
 
-    <ul class="ml-8">
+    <ul class="mx-8">
         @forelse ($users as $user)
             <li>
                 <div
