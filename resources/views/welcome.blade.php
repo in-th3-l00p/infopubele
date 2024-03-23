@@ -21,7 +21,7 @@
         </div>
     </div>
     <x-text-card>
-        <h2 class=" mt-8 font-bold text-3xl">{{__("Reciclarea")}}</h2>
+        <h2 class="font-bold text-3xl">{{__("Reciclarea")}}</h2>
         <br>
         <p>{{__("Reciclarea este un proces esențial pentru protejarea mediului înconjurător și pentru conservarea
                         resurselor naturale. Este o practică prin care materialele utilizate sunt colectate, sortate,
@@ -64,15 +64,14 @@
 
         </p>
         <br>
-        <p class="font-extrabold pb-10">{{__("Prin utilizarea tehnologiei și a unei abordări inovatoare,
+        <p class="font-extrabold">{{__("Prin utilizarea tehnologiei și a unei abordări inovatoare,
                         Infopubele.ro își propune să transforme gestionarea deșeurilor într-un proces simplu, inteligent
                         și sustenabil.")}}
-
         </p>
     </x-text-card>
     <x-text-card>
-        <div class="space-y-2">
-            <h2 class=" mt-8 font-bold text-3xl">{{__("Locația pubelelor")}}</h2>
+        <div class="space-y-4">
+            <h2 class="font-bold text-3xl">{{__("Locația pubelelor")}}</h2>
             <x-maps-google style="width:95%; aspect-ratio: 2/1; margin-inline: auto;"
                             :mapType="'roadmap'"
                             :zoomLevel="12" :centerPoint="['lat' => 44.4259534, 'long' => 26.1098351]"
