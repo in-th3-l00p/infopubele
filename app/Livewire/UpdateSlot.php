@@ -12,6 +12,7 @@ class UpdateSlot extends Component
     public Slot $slot;
     public string $name;
     public float $capacity;
+    public bool $updated = false;
 
     public function mount() {
         $this->name = $this->slot->name;
@@ -24,9 +25,10 @@ class UpdateSlot extends Component
         return view('livewire.update-slot');
     }
 
-    public function updateSlot() {
+    public function updateSlot()
+    {
         $this->validate([
-            "name" => "required|min:3|max:255|unique:slots,name,NULL,id,device_id," . $this->device->id,
+            "name" => "required|min:3|max:255|unique:slots,name," . $this->slot->id . ",id,device_id," . $this->device->id,
             "capacity" => "required|numeric|min:1|max:1100"
         ], [
             "name.unique" => __("Numele trebuie să fie unic"),
@@ -39,9 +41,15 @@ class UpdateSlot extends Component
             "capacity.max" => __("Capacitatea trebuie să fie de cel mult 1100")
         ]);
 
+
         $this->slot->update([
             "name" => $this->name,
             "max_volume" => $this->capacity
         ]);
+        $this->updated = true;
     }
+    public function closeUpdated() {
+        $this->updated = false;
+    }
+
 }

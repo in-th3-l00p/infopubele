@@ -8,6 +8,27 @@
     </x-slot>
 
     <x-slot name="form">
+        @if ($updated)
+            <div class="col-span-6 sm:col-span-4">
+                <div
+                    class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded flex justify-between"
+                    role="alert"
+                >
+                    <div>
+                        <strong class="font-bold">{{ __("Slot modificat cu succes!") }}</strong>
+                        <span class="block sm:inline">{{ __("Slotul a fost modificat cu succes.") }}</span>
+                    </div>
+
+                    <x-button
+                        type="button"
+                        class="aspect-square"
+                        wire:click="closeUpdated"
+                    >
+                        X
+                    </x-button>
+                </div>
+            </div>
+        @endif
         <div class="col-span-6 sm:col-span-4">
             <label for="id">{{ __("ID") }}</label>
             <x-input
