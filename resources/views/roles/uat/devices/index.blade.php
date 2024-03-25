@@ -6,6 +6,13 @@
     </x-slot>
 
     <x-white-container>
+        <div class="w-full flex gap-8 mb-8">
+            <a href="{{ route("uat.devices.create") }}">
+                <x-button class="aspect-square">
+                    <img src="/icons/plus.svg" alt="plus" class="w-4 invert">
+                </x-button>
+            </a>
+        </div>
         @forelse ($devices as $device)
             <a
                 class="flex items-center justify-between my-4 p-4 border-2 rounded-md shadow-md hover:shadow-lg hover:bg-zinc-100 transition ease-in-out"

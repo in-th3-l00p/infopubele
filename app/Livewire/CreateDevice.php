@@ -15,21 +15,43 @@ class CreateDevice extends Component
     }
 
     public function createDevice() {
-        $this->validate([
-            'name' => 'required|min:1|max:255|unique:devices,name',
-            'city' => 'required|min:1|max:255',
-        ],[
-            'city.required' => 'Orașul este obligatoriu.',
-            'name.required' => 'Numele este obligatoriu.',
-        ]);
+        if(auth()->user()->role==="admin")
+        {
+            $this->validate([
+                'name' => 'required|min:1|max:255|unique:devices,name',
+                'city' => 'required|min:1|max:255',
+            ],[
+                'city.required' => 'Orașul este obligatoriu.',
+                'name.required' => 'Numele este obligatoriu.',
+            ]);
 
-        Device::create([
-            'name' => $this->name,
-            'city' => $this->city,
-        ]);
+            Device::create([
+                'name' => $this->name,
+                'city' => $this->city,
+            ]);
 
-        return redirect()->route('devices.index')->with([
-            "success" => "Dispozitiv creat cu succes."
-        ]);
+            return redirect()->route('devices.index')->with([
+                "success" => "Dispozitiv creat cu succes."
+            ]);
+        }
+        elseif(auth()->user()->role==="uat")
+        {
+            $this->validate([
+                'name' => 'required|min:1|max:255|unique:devices,name',
+            ],[
+                'name.required' => 'Numele este obligatoriu.',
+            ]);
+
+            Device::create([
+                'name' => $this->name,
+                'city' => auth()->user()->city,
+            ]);
+
+            return redirect()->route('uat.devices.index')->with([
+                "success" => "Dispozitiv creat cu succes."
+            ]);
+        }
+
+
     }
 }

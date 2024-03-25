@@ -49,22 +49,35 @@
             <x-input-error for="name" class="mt-2" />
         </div>
 
-        <div class="col-span-6 sm:col-span-4">
-            <x-label for="city" value="{{ __('Oraș') }}" />
-            @php
-                $cities = \App\Models\City::query()->orderBy("name")->get()
-            @endphp
-            <select
-                id="city" name="city"
-                class="select"
-                wire:model="city"
-            >
-                @foreach($cities as $city)
-                    <option value="{{$city->name}}" >{{$city->name}}</option>
-                @endforeach
-            </select>
-            <x-input-error for="city" class="mt-2" />
-        </div>
+            <div class="col-span-6 sm:col-span-4">
+                <x-label for="city" value="{{ __('Oraș') }}" />
+                @php
+                    if (auth()->user()->role==="uat")
+                        $city = \App\Models\City::query()->where("name","=", auth()->user()->city)->orderBy("name")->first();
+                    else
+                        $cities = \App\Models\City::query()->orderBy("name")->get();
+                @endphp
+                @if(auth()->user()->role==="uat")
+                    <x-input
+                        id="city" type="text" class="mt-1 block w-full"
+                        disabled value="{{$city->name}}"
+                        required autocomplete="city"
+                    >
+                    </x-input>
+                @elseif(auth()->user()->role==="admin")
+                    <select
+                        id="city" name="city"
+                        class="select"
+                        wire:model="city"
+                    >
+                        <option  value="" >{{ __('Alege orașul') }}</option>
+                        @foreach($cities as $city)
+                            <option value="{{$city->name}}" >{{$city->name}}</option>
+                        @endforeach
+                    </select>
+                    <x-input-error for="city" class="mt-2" />
+                @endif
+            </div>
     </x-slot>
 
     <x-slot name="actions">
