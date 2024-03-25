@@ -63,6 +63,14 @@
                         >
                             {{ __("Utilizatori") }}
                         </x-nav-link>
+
+                        <x-nav-link
+                            class="text-xl"
+                            href="{{ route('uat.associations.index') }}"
+                            :active="request()->routeIs('uat.associations.index')"
+                            >
+                            {{ __("Asociatii") }}
+                        </x-nav-link>
                     @endif
                     @if (Request::user()->role === "operator")
                         <x-nav-link

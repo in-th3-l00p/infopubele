@@ -27,7 +27,7 @@ class Device extends Model
         return $this->hasMany(DeviceReport::class);
     }
 
-    public function association() : BelongsTo {
+    public function association()  {
         return $this->belongsTo(Association::class);
     }
 

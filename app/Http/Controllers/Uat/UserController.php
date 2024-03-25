@@ -62,7 +62,7 @@ class UserController extends Controller
             "user" => $user
         ]);
     }
-    public function update()
+    public function update(User $user, Request $request)
     {
         Gate::allowIf(function () {
             return auth()->user()->role === "admin" || auth()->user()->role === "uat";

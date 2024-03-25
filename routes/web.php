@@ -71,7 +71,7 @@ Route::middleware([
         Route::delete("/users/{user}/device", [UserController::class, "removeDevice"])
             ->name("users.devices.remove");
         Route::resource("associations", \App\Http\Controllers\Admin\AssociationController::class)
-        ->except("update","store");
+            ->only([ "index", "create", "show", "destroy" ]);
     });
 
     // user
@@ -109,6 +109,14 @@ Route::middleware([
                 "edit" => "uat.users.edit",
                 "update" => "uat.users.update"
             ]);
+        Route::resource("associations", \App\Http\Controllers\Uat\AssociationController::class)
+            ->only([ "index", "create", "show", "destroy" ])
+            ->names([
+                "index" => "uat.associations.index",
+                "create" => "uat.associations.create",
+                "show" => "uat.associations.show",
+                "destroy" => "uat.associations.destroy"
+            ]);
     });
     //operator
     Route::prefix("operator")->group(function () {
@@ -130,5 +138,13 @@ Route::middleware([
                 "index" => "operator.notifications.index"
             ])
             ->shallow();
+        Route::resource("associations", \App\Http\Controllers\Operator\AssociationController::class)
+            ->only([ "index", "create", "show", "destroy" ])
+            ->names([
+                "index" => "operator.associations.index",
+                "create" => "operator.associations.create",
+                "show" => "operator.associations.show",
+                "destroy" => "operator.associations.destroy"
+            ]);
     });
 });

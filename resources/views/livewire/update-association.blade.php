@@ -1,6 +1,6 @@
 <x-form-section submit="updateAssociation">
     <x-slot name="title">
-        {{ __('Modifica asociația') }} {{ $association->address }} ({{ $association->city }})
+        {{ __('Modifică asociația') }} {{ $association->address }} ({{ $association->city }})
     </x-slot>
 
     <x-slot name="description">
@@ -31,6 +31,13 @@
             </div>
         @endif
         <div class="col-span-6 sm:col-span-4">
+            <label for="id">{{ __("ID") }}</label>
+            <x-input
+                id="id" type="text" class="mt-1 block w-full"
+                required autocomplete="id"
+                disabled value="{{ $association->id }}"
+            />
+        <div class="col-span-6 sm:col-span-4 pt-6">
             <x-label for="address" value="{{ __('Adresă') }}" />
             <x-input
                 id="address" type="text" class="mt-1 block w-full"
@@ -40,7 +47,7 @@
             <x-input-error for="address" class="mt-2" />
         </div>
 
-        <div class="col-span-6 sm:col-span-4">
+        <div class="col-span-6 sm:col-span-4 pt-6">
             <x-label for="city" value="{{ __('Oraș') }}" />
             @php
                 $cities = \App\Models\City::query()->orderBy("name")->get()
@@ -57,7 +64,7 @@
             </select>
             <x-input-error for="city" class="mt-2" />
         </div>
-        <div class="col-span-6 sm:col-span-4">
+        <div class="col-span-6 sm:col-span-4 pt-6">
             <x-label for="device_id" value="{{ __('Dispozitiv') }}" />
             @php
                 $devices = \App\Models\Device::query()->orderBy("name")->get()
@@ -74,7 +81,7 @@
             </select>
             <x-input-error for="device_id" class="mt-2" />
         </div>
-        <div class="col-span-6 sm:col-span-4">
+        <div class="col-span-6 sm:col-span-4 pt-6">
             <x-label for="fiscal_code" value="{{ __('Cod fiscal') }}" />
             <x-input
                 id="fiscal_code" type="text" class="mt-1 block w-full"
@@ -90,7 +97,7 @@
                 </div>
         </div>
         @endif
-        <div class="col-span-6 sm:col-span-4">
+        <div class="col-span-6 sm:col-span-4 pt-6">
             <x-label for="person_name" value="{{ __('Nume persoană de contact') }}" />
             <x-input
                 id="person_name" type="text" class="mt-1 block w-full"
@@ -99,7 +106,7 @@
             />
             <x-input-error for="person_name" class="mt-2" />
         </div>
-        <div class="col-span-6 sm:col-span-4">
+        <div class="col-span-6 sm:col-span-4 pt-6">
             <x-label for="phone" value="{{ __('Telefon') }}" />
             <x-input
                 id="phone" type="text" class="mt-1 block w-full"
@@ -108,7 +115,7 @@
             />
             <x-input-error for="phone" class="mt-2" />
         </div>
-        <div class="col-span-6 sm:col-span-4">
+        <div class="col-span-6 sm:col-span-4 pt-6">
             <x-label for="email" value="{{ __('Email') }}" />
             <x-input
                 id="email" type="text" class="mt-1 block w-full"
@@ -117,7 +124,7 @@
             />
             <x-input-error for="email" class="mt-2" />
         </div>
-        <div class="col-span-6 sm:col-span-4">
+        <div class="col-span-6 sm:col-span-4 pt-6">
             <x-label for="inhabitants" value="{{ __('Număr locuitori') }}" />
             <x-input
                 id="inhabitants" type="text" class="mt-1 block w-full"
@@ -126,15 +133,16 @@
             />
             <x-input-error for="inhabitants" class="mt-2" />
         </div>
+            <div class="p-3"></div>
+        </div>
     </x-slot>
-
     <x-slot name="actions">
-        <x-action-message class="me-3" on="saved">
-            {{ __('Salvat.') }}
-        </x-action-message>
+            <x-action-message class="me-3" on="saved">
+                {{ __('Salvat.') }}
+            </x-action-message>
 
-        <x-button wire:loading.attr="disabled" wire:target="photo">
-            {{ __('Salvează') }}
-        </x-button>
+            <x-button wire:loading.attr="disabled" wire:target="photo">
+                {{ __('Salvează') }}
+            </x-button>
     </x-slot>
 </x-form-section>

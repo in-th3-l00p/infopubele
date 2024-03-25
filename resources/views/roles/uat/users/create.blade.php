@@ -28,11 +28,19 @@
 
             <div class="mt-4>
                 <x-label for="city" value="{{ __('Oras') }}" />
-            <x-input
+            @if(Request::user()->city)
+                <x-input
+                    id="id" type="text" class="mt-1 block w-full"
+                    required autocomplete="id"
+                    disabled value="{{ Request::user()->city}}"
+                />
+            @else
+                <x-input
                 id="id" type="text" class="mt-1 block w-full"
                 required autocomplete="id"
-                disabled value="{{ Request::user()->city}}"
-            />
+                disabled value="Nu aveti un oras asociat"
+                />
+            @endif
             </div>
             <div class="mt-4">
                 <x-label for="password" value="{{ __('Parola') }}" />

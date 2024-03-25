@@ -32,8 +32,9 @@ class AssociationController extends Controller
         ]);
     }
 
-    public function destroy(string $id)
+    public function destroy(Association $association)
     {
-        //
+        $association->delete();
+        return redirect()->route('associations.index');
     }
 }

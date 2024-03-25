@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Uat;
 
 use App\Http\Controllers\Controller;
+use App\Models\Association;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class AssociationController extends Controller
 {
@@ -19,54 +21,33 @@ class AssociationController extends Controller
             "associations" => Association::query()
                 ->latest()
                 ->paginate(5)
+                ->where("city", "=", auth()->user()->city)
         ]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
-        //
+        Gate::allowif(function () {
+            return auth()->user()->role === "admin" || auth()->user()->role === "uat";
+        });
+        return view('roles.uat.associations.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
+    public function show(Association $association)
     {
-        //
+        Gate::allowif(function () {
+            return auth()->user()->role === "admin" || auth()->user()->role === "uat";
+        });
+        return view('roles.uat.associations.show', [
+            'association' => $association
+        ]);
     }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
+    public function destroy(Association $association)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
+        Gate::allowif(function () {
+            return auth()->user()->role === "admin" || auth()->user()->role === "uat";
+        });
+        $association->delete();
+        return redirect()->route('associations.index');
     }
 }
