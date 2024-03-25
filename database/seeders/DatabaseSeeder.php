@@ -35,8 +35,5 @@ class DatabaseSeeder extends Seeder
             'email' => 'operator@example.com',
             'role' => 'operator',
         ]);
-        City::factory()->create(['name'=>'Brasov']);
-        City::factory()->create(['name'=>'Bucuresti']);
-
     }
 }
