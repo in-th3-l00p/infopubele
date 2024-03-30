@@ -68,6 +68,21 @@
                 });
             });
         </script>
+        <script>
+            document.getElementById("antiScroll").addEventListener("click", function(event) {
+                event.preventDefault(); // Prevent the default form submission
+                var form = document.getElementById("antiScrollForm");
+                var formData = new FormData(form);
+                fetch(form.action, {
+                    method: form.method,
+                    body: formData
+                }).then(response => {
+                    // Handle the response
+                }).catch(error => {
+                    // Handle errors
+                });
+            });
+        </script>
     </body>
     <x-footer/>
 </html>

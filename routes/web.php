@@ -93,12 +93,16 @@ Route::middleware([
                 "create" => "uat.devices.create",
                 "show" => "uat.devices.show"
             ]);
-        Route::resource("slots", \App\Http\Controllers\Uat\SlotController::class)
-            ->only([ "show"  ])
-            ->shallow()
-            ->names([
-                "show" => "uat.slots.show"
-            ]);
+        Route::prefix("devices/{device}")->group(function () {
+            Route::resource("slots", \App\Http\Controllers\Uat\SlotController::class)
+                ->only([ "create", "show", "destroy" ])
+                ->shallow()
+                ->names([
+                    "create" => "uat.slots.create",
+                    "show" => "uat.slots.show",
+                    "destroy" => "uat.slots.destroy"
+                ]);
+        });
         Route::resource("users", \App\Http\Controllers\Uat\UserController::class)
             ->only([ "index","edit","update", "create", "store","destroy" ])
             ->names([

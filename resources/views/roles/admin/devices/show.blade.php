@@ -21,6 +21,7 @@
         <div class="flex justify-between items-center mb-8">
             <h2 class="text-lg font-semibold">{{ __("Token de acces") }}</h2>
             <form
+                id="antiScrollForm"
                 method="POST"
                 action="{{ route("devices.tokens.create", [
                     "device" => $device
