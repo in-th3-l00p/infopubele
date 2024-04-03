@@ -40,9 +40,18 @@ class CreateSlot extends Component
             "order" => $this->device->slots()->count()
         ]);
 
-        return redirect()->route("slots.show", [
-            "device" => $this->device,
-            "slot" => $slot
-        ]);
+        if(auth()->user()->role === "admin") {
+            return redirect()->route("slots.show", [
+                "device" => $this->device,
+                "slot" => $slot
+            ]);
+        }
+        elseif (auth()->user()->role === "uat") {
+            return redirect()->route("uat.slots.show", [
+                "device"=>$this->device,
+                "slot"=>$slot
+            ]);
+        }
+
     }
 }

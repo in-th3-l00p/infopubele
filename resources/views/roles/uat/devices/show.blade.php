@@ -13,7 +13,12 @@
 
     <x-white-container>
         <div class="flex justify-between items-center mb-8">
-            <h2 class="text-lg font-semibold">{{ __("Sloturi") }}:</h2>
+            <h2 class="text-lg font-semibold">{{ __("Sloturi") }}</h2>
+            <a href="{{ route('uat.slots.create', ['device' => $device]) }}">
+                <x-button class="aspect-square">
+                    <img src="/icons/plus.svg" alt="plus" class="w-4 invert">
+                </x-button>
+            </a>
         </div>
 
         <ul class="ml-8">
@@ -21,7 +26,7 @@
                 <li>
                     <a
                         class="flex items-center justify-between my-4 p-4 border-2 rounded-md shadow-md hover:shadow-lg hover:bg-zinc-100 transition ease-in-out"
-                        href="{{ route('uat.slots.show', $slot) }}"
+                        href="{{ route('uat.slots.show',[$device,$slot] ) }}"
                     >
                         <div>
                             <h3 class="text-lg font-semibold">{{ $slot->name }}</h3>
