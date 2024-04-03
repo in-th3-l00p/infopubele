@@ -38,9 +38,12 @@
     <x-white-container>
         <h3 class="text-lg font-semibold">{{ __("Sloturi") }}</h3>
         @forelse ($report->slots as $slot)
+            @php
+            $device = \App\Models\Device::find($slot->device_id);
+            @endphp
             <div
                 class="flex items-center justify-between my-4 p-4 border-2 rounded-md shadow-md hover:shadow-lg transition ease-in-out"
-                href="{{ route('slots.show', $slot) }}"
+                href="{{ route('slots.show',[$device, $slot] ) }}"
             >
                 <div>
                     <h3 class="text-lg font-semibold">{{ __("Slot") . " " . $slot->id }}</h3>
