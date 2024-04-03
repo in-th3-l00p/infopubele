@@ -21,7 +21,7 @@
                 </a>
             @endif
             @if(Request::user()->role==='admin')
-                <form method="POST" action="{{ route("users.destroy", [
+                <form id="deleteForm" method="POST" action="{{ route("users.destroy", [
                 "user" => $user
             ]) }}">
                     @csrf
@@ -30,7 +30,7 @@
                     <x-danger-button type="submit" title="remove">{{ __("Șterge") }}</x-danger-button>
                 </form>
             @elseif(Request::user()->role==='uat')
-                <form method="POST" action="{{ route("uat.users.destroy", [
+                <form id="deleteForm" method="POST" action="{{ route("uat.users.destroy", [
                 "user" => $user
             ]) }}">
                     @csrf

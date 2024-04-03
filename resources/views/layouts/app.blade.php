@@ -68,6 +68,16 @@
                 });
             });
         </script>
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                document.getElementById("deleteForm").addEventListener("submit", function(event) {
+                    var confirmation = confirm("Ești sigur că vrei să ștergi asta?");
+                    if (!confirmation) {
+                        event.preventDefault(); // Prevent the form submission if the user clicks cancel
+                    }
+                });
+            });
+        </script>
     </body>
     <x-footer/>
 </html>

@@ -63,7 +63,7 @@
                         </button>
 
 
-                        <form method="POST" action="{{ route("devices.tokens.delete", [
+                        <form id="deleteForm" method="POST" action="{{ route("devices.tokens.delete", [
                             "device" => $device,
                             "token" => $token
                         ]) }}">

@@ -14,7 +14,7 @@
                 {{ __("Descarcă") }}
             </a>
 
-            <form action="{{ route('device-reports.destroy', $report) }}" method="POST">
+            <form id="deleteForm" action="{{ route('device-reports.destroy', $report) }}" method="POST">
                 @csrf
                 @method('DELETE')
                 <x-danger-button type="submit">

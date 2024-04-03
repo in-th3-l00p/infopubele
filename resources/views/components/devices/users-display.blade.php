@@ -43,7 +43,7 @@
                     </div>
 
                     <div>
-                        <form method="POST" action="{{ route("users.devices.remove", [
+                        <form id="deleteForm" method="POST" action="{{ route("users.devices.remove", [
                             "user" => $user,
                         ]) }}">
                             @csrf

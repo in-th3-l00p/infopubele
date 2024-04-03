@@ -5,18 +5,6 @@
         </h2>
     </x-slot>
 
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            document.getElementById("deleteForm").addEventListener("submit", function(event) {
-                var confirmation = confirm("Are you sure you want to delete?");
-                if (!confirmation) {
-                    event.preventDefault(); // Prevent the form submission if the user clicks cancel
-                }
-            });
-        });
-    </script>
-
-
     <x-white-container>
         <div class="w-full flex gap-8 mb-8">
             <a href="{{ route("associations.create") }}">
