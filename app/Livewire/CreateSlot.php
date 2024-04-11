@@ -53,5 +53,9 @@ class CreateSlot extends Component
             ]);
         }
 
+        return redirect()->route("slots.show", [
+            "device" => $this->device,
+            "slot" => $slot
+        ]);
     }
 }

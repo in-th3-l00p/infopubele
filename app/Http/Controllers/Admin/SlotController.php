@@ -24,49 +24,6 @@ class SlotController extends Controller
     public function store(Request $request) {
     }
 
-    public function transaction(Request $request, Slot $slot) {
-        $request->validate([
-            "amount" => [
-                "required",
-                "numeric",
-                "min:" . -$slot->volume,
-                "max:" . $slot->max_volume - $slot->volume
-            ],
-            "token" => "required|exists:device_tokens,token"
-        ]);
-
-        if (!$slot
-            ->device()
-            ->first()
-            ->tokens()
-            ->where("token", $request->token)
-            ->exists()
-        )
-            return response()->json([
-                "message" => "Invalid token"
-            ], 401);
-
-
-        $slot->transactions()->create([
-            "amount" => $request->amount
-        ]);
-        $slot->update([
-            "volume" => $slot->volume + $request->amount
-        ]);
-        if (($slot->volume / $slot->max_volume) * 100 > 90) {
-            $operators = User::query()
-                ->where("role", "=", "operator")
-                ->where("city", "=", $slot->device()->first()->city)
-                ->get();
-            foreach ($operators as $operator) {
-                Mail
-                    ::to($operator->email)
-                    ->queue(new DeviceNotificationMail($slot));
-            }
-        }
-        return response("", 201);
-    }
-
     public function show(Device $device,Slot $slot) {
         return view("roles.admin.slots.show", [
             "slot" => $slot,

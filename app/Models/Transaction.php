@@ -9,7 +9,7 @@ class Transaction extends Model {
     use HasFactory;
 
     protected $fillable = [
-        "amount"
+        "amount", "slot_id", "card_id"
     ];
 
     public function slot() {

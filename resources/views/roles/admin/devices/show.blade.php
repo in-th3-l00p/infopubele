@@ -15,7 +15,7 @@
 
     <x-device-map :device="$device" />
 
-    <x-devices.users-display :device="$device" />
+    <livewire:card-panel :device="$device" />
 
     <x-white-container>
         <div class="flex justify-between items-center mb-8">

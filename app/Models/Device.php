@@ -39,4 +39,8 @@ class Device extends Model
     public function users(): HasMany {
         return $this->hasMany(User::class);
     }
+
+    public function cards(): HasMany {
+        return $this->hasMany(Card::class);
+    }
 }
