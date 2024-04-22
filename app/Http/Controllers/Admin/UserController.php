@@ -31,7 +31,8 @@ class UserController extends Controller
             "email" => "required|email|unique:users,email",
             "password" => "required|min:8|confirmed",
             "city" => "required|max:255",
-            "role" => "required|in:admin,user,generator,uat,operator"
+            "role" => "required|in:admin,user,generator,uat,operator",
+            "type" => "required|in:homeowners-association,individual,legal-entity",
         ], [
             "password.confirmed" => "Parolele nu coincid.",
         ]);
@@ -44,6 +45,7 @@ class UserController extends Controller
 
     public function show(User $user)
     {
+
     }
 
     public function edit(User $user)
@@ -61,7 +63,8 @@ class UserController extends Controller
             "email" => "required|email|unique:users,email," . $user->id,
             "city" => "nullable|max:255",
             "role" => "required|in:admin,user,generator,uat,operator",
-            "device_id" => "nullable|exists:devices,id"
+            "device_id" => "nullable|exists:devices,id",
+            "type" => "required|in:homeowners-association,individual,legal-entity",
         ]));
         return redirect()->route("users.edit", [
             "user" => $user

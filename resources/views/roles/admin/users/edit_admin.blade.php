@@ -61,6 +61,19 @@
             </div>
 
             <div class="mt-4">
+                <x-label for="type" value="{{ __('Tip') }}" />
+                <select
+                    id="type"
+                    name="type"
+                    class="select"
+                >
+                    <option value="individual" @selected($user->type === "individual") >Individual</option>
+                    <option value="legal-entity" @selected($user->type === "legal-entity")>Legal Entity</option>
+                    <option value="homeowners-association" @selected($user->type === "homeowners-association")>Homeowners Association</option>
+                </select>
+            </div>
+
+            <div class="mt-4">
                 <x-label for="city" value="{{ __('Oraș') }}" />
                 @php
                     $cities = \App\Models\City::query()->orderBy("name")->get()

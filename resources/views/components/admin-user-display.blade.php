@@ -48,6 +48,15 @@
         <p>{{ __("Email") }}: <strong>{{ $user->email }}</strong></p>
         <p>{{ __("Oraș") }}: <strong>{{ $user->city }}</strong></p>
         <p>{{ __("Rol") }}: <strong>{{ $user->role }}</strong></p>
+        @if($user->type === "legal-entity")
+            <p>{{ __("Tip") }}: <strong>{{__("Persoana Juridica")}}</strong></p>
+        @endif
+        @if($user->type === "homeowners-association")
+            <p>{{ __("Tip") }}: <strong>{{__("Asociație de Proprietari")}}</strong></p>
+        @endif
+        @if ($user->type === "individual")
+            <p>{{ __("Tip") }}: <strong>{{__("Persoana Fizica")}}</strong></p>
+        @endif
         @if ($user->device_id !== null)
             <p>{{ __("Dispozitiv") }}: <strong>{{ $user->device->name }}</strong></p>
         @endif

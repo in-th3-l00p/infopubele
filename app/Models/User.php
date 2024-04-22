@@ -31,7 +31,8 @@ class User extends Authenticatable
         'password',
         'city',
         'role',
-        "device_id"
+        "device_id",
+        "type"
     ];
 
     /**
