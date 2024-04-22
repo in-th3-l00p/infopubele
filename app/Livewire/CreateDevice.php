@@ -9,18 +9,21 @@ class CreateDevice extends Component
 {
     public string $name;
     public string $city;
+    public ?string $error = null;
 
-    public function render() {
+
+    public function render()
+    {
         return view('livewire.create-device');
     }
 
-    public function createDevice() {
-        if(auth()->user()->role==="admin")
-        {
+    public function createDevice()
+    {
+        if (auth()->user()->role === "admin") {
             $this->validate([
                 'name' => 'required|min:1|max:255|unique:devices,name',
                 'city' => 'required|min:1|max:255',
-            ],[
+            ], [
                 'city.required' => 'Orașul este obligatoriu.',
                 'name.required' => 'Numele este obligatoriu.',
             ]);
@@ -33,25 +36,30 @@ class CreateDevice extends Component
             return redirect()->route('devices.index')->with([
                 "success" => "Dispozitiv creat cu succes."
             ]);
-        }
-        elseif(auth()->user()->role==="uat")
-        {
+        } elseif (auth()->user()->role === "uat") {
             $this->validate([
                 'name' => 'required|min:1|max:255|unique:devices,name',
-            ],[
+            ], [
                 'name.required' => 'Numele este obligatoriu.',
             ]);
 
-            Device::create([
-                'name' => $this->name,
-                'city' => auth()->user()->city,
-            ]);
+            if (auth()->user()->city === null) {
+                return redirect()->route('uat.devices.create')->with([
+                    "error" => "Nu aveti un oras setat."
+                ]);
+            } else {
+                Device::create([
+                    'name' => $this->name,
+                    'city' => auth()->user()->city,
+                ]);
 
-            return redirect()->route('uat.devices.index')->with([
-                "success" => "Dispozitiv creat cu succes."
-            ]);
+                return redirect()->route('uat.devices.index')->with([
+                    "success" => "Dispozitiv creat cu succes."
+                ]);
+            }
         }
-
-
+        else {
+            return redirect()->route('welcome');
+        }
     }
 }

@@ -12,7 +12,6 @@
 
     <x-white-container>
         <x-validation-errors class="mb-4" />
-
         <form method="POST" action="{{ route('users.store') }}">
             @csrf
 

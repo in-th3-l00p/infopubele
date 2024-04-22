@@ -4,6 +4,6 @@
     </x-slot>
 
     <x-white-container>
-        @livewire("create-device")
+        @livewire('create-device', ['error' => session('error')])
     </x-white-container>
 </x-app-layout>

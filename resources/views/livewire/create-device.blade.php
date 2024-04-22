@@ -19,6 +19,9 @@
         </div>
 
         <div class="col-span-6 sm:col-span-4">
+            @if ($error)
+                <div class="text-red-500 pb-4">{{ $error }}</div>
+            @endif
             <x-label for="city" value="{{ __('Oraș') }}" />
             @php
             if (auth()->user()->role==="uat")
@@ -27,12 +30,21 @@
                 $cities = \App\Models\City::query()->orderBy("name")->get();
             @endphp
             @if(auth()->user()->role==="uat")
-                <x-input
-                id="city" type="text" class="mt-1 block w-full"
-                disabled value="{{$city->name}}"
-                required autocomplete="city"
-                >
-                </x-input>
+                @if(auth()->user()->$city===null)
+                    <x-input
+                        id="city" type="text" class="mt-1 block w-full"
+                        disabled value="Nu aveti oras arondat"
+                        required autocomplete="city"
+                    >
+                    </x-input>
+                    @else
+                    <x-input
+                        id="city" type="text" class="mt-1 block w-full"
+                        disabled value="{{$city->name}}"
+                        required autocomplete="city"
+                    >
+                    </x-input>
+                @endif
             @elseif(auth()->user()->role==="admin")
                 <select
                     id="city" name="city"
