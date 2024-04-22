@@ -20,10 +20,12 @@ class ContactRequest extends FormRequest
             'nume' => 'required|max:255',
             'prenume' => 'required|max:255',
             'email'=>'required|email:rfc,dns|max:255',
-            'numar-de-telefon'=>'required|numeric|digits:10',
+            'numar-de-telefon'=>'required|max:255',
             'mesaj'=>'required|max:3000'
         ];
     }
+
+
 
 
 

@@ -40,7 +40,7 @@ Route::get('/contact', function () {
 Route::post('/contact', function (\App\Http\Requests\ContactRequest $request) {
     $contact=\App\Models\Contact::create($request->validated());
 
-    return redirect()->route('contact',['contact'=>$contact->id]);
+    return redirect()->route('contact',['contact'=>$contact->id])->with('success','Mesajul a fost trimis cu succes!');
 })->name('contact.store');
 
 Route::middleware([
