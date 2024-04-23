@@ -23,7 +23,7 @@ class='{{ $attributes["class"] }}'
 ></script>
 
 <script>
-    let map{{$mapId}} = "";  
+    let map{{$mapId}} = "";
 
     function initMap{{$mapId}}() {
         map{{$mapId}} = new google.maps.Map(document.getElementById("{{$mapId}}"), {
@@ -70,7 +70,7 @@ class='{{ $attributes["class"] }}'
 
         @if($fitToBounds)
         map{{$mapId}}.fitBounds(bounds);
-        @endif        
+        @endif
         @endforeach
 
         @if($centerToBoundsCenter)

@@ -65,7 +65,6 @@
         <x-action-message class="me-3" on="saved">
             {{ __('Salvat.') }}
         </x-action-message>
-
         <x-button wire:loading.attr="disabled" wire:target="photo">
             {{ __('Salvează') }}
         </x-button>

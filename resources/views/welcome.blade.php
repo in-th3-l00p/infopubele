@@ -72,11 +72,11 @@
     <x-text-card>
         <div class="space-y-4">
             <h2 class="font-bold text-3xl">{{__("Locația pubelelor")}}</h2>
-            <x-maps-google style="width:95%; aspect-ratio: 2/1; margin-inline: auto;"
-                            :mapType="'roadmap'"
-                            :zoomLevel="12" :centerPoint="['lat' => 44.4259534, 'long' => 26.1098351]"
-                            :markers="[[ 44.4172634,26.028211 ], [ 44.4261628,26.0251783 ]]"
-            ></x-maps-google>
+                <x-maps-google style="width:95%; aspect-ratio: 2/1; margin-inline: auto;"
+                               :mapType="'roadmap'"
+                               :zoomLevel="12" :centerPoint="['lat' => 44.4259534, 'long' => 26.1098351]"
+                               :markers="[[ 44.4172634,26.028211 ], [ 44.4261628,26.0251783 ]]"
+                ></x-maps-google>
         </div>
     </x-text-card>
     <x-footer></x-footer>

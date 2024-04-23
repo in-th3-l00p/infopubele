@@ -24,6 +24,15 @@ return new class extends Migration
             $table->timestamps();
             $table->enum("type",["individual","legal-entity","homeowners-association"])->nullable();
 
+            $table->string('address')->nullable();
+            $table->string('phone')->nullable();
+            $table->string('cui')->nullable();
+            $table->string('cnp')->nullable();
+            $table->string('contract_number')->nullable();
+            $table->string('contact_person')->nullable();
+            $table->string('email')->nullable();
+            $table->integer('inhabitants')->nullable();
+
             $table->enum("role", [ "user", "admin", "generator", "uat", "operator" ])->default("user");
             $table->string("city")->nullable();
         });
