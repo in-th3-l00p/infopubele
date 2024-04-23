@@ -30,7 +30,6 @@ return new class extends Migration
             $table->string('cnp')->nullable();
             $table->string('contract_number')->nullable();
             $table->string('contact_person')->nullable();
-            $table->string('email')->nullable();
             $table->integer('inhabitants')->nullable();
 
             $table->enum("role", [ "user", "admin", "generator", "uat", "operator" ])->default("user");
