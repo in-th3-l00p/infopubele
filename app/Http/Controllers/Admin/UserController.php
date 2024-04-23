@@ -33,6 +33,13 @@ class UserController extends Controller
             "city" => "required|max:255",
             "role" => "required|in:admin,user,generator,uat,operator",
             "type" => "required|in:homeowners-association,individual,legal-entity",
+            "cui"  =>"nullable|max:255",
+            "cnp" => "nullable|max:255",
+            "contract_number" => "nullable|max:255",
+            "contact_person" => "nullable|max:255",
+            "inhabitants" => "nullable|integer",
+            "address" => "nullable|max:255",
+            "phone" => "nullable|max:255",
         ], [
             "password.confirmed" => "Parolele nu coincid.",
         ]);
@@ -65,6 +72,13 @@ class UserController extends Controller
             "role" => "required|in:admin,user,generator,uat,operator",
             "device_id" => "nullable|exists:devices,id",
             "type" => "required|in:homeowners-association,individual,legal-entity",
+            "cui"  =>"nullable|max:255",
+            "cnp" => "nullable|max:255",
+            "contract_number" => "nullable|max:255",
+            "contact_person" => "nullable|max:255",
+            "inhabitants" => "nullable|integer",
+            "address" => "nullable|max:255",
+            "phone" => "nullable|max:255",
         ]));
         return redirect()->route("users.edit", [
             "user" => $user

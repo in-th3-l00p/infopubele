@@ -32,7 +32,14 @@ class User extends Authenticatable
         'city',
         'role',
         "device_id",
-        "type"
+        "type",
+        "phone",
+        "address",
+        "cnp",
+        "cui",
+        "contract_number",
+        "contact_person",
+        "inhabitants"
     ];
 
     /**
