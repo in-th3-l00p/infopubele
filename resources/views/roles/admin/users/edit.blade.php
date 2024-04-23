@@ -66,9 +66,9 @@
                     class="select"
                 >
                     <option value="" selected>{{__("Alege")}}</option>
-                    <option value="individual" @selected($user->type === "individual") >Individual</option>
-                    <option value="legal-entity" @selected($user->type === "legal-entity")>Legal Entity</option>
-                    <option value="homeowners-association" @selected($user->type === "homeowners-association")>Homeowners Association</option>
+                    <option value="individual" @selected($user->type === "individual") >{{__("Persoana fizica")}}</option>
+                    <option value="legal-entity" @selected($user->type === "legal-entity")>{{__("Persoana juridica")}}</option>
+                    <option value="homeowners-association" @selected($user->type === "homeowners-association")>{{__("Asociatie de proprietari")}}</option>
                 </select>
             </div>
 

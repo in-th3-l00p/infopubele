@@ -37,9 +37,9 @@
                     name="type"
                     class="select">
                     <option value="" selected>{{__("Alege")}}</option>
-                    <option value="individual">Individual</option>
-                    <option value="legal-entity">Legal Entity</option>
-                    <option value="homeowners-association">Homeowners Association</option>
+                    <option value="individual">{{__("Persoana fizica")}}</option>
+                    <option value="legal-entity">{{__("Persoana juridica")}}</option>
+                    <option value="homeowners-association">{{__("Asociatie de proprietari")}}</option>
                 </select>
             </div>
 
