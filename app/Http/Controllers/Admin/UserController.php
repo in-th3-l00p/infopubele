@@ -14,14 +14,14 @@ class UserController extends Controller
     {
         $users = User::query()->paginate(10);
 
-        return view('roles.admin.users.index_admin', [
+        return view('roles.admin.users.index', [
             'users' => $users
         ]);
     }
 
     public function create()
     {
-        return view("roles.admin.users.create_admin");
+        return view("roles.admin.users.create");
     }
 
     public function store(Request $request)
@@ -50,7 +50,7 @@ class UserController extends Controller
 
     public function edit(User $user)
     {
-        return view("roles.admin.users.edit_admin", [
+        return view("roles.admin.users.edit", [
             "user" => $user,
             "devices" => Device::all()
         ]);
