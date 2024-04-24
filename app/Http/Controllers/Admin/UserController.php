@@ -82,7 +82,7 @@ class UserController extends Controller
         ]));
         return redirect()->route("users.edit", [
             "user" => $user
-        ]);
+        ])->with("success", "Utilizatorul a fost actualizat cu succes.");
     }
 
     public function destroy(User $user)

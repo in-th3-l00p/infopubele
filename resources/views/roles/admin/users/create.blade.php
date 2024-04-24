@@ -65,12 +65,22 @@
                     <x-label for="cui" value="{{ __('CUI') }}" />
                     <x-input id="cui" class="block mt-1 w-full" type="text" name="cui" :value="old('cui')" required autocomplete="cui" />
                 </div>
+
+                <div class="mt-4">
+                    <x-label for="cif" value="{{ __('CIF') }}" />
+                    <x-input id="cif" class="block mt-1 w-full" type="text" name="cif" :value="old('cif')" required autocomplete="cif" />
+                </div>
             </div>
 
             <div id="hoaSection" class="mt-4" style="display: none;">
                 <div class="mt-4">
                     <x-label for="cui" value="{{ __('CUI') }}" />
                     <x-input id="cui" class="block mt-1 w-full" type="text" name="cui" :value="old('cui')" required autocomplete="cui" />
+                </div>
+
+                <div class="mt-4">
+                    <x-label for="cif" value="{{ __('CIF') }}" />
+                    <x-input id="cif" class="block mt-1 w-full" type="text" name="cif" :value="old('cif')" required autocomplete="cif" />
                 </div>
 
                 <div class="mt-4">

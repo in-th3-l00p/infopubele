@@ -65,18 +65,22 @@
             @php
                 $cities = \App\Models\City::query()->orderBy('name')->get()
             @endphp
-            <select
-                id="city" name="city"
-                class="select"
-                wire:model="state.city"
-            >
                 @if(!$this->user->city)
-                    <option  value="" >{{ __('Alege orașul') }}</option>
+                <x-input disabled type="text" required class="mt-1 block w-full"  value="Nu aveti oras arondat"/>
                 @endif
-                @foreach($cities as $city)
-                    <option value="{{$city->name}}" >{{$city->name}}</option>
-                @endforeach
-            </select>
+                @if($this->user->role==='admin')
+                <select
+                    id="city" name="city"
+                    class="select"
+                    wire:model="state.city"
+                >
+                        @foreach($cities as $city)
+                            <option value="{{$city->name}}" >{{$city->name}}</option>
+                        @endforeach
+                </select>
+            @elseif($this->user->city)
+                        <x-input disabled type="text" required class="mt-1 block w-full" value="{{$this->user->city}}"/>
+                @endif
             <x-input-error for="city" class="mt-2" />
         </div>
 

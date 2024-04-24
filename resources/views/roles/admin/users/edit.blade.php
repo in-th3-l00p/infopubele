@@ -13,6 +13,12 @@
     <x-white-container>
         <x-validation-errors class="mb-4" />
 
+        @session('success')
+            <div class="mb-4 bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative" role="alert">
+                <strong class="font-bold">{{ session('success') }}</strong>
+            </div>
+        @endsession
+
         <form id="editForm" method="POST" action="{{ route('users.update', ['user' => $user]) }}">
             @csrf
             @method("PUT")

@@ -26,8 +26,8 @@
                 <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autocomplete="username" />
             </div>
 
-            <div class="mt-4>
-                <x-label for="city" value="{{ __('Oras') }}" />
+            <div class="mt-4">
+                <x-label for=" city " value="{{ __('Oras') }}" />
             @if(Request::user()->city)
                 <x-input
                     id="id" type="text" class="mt-1 block w-full"

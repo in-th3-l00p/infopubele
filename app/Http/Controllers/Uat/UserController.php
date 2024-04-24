@@ -42,8 +42,10 @@ class UserController extends Controller
             "name" => "required|max:255",
             "email" => "required|email|unique:users,email",
             "password" => "required|confirmed|min:8",
-            "city" => "required|max:255",
         ]);
+
+
+
         $data["password"] = Hash::make($data['password']);
         $user = User::query()->create([
             ...$data,

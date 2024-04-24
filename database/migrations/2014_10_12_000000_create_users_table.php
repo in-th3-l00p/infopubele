@@ -27,6 +27,7 @@ return new class extends Migration
             $table->string('address')->nullable();
             $table->string('phone')->nullable();
             $table->string('cui')->nullable();
+            $table->string('cif')->nullable();
             $table->string('cnp')->nullable();
             $table->string('contract_number')->nullable();
             $table->string('contact_person')->nullable();
