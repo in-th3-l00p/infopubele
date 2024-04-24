@@ -56,56 +56,56 @@
             <div id="individualSection" style="display: none;">
                 <div class="mt-4">
                     <x-label for="cnp" value="{{ __('CNP') }}" />
-                    <x-input id="cnp" class="block mt-1 w-full" type="text" name="cnp" :value="old('cnp')" required autocomplete="cnp" />
+                    <x-input id="cnp" class="block mt-1 w-full" type="text" name="cnp" :value="old('cnp')"  autocomplete="cnp" />
                 </div>
             </div>
 
             <div id="legalEntitySection" class="mt-4" style="display: none;">
                 <div class="mt-4">
                     <x-label for="cui" value="{{ __('CUI') }}" />
-                    <x-input id="cui" class="block mt-1 w-full" type="text" name="cui" :value="old('cui')" required autocomplete="cui" />
+                    <x-input id="cui" class="block mt-1 w-full" type="text" name="cui" :value="old('cui')"  autocomplete="cui" />
                 </div>
 
                 <div class="mt-4">
                     <x-label for="cif" value="{{ __('CIF') }}" />
-                    <x-input id="cif" class="block mt-1 w-full" type="text" name="cif" :value="old('cif')" required autocomplete="cif" />
+                    <x-input id="cif" class="block mt-1 w-full" type="text" name="cif" :value="old('cif')"  autocomplete="cif" />
                 </div>
             </div>
 
             <div id="hoaSection" class="mt-4" style="display: none;">
                 <div class="mt-4">
                     <x-label for="cui" value="{{ __('CUI') }}" />
-                    <x-input id="cui" class="block mt-1 w-full" type="text" name="cui" :value="old('cui')" required autocomplete="cui" />
+                    <x-input id="cui" class="block mt-1 w-full" type="text" name="cui" :value="old('cui')"  autocomplete="cui" />
                 </div>
 
                 <div class="mt-4">
                     <x-label for="cif" value="{{ __('CIF') }}" />
-                    <x-input id="cif" class="block mt-1 w-full" type="text" name="cif" :value="old('cif')" required autocomplete="cif" />
+                    <x-input id="cif" class="block mt-1 w-full" type="text" name="cif" :value="old('cif')"  autocomplete="cif" />
                 </div>
 
                 <div class="mt-4">
                     <x-label for="address" value="{{ __('Adresa') }}" />
-                    <x-input id="address" class="block mt-1 w-full" type="text" name="address" :value="old('address')" required autocomplete="address" />
+                    <x-input id="address" class="block mt-1 w-full" type="text" name="address" :value="old('address')"  autocomplete="address" />
                 </div>
 
                 <div class="mt-4">
                     <x-label for="contract_number" value="{{ __('Număr contract') }}" />
-                    <x-input id="contract_number" class="block mt-1 w-full" type="text" name="contract_number" :value="old('contract_number')" required autocomplete="contract_number" />
+                    <x-input id="contract_number" class="block mt-1 w-full" type="text" name="contract_number" :value="old('contract_number')"  autocomplete="contract_number" />
                 </div>
 
                 <div class="mt-4">
                     <x-label for="contact_person" value="{{ __('Persoană de contact') }}" />
-                    <x-input id="contact_person" class="block mt-1 w-full" type="text" name="contact_person" :value="old('contact_person')" required autocomplete="contact_person" />
+                    <x-input id="contact_person" class="block mt-1 w-full" type="text" name="contact_person" :value="old('contact_person')"  autocomplete="contact_person" />
                 </div>
 
                 <div class="mt-4">
                     <x-label for="phone" value="{{ __('Telefon') }}" />
-                    <x-input id="phone" class="block mt-1 w-full" type="text" name="phone" :value="old('phone')" required autocomplete="phone" />
+                    <x-input id="phone" class="block mt-1 w-full" type="text" name="phone" :value="old('phone')"  autocomplete="phone" />
                 </div>
 
                 <div class="mt-4">
                     <x-label for="inhabitants" value="{{ __('Număr locuitori') }}" />
-                    <x-input id="inhabitants" class="block mt-1 w-full" type="text" name="inhabitants" :value="old('inhabitants')" required autocomplete="inhabitants" />
+                    <x-input id="inhabitants" class="block mt-1 w-full" type="text" name="inhabitants" :value="old('inhabitants')"  autocomplete="inhabitants" />
                 </div>
             </div>
 

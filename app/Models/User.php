@@ -37,7 +37,6 @@ class User extends Authenticatable
         "address",
         "cnp",
         "cui",
-        "cif",
         "contract_number",
         "contact_person",
         "inhabitants"

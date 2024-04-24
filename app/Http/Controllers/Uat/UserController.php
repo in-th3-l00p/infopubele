@@ -41,7 +41,17 @@ class UserController extends Controller
         $data = $request->validate([
             "name" => "required|max:255",
             "email" => "required|email|unique:users,email",
-            "password" => "required|confirmed|min:8",
+            "password" => "required|min:8|confirmed",
+            "role" => "required|in:user,operator",
+            "type" => "nullable|in:homeowners-association,individual,legal-entity",
+            "cnp" => "nullable|max:255",
+            "cui" =>"nullable|max:255",
+            "cif" =>"nullable|max:255",
+            "contract_number" => "nullable|max:255",
+            "contact_person" => "nullable|max:255",
+            "inhabitants" => "nullable|integer",
+            "address" => "nullable|max:255",
+            "phone" => "nullable|max:255",
         ]);
 
 
@@ -49,7 +59,6 @@ class UserController extends Controller
         $data["password"] = Hash::make($data['password']);
         $user = User::query()->create([
             ...$data,
-            "role" => "operator",
             "city" => auth()->user()->city
         ]);
 
@@ -72,8 +81,19 @@ class UserController extends Controller
         $user->update($request->validate([
             "name" => "required|max:255",
             "email" => "required|email|unique:users,email," . $user->id,
-            "city" => "required|max:255",
+            "city" => "nullable|max:255",
+            "role" => "required|in:user,operator",
+            "type" => "nullable|in:homeowners-association,individual,legal-entity",
+            "cnp" => "nullable|max:255",
+            "cui" =>"nullable|max:255",
+            "cif" =>"nullable|max:255",
+            "contract_number" => "nullable|max:255",
+            "contact_person" => "nullable|max:255",
+            "inhabitants" => "nullable|integer",
+            "address" => "nullable|max:255",
+            "phone" => "nullable|max:255",
         ]));
+        $user->city = auth()->user()->city;
         return redirect()->route("uat.users.edit", [
             "user" => $user
         ]);
