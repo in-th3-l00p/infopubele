@@ -25,10 +25,12 @@ return new class extends Migration
             $table->enum("type",["individual","legal-entity","homeowners-association"])->nullable();
 
             $table->string('address')->nullable();
+            $table->string('address_work')->nullable();
             $table->string('phone')->nullable();
             $table->string('cui')->nullable();
             $table->string('cif')->nullable();
             $table->string('cnp')->nullable();
+            $table->integer('onrc_number')->nullable();
             $table->string('contract_number')->nullable();
             $table->string('contact_person')->nullable();
             $table->integer('inhabitants')->nullable();

@@ -25,12 +25,12 @@
             <x-label for="city" value="{{ __('Oraș') }}" />
             @php
             if (auth()->user()->role==="uat")
-                $city = \App\Models\City::query()->where("name","=", auth()->user()->city)->orderBy("name")->first();
+                $city = auth()->user()->city;
             else
                 $cities = \App\Models\City::query()->orderBy("name")->get();
             @endphp
             @if(auth()->user()->role==="uat")
-                @if(auth()->user()->$city===null)
+                @if($city===null)
                     <x-input
                         id="city" type="text" class="mt-1 block w-full"
                         disabled value="Nu aveti oras arondat"
@@ -40,7 +40,7 @@
                     @else
                     <x-input
                         id="city" type="text" class="mt-1 block w-full"
-                        disabled value="{{$city->name}}"
+                        disabled value="{{$city}}"
                         required autocomplete="city"
                     >
                     </x-input>

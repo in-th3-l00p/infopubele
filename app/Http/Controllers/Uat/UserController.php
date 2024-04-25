@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Uat;
 
 use App\Http\Controllers\Controller;
+use App\Models\Device;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
@@ -18,10 +19,15 @@ class UserController extends Controller
         return view("roles.uat.users.index", [
             "users" => User::query()
                 ->latest()
-                ->where([
-                    ['role', '=', 'operator'],
-                    ['city', '=', auth()->user()->city],
-                ])
+                ->where(function($query) {
+                    $query->where([
+                        ['role', '=', 'operator'],
+                        ['city', '=', auth()->user()->city],
+                    ])->orWhere([
+                        ['role', '=', 'user'],
+                        ['city', '=', auth()->user()->city],
+                    ]);
+                })
                 ->paginate(10)
         ]);
     }
@@ -70,7 +76,8 @@ class UserController extends Controller
             return auth()->user()->role === "admin" || auth()->user()->role === "uat";
         });
         return view("roles.uat.users.edit", [
-            "user" => $user
+            "user" => $user,
+            "devices" => Device::where("city", auth()->user()->city)->get(),
         ]);
     }
     public function update(User $user, Request $request)
@@ -92,11 +99,17 @@ class UserController extends Controller
             "inhabitants" => "nullable|integer",
             "address" => "nullable|max:255",
             "phone" => "nullable|max:255",
+            "device_id" => "nullable|exists:devices,id",
+        ],[
+            "email.required" => "Email-ul este deja folosit",
+            "name.required" => "Numele este obligatoriu",
+            "role.required" => "Rolul este obligatoriu",
+
         ]));
         $user->city = auth()->user()->city;
         return redirect()->route("uat.users.edit", [
             "user" => $user
-        ]);
+        ])->with("success", "Utilizatorul a fost actualizat cu succes.");
 
     }
     public function destroy(User $user)
@@ -104,7 +117,7 @@ class UserController extends Controller
         Gate::allowIf(function () {
         return auth()->user()->role === "admin" || auth()->user()->role === "uat";
         });
-        if($user->role === 'operator') {
+        if(($user->role === 'operator' || $user->role === 'user')&& $user->city === auth()->user()->city){
             $user->delete();
         }
         return redirect()->route("uat.users.index");

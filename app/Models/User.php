@@ -39,7 +39,11 @@ class User extends Authenticatable
         "cui",
         "contract_number",
         "contact_person",
-        "inhabitants"
+        "inhabitants",
+        "device_id",
+        "address_work",
+        "onrc_number",
+
     ];
 
     /**

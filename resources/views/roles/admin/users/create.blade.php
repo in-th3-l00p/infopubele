@@ -58,6 +58,16 @@
                     <x-label for="cnp" value="{{ __('CNP') }}" />
                     <x-input id="cnp" class="block mt-1 w-full" type="text" name="cnp" :value="old('cnp')"  autocomplete="cnp" />
                 </div>
+
+                <div class="mt-4">
+                    <x-label for="phone" value="{{ __('Telefon') }}" />
+                    <x-input id="phone" class="block mt-1 w-full" type="text" name="phone" :value="old('phone')"  autocomplete="phone" />
+                </div>
+
+                <div class="mt-4">
+                    <x-label for="contract_number" value="{{ __('Număr contract') }}" />
+                    <x-input id="contract_number" class="block mt-1 w-full" type="text" name="contract_number" :value="old('contract_number')"  autocomplete="contract_number" />
+                </div>
             </div>
 
             <div id="legalEntitySection" class="mt-4" style="display: none;">
