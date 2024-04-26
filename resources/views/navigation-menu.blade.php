@@ -22,9 +22,6 @@
                         <x-nav-link class="text-xl" href="{{ route('users.index' )}}" :active="request()->routeIs('users.index')">
                             {{ __('Utilizatori') }}
                         </x-nav-link>
-                        <x-nav-link class="text-xl" href="{{ route('associations.index') }}" :active="request()->routeIs('associations.index')">
-                            {{ __('Asociatii') }}
-                        </x-nav-link>
                     @endif
 
                     @if (Request::user()->role === "user" && Request::user()->device_id !== null)
@@ -63,13 +60,6 @@
                             {{ __("Utilizatori") }}
                         </x-nav-link>
 
-                        <x-nav-link
-                            class="text-xl"
-                            href="{{ route('uat.associations.index') }}"
-                            :active="request()->routeIs('uat.associations.index')"
-                            >
-                            {{ __("Asociatii") }}
-                        </x-nav-link>
                     @endif
                     @if (Request::user()->role === "operator")
                         <x-nav-link
