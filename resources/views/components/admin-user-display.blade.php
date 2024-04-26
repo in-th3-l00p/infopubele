@@ -19,6 +19,10 @@
                 <a href="{{ route("uat.users.edit", [ "user" => $user ]) }}">
                     <x-button title="edit">{{ __("Editează") }}</x-button>
                 </a>
+            @elseif(Request::user()->role==='operator')
+                <a href="{{ route("operator.users.edit", [ "user" => $user ]) }}">
+                    <x-button title="edit">{{ __("Editează") }}</x-button>
+                </a>
             @endif
             @if(Request::user()->role==='admin')
                 <form id="deleteForm" method="POST" action="{{ route("users.destroy", [
@@ -31,6 +35,15 @@
                 </form>
             @elseif(Request::user()->role==='uat')
                 <form id="deleteForm" method="POST" action="{{ route("uat.users.destroy", [
+                "user" => $user
+            ]) }}">
+                    @csrf
+                    @method("DELETE")
+
+                    <x-danger-button type="submit" title="remove">{{ __("Șterge") }}</x-danger-button>
+                </form>
+            @elseif(Request::user()->role==='operator')
+                <form id="deleteForm" method="POST" action="{{ route("operator.users.destroy", [
                 "user" => $user
             ]) }}">
                     @csrf
