@@ -14,12 +14,12 @@
 </style>
 
 <div id="{{$mapId}}" @if(isset($attributes['class']))
-class='{{ $attributes["class"] }}'
-        @endif
+    class='{{ $attributes["class"] }}'
+    @endif
 ></div>
 <script
-        src="https://maps.googleapis.com/maps/api/js?key={{config('maps.google_maps.access_token', null)}}&callback=initMap{{$mapId}}&libraries=&v=3"
-        async
+    src="https://maps.googleapis.com/maps/api/js?key={{config('maps.google_maps.access_token', null)}}&callback=initMap{{$mapId}}&libraries=&v=3"
+    async
 ></script>
 
 <script>
@@ -32,22 +32,22 @@ class='{{ $attributes["class"] }}'
             mapTypeId: '{{$mapType}}'
         });
 
-    function addInfoWindow(marker, message) {
+        function addInfoWindow(marker, message) {
 
-        var infoWindow = new google.maps.InfoWindow({
-            content: message
-        });
+            var infoWindow = new google.maps.InfoWindow({
+                content: message
+            });
 
-        google.maps.event.addListener(marker, 'click', function () {
-            infoWindow.open(map{{$mapId}}, marker);
-        });
-    }
+            google.maps.event.addListener(marker, 'click', function () {
+                infoWindow.open(map{{$mapId}}, marker);
+            });
+        }
 
-    @if($fitToBounds || $centerToBoundsCenter)
-    let bounds = new google.maps.LatLngBounds();
-    @endif
+        @if($fitToBounds || $centerToBoundsCenter)
+        let bounds = new google.maps.LatLngBounds();
+        @endif
 
-    @foreach($markers as $marker)
+        @foreach($markers as $marker)
         var marker{{ $loop->iteration }} = new google.maps.Marker({
             position: {
                 lat: {{$marker['lat'] ?? $marker[0]}},
@@ -61,7 +61,7 @@ class='{{ $attributes["class"] }}'
         });
 
         @if(isset($marker['info']))
-            addInfoWindow(marker{{ $loop->iteration }}, @json($marker['info']));
+        addInfoWindow(marker{{ $loop->iteration }}, @json($marker['info']));
         @endif
 
         @if($fitToBounds || $centerToBoundsCenter)

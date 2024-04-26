@@ -23,12 +23,14 @@ Route::get('/', function () {
             ($mid_point[1] - $device->longitude) * ($mid_point[1] - $device->longitude)
         ));
     }
-
+    $deviceCoordinates = $devices->map(function ($device) {
+        return [$device->latitude, $device->longitude];
+    })->toJson();
     return view('welcome', [
         "mid_point_x" => $mid_point[0],
         "mid_point_y" => $mid_point[1],
         "max_distance" => $max_distance,
-        "devices" => $devices,
+        "deviceCoordinates" => $deviceCoordinates,
     ]);
 })->name('welcome');
 Route::get('/about', function () {

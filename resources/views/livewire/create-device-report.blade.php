@@ -17,7 +17,11 @@
             >
                 <option :value="-1" selected>{{ __("Selectează un dispozitiv") }}</option>
                 @foreach ($devices as $device)
+                    @if(\Illuminate\Support\Facades\Auth::user()->role==='admin')
                     <option value="{{ $device->id }}">{{ $device->name }}</option>
+                        @elseif(\Illuminate\Support\Facades\Auth::user()->role!=='user'&&$device->city===\Illuminate\Support\Facades\Auth::user()->city)
+                        <option value="{{ $device->id }}">{{ $device->name }}</option>
+                    @endif
                 @endforeach
             </select>
             <x-input-error for="device_id" class="mt-2" />
