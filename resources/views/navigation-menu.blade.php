@@ -20,7 +20,6 @@
                             {{ __('Dispozitive') }}
                         </x-nav-link>
                         <x-nav-link class="text-xl" href="{{ route('users.index' )}}" :active="request()->routeIs('users.index')">
-
                             {{ __('Utilizatori') }}
                         </x-nav-link>
                         <x-nav-link class="text-xl" href="{{ route('associations.index') }}" :active="request()->routeIs('associations.index')">
@@ -79,6 +78,11 @@
                             :active="request()->routeIs('operator.devices.index')"
                         >
                             {{ __('Dispozitive') }}
+                        </x-nav-link>
+
+                        <x-nav-link class="text-xl" href="{{ route('operator.users.index' )}}" :active="request()->routeIs('operator.users.index')">
+
+                            {{ __('Utilizatori') }}
                         </x-nav-link>
 
                         <x-nav-link

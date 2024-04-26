@@ -150,5 +150,15 @@ Route::middleware([
                 "show" => "operator.associations.show",
                 "destroy" => "operator.associations.destroy"
             ]);
+        Route::resource("users", \App\Http\Controllers\Operator\UserController::class)
+            ->only([ "index", "create", "store", "destroy", "edit", "update"])
+            ->names([
+                "index" => "operator.users.index",
+                "create" => "operator.users.create",
+                "store" => "operator.users.store",
+                "destroy" => "operator.users.destroy",
+                "edit" => "operator.users.edit",
+                "update" => "operator.users.update"
+            ]);
     });
 });
