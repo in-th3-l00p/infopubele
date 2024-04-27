@@ -43,6 +43,14 @@ class UserController extends Controller
             "phone" => "nullable|max:255",
         ], [
             "password.confirmed" => "Parolele nu coincid.",
+            "password.min" => "Parola trebuie să aibă cel puțin 8 caractere.",
+            "password.required" => "Câmpul parolă este obligatoriu.",
+            "email.required" => "Câmpul email este obligatoriu.",
+            "email.email" => "Emailul trebuie să fie valid.",
+            "email.unique" => "Emailul este deja folosit.",
+            "name.required" => "Câmpul nume este obligatoriu.",
+            "city.required" => "Câmpul oraș este obligatoriu.",
+            "role.required" => "Câmpul rol este obligatoriu."
         ]);
 
         $data["password"] = Hash::make($data['password']);

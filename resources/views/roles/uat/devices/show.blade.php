@@ -11,6 +11,8 @@
 
     <x-device-map :device="$device" />
 
+    <x-devices-token-panel :device="$device" />
+
     <x-white-container>
         <div class="flex justify-between items-center mb-8">
             <h2 class="text-lg font-semibold">{{ __("Sloturi") }}</h2>

@@ -28,7 +28,7 @@ class CreateNewUser implements CreatesNewUsers
         [
             'name.required' => 'Numele este obligatoriu',
             'email.required' => 'Emailul este obligatoriu',
-            'password.required' => 'Parola este obligatorie',
+            'password.required' => 'Parola este obligataorie',
             'terms.accepted' => 'Trebuie să accepți termenii și condițiile',
             'email.email' => 'Emailul trebuie să fie valid',
             'email.unique' => 'Emailul este deja folosit',

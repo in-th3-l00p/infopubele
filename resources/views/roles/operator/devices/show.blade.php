@@ -31,6 +31,8 @@
         </x-form-section>
     </x-white-container>
 
+    <x-devices-token-panel :device="$device" />
+
     <x-white-container>
         <h2 class="text-lg font-semibold">{{ __("Notificari") }}:</h2>
         <ul>

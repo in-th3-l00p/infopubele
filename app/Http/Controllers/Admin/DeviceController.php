@@ -44,7 +44,6 @@ class DeviceController extends Controller
                 ->slots()
                 ->orderBy("order")
                 ->paginate(5),
-            "tokens" => $device->tokens()->paginate(5),
             "transactions" => Transaction::query()
                 ->join("slots", "transactions.slot_id", "=", "slots.id")
                 ->where("slots.device_id", $device->id)
