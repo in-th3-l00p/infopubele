@@ -26,6 +26,7 @@
                 <div>
                     <p class="text-sm text-gray-500">{{ __("Sloturi") . ": " . $device->slots()->count() }}</p>
                 </div>
+
             </a>
         @empty
             <p class="text-center">{{ __("Nu s-au găsit dispozitive.") }}</p>

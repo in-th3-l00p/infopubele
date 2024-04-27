@@ -15,4 +15,19 @@ trait PasswordValidationRules
     {
         return ['required', 'string', Password::default(), 'confirmed'];
     }
+
+
+    /**
+     * Get the password validation error messages.
+     *
+     * @return array
+     */
+    protected function passwordValidationMessages(): array
+    {
+        return [
+            'required' => 'Câmpul parolă este obligatoriu.',
+            'string' => 'Parola trebuie să fie un șir de caractere.',
+            'confirmed' => 'Confirmarea parolei nu se potrivește.',
+        ];
+    }
 }

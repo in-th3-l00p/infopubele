@@ -133,4 +133,18 @@
             @endforelse
         </ul>
     </x-white-container>
+
+    <x-white-container>
+        <div class="flex justify-between">
+            <h2 class="text-lg font-semibold">{{ __("Șterge dispozitiv") }}</h2>
+            <form id="deleteForm" method="POST" action="{{ route("devices.destroy", [
+                "device" => $device
+            ]) }}">
+                @csrf
+                @method("DELETE")
+
+                <x-danger-button type="submit" title="remove">{{ __("Șterge") }}</x-danger-button>
+            </form>
+        </div>
+    </x-white-container>
 </x-app-layout>

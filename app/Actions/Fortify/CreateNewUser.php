@@ -24,7 +24,17 @@ class CreateNewUser implements CreatesNewUsers
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => $this->passwordRules(),
             'terms' => Jetstream::hasTermsAndPrivacyPolicyFeature() ? ['accepted', 'required'] : '',
+        ],
+        [
+            'name.required' => 'Numele este obligatoriu',
+            'email.required' => 'Emailul este obligatoriu',
+            'password.required' => 'Parola este obligatorie',
+            'terms.accepted' => 'Trebuie să accepți termenii și condițiile',
+            'email.email' => 'Emailul trebuie să fie valid',
+            'email.unique' => 'Emailul este deja folosit',
+            'password.min' => 'Parola trebuie să aibă cel puțin :min caractere',
         ])->validate();
+
 
         return User::create([
             'name' => $input['name'],

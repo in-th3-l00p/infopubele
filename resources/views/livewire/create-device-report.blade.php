@@ -21,6 +21,8 @@
                     <option value="{{ $device->id }}">{{ $device->name }}</option>
                         @elseif(\Illuminate\Support\Facades\Auth::user()->role!=='user'&&$device->city===\Illuminate\Support\Facades\Auth::user()->city)
                         <option value="{{ $device->id }}">{{ $device->name }}</option>
+                    @elseif(\Illuminate\Support\Facades\Auth::user()->role==='user'&&$device->id===\Illuminate\Support\Facades\Auth::user()->device_id)
+                        <option value="{{ $device->id }}">{{ $device->name }}</option>
                     @endif
                 @endforeach
             </select>
