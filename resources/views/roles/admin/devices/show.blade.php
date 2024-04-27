@@ -135,7 +135,7 @@
     </x-white-container>
 
     <x-white-container>
-        <div class="flex justify-between">
+        <div class="flex justify-between items-center">
             <h2 class="text-lg font-semibold">{{ __("Șterge dispozitiv") }}</h2>
             <form id="deleteForm" method="POST" action="{{ route("devices.destroy", [
                 "device" => $device
