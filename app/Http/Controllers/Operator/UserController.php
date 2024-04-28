@@ -13,9 +13,6 @@ use Illuminate\Support\Facades\Hash;
 class UserController extends Controller
 {
     public function index() {
-        Gate::allowIf(function () {
-            return auth()->user()->role === "admin" || auth()->user()->role === "operator";
-        });
         return view("roles.operator.users.index", [
             "users" => User::query()
                 ->latest()
@@ -30,17 +27,11 @@ class UserController extends Controller
     }
 
     public function create() {
-        Gate::allowIf(function () {
-            return auth()->user()->role === "admin" || auth()->user()->role === "operator";
-        });
         return view("roles.operator.users.create");
     }
 
     public function store(Request $request)
     {
-        Gate::allowIf(function () {
-            return auth()->user()->role === "admin" || auth()->user()->role === "operator";
-        });
         $data = $request->validate([
             "name" => "required|max:255",
             "email" => "required|email|unique:users,email",
@@ -57,8 +48,6 @@ class UserController extends Controller
             "phone" => "nullable|max:255",
         ]);
 
-
-
         $data["password"] = Hash::make($data['password']);
         $user = User::query()->create([
             ...$data,
@@ -69,9 +58,6 @@ class UserController extends Controller
     }
     public function edit(User $user)
     {
-        Gate::allowIf(function () {
-            return auth()->user()->role === "admin" || auth()->user()->role === "operator";
-        });
         return view("roles.operator.users.edit", [
             "user" => $user,
             "devices" => Device::where("city", auth()->user()->city)->get(),
@@ -79,9 +65,6 @@ class UserController extends Controller
     }
     public function update(User $user, Request $request)
     {
-        Gate::allowIf(function () {
-            return auth()->user()->role === "admin" || auth()->user()->role === "operator";
-        });
         $user->update($request->validate([
             "name" => "required|max:255",
             "email" => "required|email|unique:users,email," . $user->id,
@@ -101,8 +84,8 @@ class UserController extends Controller
             "email.required" => "Email-ul este deja folosit",
             "name.required" => "Numele este obligatoriu",
             "role.required" => "Rolul este obligatoriu",
-
         ]));
+
         $user->city = auth()->user()->city;
         return redirect()->route("operator.users.edit", [
             "user" => $user
@@ -111,12 +94,8 @@ class UserController extends Controller
     }
     public function destroy(User $user)
     {
-        Gate::allowIf(function () {
-            return auth()->user()->role === "admin" || auth()->user()->role === "operator";
-        });
-        if( $user->role === 'user' && $user->city === auth()->user()->city){
+        if ($user->role === 'user' && $user->city === auth()->user()->city)
             $user->delete();
-        }
         return redirect()->route("operator.users.index");
     }
 }

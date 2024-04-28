@@ -7,7 +7,7 @@
 
     <x-white-container>
         <div class="w-full flex gap-8 mb-8">
-            <a href="{{ route("uat.users.create") }}">
+            <a href="{{ route("operator.users.create") }}">
                 <x-button class="aspect-square">
                     <img src="/icons/plus.svg" alt="plus" class="w-4 invert">
                 </x-button>

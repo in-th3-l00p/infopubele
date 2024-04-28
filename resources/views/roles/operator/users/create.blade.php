@@ -15,17 +15,15 @@
         <form method="POST" action="{{ route('operator.users.store') }}" novalidate>
             @csrf
 
-            <div class="mt-4">
-                <x-label for="role" value="{{ __('Rol') }}" />
+            <div class="mt-4"> <x-label for="role" value="{{ __('Rol') }}" />
                 <select
                     id="role"
                     name="role"
                     class="select"
                 >
-                    <option value="user" @selected($user->role === "user")>User</option>
+                    <option value="user">User</option>
                 </select>
             </div>
-{{--            TODO : update with all features at home   --}}
 
             <div id="typeSelection" class="mt-4" style="display: none;">
                 <x-label for="type" value="{{ __('Tip') }}" />
@@ -55,7 +53,14 @@
 
                 <div class="mt-4">
                     <x-label for="phone" value="{{ __('Telefon') }}" />
-                    <x-input id="phone" class="block mt-1 w-full" type="text" name="phone" :value="old('phone')"  autocomplete="phone" />
+                    <x-input
+                        id="phone"
+                        class="block mt-1 w-full"
+                        type="text"
+                        name="phone"
+                        :value="old('phone')"
+                        autocomplete="phone"
+                    />
                 </div>
 
                 <div class="mt-4">
@@ -175,6 +180,7 @@
                 <x-input id="password_confirmation" class="block mt-1 w-full" type="password" name="password_confirmation" required autocomplete="new-password" />
             </div>
 
+            <!-- wtf inline js, move to a file -->
             <script>
                 document.addEventListener('DOMContentLoaded', function() {
                     var roleSelect = document.getElementById('role');

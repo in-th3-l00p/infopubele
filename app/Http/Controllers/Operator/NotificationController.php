@@ -11,9 +11,6 @@ use Illuminate\Support\Facades\Gate;
 class NotificationController extends Controller
 {
     public function index() {
-        Gate::allowIf(function () {
-            return auth()->user()->role === "operator" || auth()->user()->role === "admin";
-        });
         return view("roles.operator.notifications.index", [
             "slots" => Slot::query()
                 ->join("devices", "slots.device_id", "=", "devices.id")
@@ -24,7 +21,7 @@ class NotificationController extends Controller
     public function store(Request $request)
     {
         $data = $request->validated([
-            "slot_id" => $data->slot
+            "slot_id" => "required|exists:slots,id",
         ]);
         $notification = Notification::query()->create([
             ...$data,
@@ -34,7 +31,7 @@ class NotificationController extends Controller
     }
     public function update(Request $request, Notification $notification)
     {
-        $notification->completed= !$notification->completed;
+        $notification->completed = !$notification->completed;
         return view('roles.operator.devices.index');
     }
 

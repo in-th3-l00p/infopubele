@@ -96,7 +96,7 @@ Route::middleware([
             ]);
     });
     //operator
-    Route::prefix("operator")->group(function () {
+    Route::prefix("operator")->middleware("operator")->group(function () {
         Route::resource("devices", \App\Http\Controllers\Operator\DeviceController::class)
             ->only([ "index", "show" ])
             ->names([
