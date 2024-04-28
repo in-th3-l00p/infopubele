@@ -22,18 +22,6 @@ return new class extends Migration
             $table->foreignId('current_team_id')->nullable();
             $table->string('profile_photo_path', 2048)->nullable();
             $table->timestamps();
-            $table->enum("type",["individual","legal-entity","homeowners-association"])->nullable();
-
-            $table->string('address')->nullable();
-            $table->string('address_work')->nullable();
-            $table->string('phone')->nullable();
-            $table->string('cui')->nullable();
-            $table->string('cif')->nullable();
-            $table->string('cnp')->nullable();
-            $table->integer('onrc_number')->nullable();
-            $table->string('contract_number')->nullable();
-            $table->string('contact_person')->nullable();
-            $table->integer('inhabitants')->nullable();
 
             $table->enum("role", [ "user", "admin", "generator", "uat", "operator" ])->default("user");
             $table->string("city")->nullable();
