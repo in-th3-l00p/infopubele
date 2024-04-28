@@ -29,12 +29,12 @@ class DeviceController extends Controller
             "token" => $token
         ]);
 
-        return redirect()->route("devices.show", $device);
+        return redirect()->back();
     }
 
     public function deleteToken(Device $device, DeviceToken $token) {
         $token->delete();
-        return redirect()->route("devices.show", $device);
+        return redirect()->back();
     }
 
     public function show(Device $device) {

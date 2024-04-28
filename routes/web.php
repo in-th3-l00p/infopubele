@@ -29,24 +29,30 @@ Route::middleware([
         return view('dashboard');
     })->name('dashboard');
 
+
     // admin
-    Route::prefix("/admin")->middleware("admin")->group(function () {
-        Route::resource("devices", DeviceController::class)
-            ->except("edit", "update", "store");
-        Route::post("/devices/{device}/tokens", [DeviceController::class, "createToken"])
-            ->name("devices.tokens.create");
-        Route::delete("/devices/{device}/tokens/{token}", [DeviceController::class, "deleteToken"])
-            ->name("devices.tokens.delete");
-        Route::prefix("devices/{device}")->group(function () {
-            Route::resource("slots", SlotController::class)
-                ->only([ "create", "show", "destroy" ])
-                ->shallow();
+    Route::prefix("/admin")->group(function () {
+        Route::middleware("admin")->group(function () {
+            Route::resource("devices", DeviceController::class)
+                ->except("edit", "update", "store");
+            Route::prefix("devices/{device}")->group(function () {
+                Route::resource("slots", SlotController::class)
+                    ->only([ "create", "show", "destroy" ])
+                    ->shallow();
+            });
+            Route::resource("users", UserController::class);
+            Route::put("/users/device/{device}", [UserController::class, "assignDevice"])
+                ->name("users.devices.assign");
+            Route::delete("/users/{user}/device", [UserController::class, "removeDevice"])
+                ->name("users.devices.remove");
         });
-        Route::resource("users", UserController::class);
-        Route::put("/users/device/{device}", [UserController::class, "assignDevice"])
-            ->name("users.devices.assign");
-        Route::delete("/users/{user}/device", [UserController::class, "removeDevice"])
-            ->name("users.devices.remove");
+
+        Route::middleware("uat")->group(function (){
+            Route::post("/devices/{device}/tokens", [DeviceController::class, "createToken"])
+                ->name("devices.tokens.create");
+            Route::delete("/devices/{device}/tokens/{token}", [DeviceController::class, "deleteToken"])
+                ->name("devices.tokens.delete");
+        });
     });
 
     // user
