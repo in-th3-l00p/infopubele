@@ -27,9 +27,6 @@
                     <x-nav-link href="{{route('login')}}" class="text-xl">
                         {{__("Conectează-te")}}
                     </x-nav-link>
-                    <x-nav-link href="{{route('register')}}" class="text-xl">
-                        {{__("Înregistrează-te")}}
-                    </x-nav-link>
                 @endguest
 
                 @auth
@@ -71,9 +68,6 @@
                 @guest
                     <x-responsive-nav-link href="{{route('login')}}" class="text-xl">
                         {{__("Conectează-te")}}
-                    </x-responsive-nav-link>
-                    <x-responsive-nav-link href="" class="text-xl">
-                        {{__("Înregistrează-te")}}
                     </x-responsive-nav-link>
                 @endguest
 

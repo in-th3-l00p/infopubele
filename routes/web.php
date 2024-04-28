@@ -9,41 +9,16 @@ use App\Http\Controllers\User\UserDeviceController;
 use App\Http\Controllers\User\UserSlotController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    $devices = \App\Models\Device::coordinates()->get();
-    $mid_point = [
-        \App\Models\Device::coordinates()->average("latitude"),
-        \App\Models\Device::coordinates()->average("longitude")
-    ];
-
-    $max_distance = 0;
-    foreach ($devices as $device) {
-        $max_distance = max($max_distance, sqrt(
-            ($mid_point[0] - $device->latitude) * ($mid_point[0] - $device->latitude) +
-            ($mid_point[1] - $device->longitude) * ($mid_point[1] - $device->longitude)
-        ));
-    }
-    $deviceCoordinates = $devices->map(function ($device) {
-        return [$device->latitude, $device->longitude];
-    })->toJson();
-    return view('welcome', [
-        "mid_point_x" => $mid_point[0],
-        "mid_point_y" => $mid_point[1],
-        "max_distance" => $max_distance,
-        "deviceCoordinates" => $deviceCoordinates,
-    ]);
-})->name('welcome');
-Route::get('/about', function () {
-    return view('about');
-})->name('about');
-Route::get('/contact', function () {
-    return view('contact');
-})->name('contact');
-Route::post('/contact', function (\App\Http\Requests\ContactRequest $request) {
+Route::view("/", "welcome")->name("welcome");
+Route::view("/about", "about")->name("about");
+Route::view("/contact", "contact")->name("contact");
+Route::post("/contact", function (\App\Http\Requests\ContactRequest $request) {
     $contact=\App\Models\Contact::create($request->validated());
 
-    return redirect()->route('contact',['contact'=>$contact->id])->with('success','Mesajul a fost trimis cu succes!');
-})->name('contact.store');
+    return redirect()
+        ->route("contact",["contact"=>$contact->id])
+        ->with("success", "Mesajul a fost trimis cu succes!");
+})->name("contact.store");
 
 Route::middleware([
     'auth:sanctum',
