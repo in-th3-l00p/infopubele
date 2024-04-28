@@ -32,4 +32,6 @@
 
         {{ $devices->links() }}
     </x-white-container>
+
+    <x-devices-map :city="auth()->user()->city" />
 </x-app-layout>

@@ -12,10 +12,13 @@ class DevicesMap extends Component
 {
     public $devices;
 
-    public function __construct() {
+    public function __construct(
+        public ?string $city = null
+    ) {
         $this->devices = Device::query()
             ->whereNotNull('latitude')
             ->whereNotNull('longitude')
+            ->when($city, fn($query, $city) => $query->where('city', $city))
             ->get();
     }
 
