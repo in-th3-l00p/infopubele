@@ -89,6 +89,16 @@ class UserController extends Controller
             "inhabitants" => "nullable|integer",
             "address" => "nullable|max:255",
             "phone" => "nullable|max:255",
+        ],[
+            "email.required" => "Câmpul email este obligatoriu.",
+            "email.email" => "Emailul trebuie să fie valid.",
+            "email.unique" => "Emailul este deja folosit.",
+            "name.required" => "Câmpul nume este obligatoriu.",
+            "city.required" => "Câmpul oraș este obligatoriu.",
+            "role.required" => "Câmpul rol este obligatoriu.",
+            "device_id.exists" => "Dispozitivul nu există.",
+            "type.in" => "Tipul de utilizator nu este valid.",
+            "role.in" => "Rolul utilizatorului nu este valid.",
         ]));
         return redirect()->route("users.edit", [
             "user" => $user
@@ -105,6 +115,9 @@ class UserController extends Controller
     {
         $request->validate([
             "user" => "required|exists:users,id"
+        ],[
+            "user.required" => "Utilizatorul este obligatoriu.",
+            "user.exists" => "Utilizatorul nu există."
         ]);
 
         $user = User::query()->where("id", $request->user)->firstOrFail();

@@ -25,6 +25,9 @@ class CreateDeviceReport extends Component
         error_log("called");
         $this->validate([
             'device_id' => 'required|exists:devices,id'
+        ],[
+            'device_id.required' => 'Dispozitivul este obligatoriu.',
+            'device_id.exists' => 'Dispozitivul nu exista.'
         ]);
 
         $device = Device::find($this->device_id);

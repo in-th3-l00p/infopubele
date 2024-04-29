@@ -25,6 +25,9 @@ class CardPanel extends Component
     public function createCard() {
         $this->validate([
             'userId' => 'required|exists:users,id'
+        ],[
+            'userId.required' => 'Id-ul utilizatorului este obligatoriu.',
+            'userId.exists' => 'Utilizatorul nu există.'
         ]);
 
         if (Card::query()

@@ -56,6 +56,13 @@ class DeviceController extends Controller
             "latitude" => "required|numeric",
             "longitude" => "required|numeric",
             "token" => "required|exists:device_tokens,token"
+        ],[
+            "latitude.required" => "Latitudinea este obligatorie",
+            "latitude.numeric" => "Latitudinea trebuie sa fie un numar",
+            "longitude.required" => "Longitudinea este obligatorie",
+            "longitude.numeric" => "Longitudinea trebuie sa fie un numar",
+            "token.required" => "Tokenul este obligatoriu",
+            "token.exists" => "Token invalid"
         ]);
 
         if (!$device

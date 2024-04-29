@@ -12,6 +12,9 @@ class CardController extends Controller
         $device = ApiSlotController::getDevice($request);
         $request->validate([
             "token" => "required|exists:device_tokens,token"
+        ], [
+            "token.required" => "Tokenul este obligatoriu",
+            "token.exists" => "Token invalid"
         ]);
 
         $query = Card::query()
@@ -30,6 +33,9 @@ class CardController extends Controller
         $device = ApiSlotController::getDevice($request);
         $request->validate([
             "user_id" => "required|exists:users,id",
+        ],[
+            "user_id.required" => "Userul este obligatoriu",
+            "user_id.exists" => "Userul nu exista"
         ]);
         if (Card::where("user_id", $request->user_id)
             ->where("device_id", $device->id)
@@ -47,6 +53,9 @@ class CardController extends Controller
     public function show(Request $request, Card $card) {
         $request->validate([
             "token" => "required|exists:device_tokens,token"
+        ],[
+            "token.required" => "Tokenul este obligatoriu",
+            "token.exists" => "Token invalid"
         ]);
         if (!$card->device()->first()
             ->tokens()
@@ -62,6 +71,9 @@ class CardController extends Controller
     public function destroy(Request $request, Card $card) {
         $request->validate([
             "token" => "required|exists:device_tokens,token"
+        ],[
+            "token.required" => "Tokenul este obligatoriu",
+            "token.exists" => "Token invalid"
         ]);
         if (!$card->device()->first()
             ->tokens()
