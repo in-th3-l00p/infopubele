@@ -22,6 +22,7 @@
         <form
             id="editForm" method="POST"
             action="{{ route('operator.users.update', ['user' => $user]) }}"
+            x-data="{ type: '{{ $user->type }}' }"
         >
             @csrf
             @method("PUT")
@@ -63,12 +64,13 @@
                 </select>
             </div>
 
-            <div id="typeSelection" class="mt-4" style="display: none;">
+            <div id="typeSelection" class="mt-4" x-show="role === 'user'">
                 <x-label for="type" value="{{ __('Tip') }}" />
                 <select
                     id="type"
                     name="type"
                     class="select"
+                    x-model="type"
                 >
                     <option value="" selected>{{__("Alege")}}</option>
                     <option value="individual" @selected($user->type === "individual") >{{__("Persoana fizica")}}</option>
@@ -77,67 +79,153 @@
                 </select>
             </div>
 
-            <div id="individualSection" class="mt-4" @if($user->type === 'individual') style="display: block;" @else style="display: none;" @endif>
+            <div
+                id="individualSection"
+                class="mt-4"
+                x-show="type === 'individual'"
+            >
                 <div class="mt-4">
                     <x-label for="cnp" value="{{ __('CNP') }}" />
-                    <x-input id="cnp" class="block mt-1 w-full" type="text" name="cnp" :value="$user->cnp" autocomplete="cnp" />
+                    <x-input
+                        id="cnp"
+                        class="block mt-1 w-full"
+                        type="text"
+                        name="cnp"
+                        :value="$user->cnp"
+                        autocomplete="cnp"
+                        x-bind:disabled="type !== 'individual'"
+                    />
                 </div>
 
                 <div class="mt-4">
                     <x-label for="phone" value="{{ __('Telefon') }}" />
                     <x-input
-                        id="phone" name="phone"
+                        id="phone"
                         class="block mt-1 w-full"
                         type="text"
-                        :value="old('phone')"  autocomplete="phone"
+                        name="phone"
+                        :value="$user->phone"
+                        autocomplete="phone"
+                        x-bind:disabled="type !== 'individual'"
                     />
                 </div>
 
                 <div class="mt-4">
                     <x-label for="contract_number" value="{{ __('Număr contract') }}" />
-                    <x-input id="contract_number" class="block mt-1 w-full" type="text" name="contract_number" :value="$user->contract_number" autocomplete="contract_number" />
+                    <x-input
+                        id="contract_number"
+                        class="block mt-1 w-full"
+                        type="text"
+                        name="contract_number"
+                        :value="$user->contract_number"
+                        autocomplete="contract_number"
+                        x-bind:disabled="type !== 'individual'"
+                    />
                 </div>
             </div>
 
-            <div id="legalEntitySection" class="mt-4" @if($user->type === 'legal-entity') style="display: block;" @else style="display: none;" @endif>
+            <div
+                id="legalEntitySection"
+                class="mt-4"
+                x-show="type === 'legal-entity'"
+            >
                 <div class="mt-4">
                     <x-label for="cui" value="{{ __('CUI') }}" />
-                    <x-input id="cui" class="block mt-1 w-full" type="text" name="cui" :value="$user->cui" autocomplete="cui" />
+                    <x-input
+                        id="cui"
+                        class="block mt-1 w-full"
+                        type="text"
+                        name="cui"
+                        :value="$user->cui"
+                        autocomplete="cui"
+                        x-bind:disabled="type !== 'legal-entity'"
+                    />
                 </div>
             </div>
 
-            <div id="hoaSection" class="mt-4" @if($user->type === 'homeowners-association') style="display: block;" @else style="display: none;" @endif>
+            <div
+                id="hoaSection"
+                class="mt-4"
+                x-show="type === 'homeowners-association'"
+            >
                 <div class="mt-4">
                     <x-label for="cui" value="{{ __('CUI') }}" />
-                    <x-input id="cui" class="block mt-1 w-full" type="text" name="cui" :value="$user->cui" autocomplete="cui" />
+                    <x-input
+                        id="cui"
+                        class="block mt-1 w-full"
+                        type="text"
+                        name="cui"
+                        :value="$user->cui"
+                        autocomplete="cui"
+                        x-bind:disabled="type !== 'homeowners-association'"
+                    />
                 </div>
 
                 <div class="mt-4">
                     <x-label for="address" value="{{ __('Adresa') }}" />
-                    <x-input id="address" class="block mt-1 w-full" type="text" name="address" :value="$user->address" autocomplete="address" />
+                    <x-input
+                        id="address"
+                        class="block mt-1 w-full"
+                        type="text"
+                        name="address"
+                        :value="$user->address"
+                        autocomplete="address"
+                        x-bind:disabled="type !== 'homeowners-association'"
+                    />
                 </div>
 
                 <div class="mt-4">
                     <x-label for="contract_number" value="{{ __('Număr contract') }}" />
-                    <x-input id="contract_number" class="block mt-1 w-full" type="text" name="contract_number" :value="$user->contract_number" autocomplete="contract_number" />
+                    <x-input
+                        id="contract_number"
+                        class="block mt-1 w-full"
+                        type="text"
+                        name="contract_number"
+                        :value="$user->contract_number"
+                        autocomplete="contract_number"
+                        x-bind:disabled="type !== 'homeowners-association'"
+                    />
                 </div>
 
                 <div class="mt-4">
                     <x-label for="contact_person" value="{{ __('Persoană de contact') }}" />
-                    <x-input id="contact_person" class="block mt-1 w-full" type="text" name="contact_person" :value="$user->contact_person" autocomplete="contact_person" />
+                    <x-input
+                        id="contact_person"
+                        class="block mt-1 w-full"
+                        type="text"
+                        name="contact_person"
+                        :value="$user->contact_person"
+                        autocomplete="contact_person"
+                        x-bind:disabled="type !== 'homeowners-association'"
+                    />
                 </div>
 
                 <div class="mt-4">
                     <x-label for="phone" value="{{ __('Telefon') }}" />
-                    <x-input id="phone" class="block mt-1 w-full" type="text" name="phone" :value="$user->phone" autocomplete="phone" />
+                    <x-input
+                        id="phone"
+                        class="block mt-1 w-full"
+                        type="text"
+                        name="phone"
+                        :value="$user->phone"
+                        autocomplete="phone"
+                        x-bind:disabled="type !== 'homeowners-association'"
+                    />
                 </div>
 
                 <div class="mt-4">
                     <x-label for="inhabitants" value="{{ __('Număr locuitori') }}" />
-                    <x-input id="inhabitants" class="block mt-1 w-full" type="text" name="inhabitants" :value="$user->inhabitants" autocomplete="inhabitants" />
+                    <x-input
+                        id="inhabitants"
+                        class="block mt-1 w-full"
+                        type="text"
+                        name="inhabitants"
+                        :value="$user->inhabitants"
+                        autocomplete="inhabitants"
+                        x-bind:disabled="type !== 'homeowners-association'"
+                    />
                 </div>
             </div>
-
 
             <div class="mt-4">
                 <x-label for="city" value="{{ __('Oraș') }}" />
@@ -188,71 +276,6 @@
             </div>
         </form>
     </x-white-container>
+
 </x-app-layout>
-
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        var roleSelect = document.getElementById('role');
-        var typeSelect = document.getElementById('type');
-        var individualSection = document.getElementById('individualSection');
-        var legalEntitySection = document.getElementById('legalEntitySection');
-        var hoaSection = document.getElementById('hoaSection');
-        var submitButton = document.getElementById('submitButton');
-
-        function showTypeSelection() {
-            var selectedRole = roleSelect.value;
-            if (selectedRole === 'user') {
-                typeSelection.style.display = 'block';
-            } else {
-                typeSelection.style.display = 'none';
-                // Reset type selection to "Alege" when role changes from user
-                typeSelect.value = '';
-                // Hide all sections when role changes
-                individualSection.style.display = 'none';
-                legalEntitySection.style.display = 'none';
-                hoaSection.style.display = 'none';
-            }
-        }
-
-        function showTypeContent() {
-            var selectedType = typeSelect.value;
-            // Hide all sections first
-            individualSection.style.display = 'none';
-            legalEntitySection.style.display = 'none';
-            hoaSection.style.display = 'none';
-            // Show the section based on the selected type
-            if (selectedType === 'individual') {
-                individualSection.style.display = 'block';
-            } else if (selectedType === 'legal-entity') {
-                legalEntitySection.style.display = 'block';
-            } else if (selectedType === 'homeowners-association') {
-                hoaSection.style.display = 'block';
-            }
-        }
-
-        showTypeSelection(); // Show initially based on default selected value
-
-        roleSelect.addEventListener('change', function() {
-            showTypeSelection();
-            // Hide content when role changes
-            if (roleSelect.value !== 'user') {
-                typeSelection.style.display = 'none';
-                // Reset type selection to "Alege" when role changes from user
-                typeSelect.value = '';
-                // Hide all sections when role changes
-                individualSection.style.display = 'none';
-                legalEntitySection.style.display = 'none';
-                hoaSection.style.display = 'none';
-            }
-        });
-
-        typeSelect.addEventListener('change', showTypeContent);
-
-        submitButton.addEventListener('click', function() {
-            // Make sure to display the selected type content before submitting
-            showTypeContent();
-            document.getElementById('editForm').submit();
-        });
-    });
-</script>
 
