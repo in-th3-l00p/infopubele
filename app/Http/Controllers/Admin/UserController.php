@@ -36,11 +36,11 @@ class UserController extends Controller
             "cnp" => "nullable|max:255",
             "cui" =>"nullable|max:255",
             "cif" =>"nullable|max:255",
-            "contract_number" => "nullable|max:255",
+            "contract_number" => "nullable|max:255|numeric",
             "contact_person" => "nullable|max:255",
             "inhabitants" => "nullable|integer",
             "address" => "nullable|max:255",
-            "phone" => "nullable|max:255",
+            "phone" => "nullable|max:255|numeric",
         ], [
             "password.confirmed" => "Parolele nu coincid.",
             "password.min" => "Parola trebuie să aibă cel puțin 8 caractere.",
