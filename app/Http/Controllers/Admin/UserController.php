@@ -56,7 +56,7 @@ class UserController extends Controller
         $data["password"] = Hash::make($data['password']);
         $user = User::query()->create($data);
 
-        return redirect()->route("users.index");
+        return redirect()->route("users.index")->with("success", "Utilizatorul a fost creat cu succes.");
     }
 
     public function show(User $user)

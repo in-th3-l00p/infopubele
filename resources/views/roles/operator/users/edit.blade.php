@@ -13,11 +13,11 @@
     <x-white-container>
         <x-validation-errors class="mb-4" />
 
-        @session('success')
-        <div class="mb-4 bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative" role="alert">
-            <strong class="font-bold">{{ session('success') }}</strong>
-        </div>
-        @endsession
+        @if(session('success'))
+            <x-bladewind.alert type="success">
+                {{ session('success') }}
+            </x-bladewind.alert>
+        @endif
 
         <form
             id="editForm" method="POST"

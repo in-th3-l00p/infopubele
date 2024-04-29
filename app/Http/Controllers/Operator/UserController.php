@@ -54,10 +54,14 @@ class UserController extends Controller
             "city" => auth()->user()->city
         ]);
 
-        return redirect()->route("operator.users.index");
+        return redirect()->route("operator.users.index")->with("success", "Utilizatorul a fost creat cu succes.");
     }
     public function edit(User $user)
     {
+        Gate::allowIf(
+            auth()->user()->city === $user->city,
+            __("You are not authorized to access this page.")
+        );
         return view("roles.operator.users.edit", [
             "user" => $user,
             "devices" => Device::where("city", auth()->user()->city)->get(),

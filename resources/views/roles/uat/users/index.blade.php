@@ -14,6 +14,12 @@
             </a>
         </div>
 
+        @if(session('success'))
+            <x-bladewind.alert type="success">
+                {{ session('success') }}
+            </x-bladewind.alert>
+        @endif
+
         @forelse ($users as $user)
                 <x-admin-user-display :user="$user"/>
 

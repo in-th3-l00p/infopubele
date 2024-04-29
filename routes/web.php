@@ -67,63 +67,67 @@ Route::middleware([
 
     // uat index
     Route::prefix("uat")->group(function () {
-        Route::resource("devices", \App\Http\Controllers\Uat\DeviceController::class)
-            ->only([ "index", "create", "show" ])
-            ->names([
-                "index" => "uat.devices.index",
-                "create" => "uat.devices.create",
-                "show" => "uat.devices.show"
-            ]);
-        Route::prefix("devices/{device}")->group(function () {
-            Route::resource("slots", \App\Http\Controllers\Uat\SlotController::class)
-                ->only([ "create", "show", "destroy" ])
-                ->shallow()
+        Route::middleware("uat")->group(function(){
+            Route::resource("devices", \App\Http\Controllers\Uat\DeviceController::class)
+                ->only([ "index", "create", "show" ])
                 ->names([
-                    "create" => "uat.slots.create",
-                    "show" => "uat.slots.show",
-                    "destroy" => "uat.slots.destroy"
+                    "index" => "uat.devices.index",
+                    "create" => "uat.devices.create",
+                    "show" => "uat.devices.show"
+                ]);
+            Route::prefix("devices/{device}")->group(function () {
+                Route::resource("slots", \App\Http\Controllers\Uat\SlotController::class)
+                    ->only([ "create", "show", "destroy" ])
+                    ->shallow()
+                    ->names([
+                        "create" => "uat.slots.create",
+                        "show" => "uat.slots.show",
+                        "destroy" => "uat.slots.destroy"
+                    ]);
+            });
+            Route::resource("users", \App\Http\Controllers\Uat\UserController::class)
+                ->only([ "index","edit","update", "create", "store","destroy" ])
+                ->names([
+                    "index" => "uat.users.index",
+                    "create" => "uat.users.create",
+                    "store" => "uat.users.store",
+                    "destroy" => "uat.users.destroy",
+                    "edit" => "uat.users.edit",
+                    "update" => "uat.users.update"
                 ]);
         });
-        Route::resource("users", \App\Http\Controllers\Uat\UserController::class)
-            ->only([ "index","edit","update", "create", "store","destroy" ])
-            ->names([
-                "index" => "uat.users.index",
-                "create" => "uat.users.create",
-                "store" => "uat.users.store",
-                "destroy" => "uat.users.destroy",
-                "edit" => "uat.users.edit",
-                "update" => "uat.users.update"
-            ]);
     });
     //operator
     Route::prefix("operator")->middleware("operator")->group(function () {
-        Route::resource("devices", \App\Http\Controllers\Operator\DeviceController::class)
-            ->only([ "index", "show" ])
-            ->names([
-                "index" => "operator.devices.index",
-                "show" => "operator.devices.show"
-            ]);
-        Route::resource("slots", \App\Http\Controllers\Operator\SlotController::class)
-            ->only([ "show" ])
-            ->shallow()
-            ->names([
-                "show" => "operator.slots.show"
-            ]);
-        Route::resource("notifications", NotificationController::class)
-            ->only([ "index" ])
-            ->names([
-                "index" => "operator.notifications.index"
-            ])
-            ->shallow();
-        Route::resource("users", \App\Http\Controllers\Operator\UserController::class)
-            ->only([ "index", "create", "store", "destroy", "edit", "update"])
-            ->names([
-                "index" => "operator.users.index",
-                "create" => "operator.users.create",
-                "store" => "operator.users.store",
-                "destroy" => "operator.users.destroy",
-                "edit" => "operator.users.edit",
-                "update" => "operator.users.update"
-            ]);
+        Route::middleware("operator")->group(function (){
+            Route::resource("devices", \App\Http\Controllers\Operator\DeviceController::class)
+                ->only([ "index", "show" ])
+                ->names([
+                    "index" => "operator.devices.index",
+                    "show" => "operator.devices.show"
+                ]);
+            Route::resource("slots", \App\Http\Controllers\Operator\SlotController::class)
+                ->only([ "show" ])
+                ->shallow()
+                ->names([
+                    "show" => "operator.slots.show"
+                ]);
+            Route::resource("notifications", NotificationController::class)
+                ->only([ "index" ])
+                ->names([
+                    "index" => "operator.notifications.index"
+                ])
+                ->shallow();
+            Route::resource("users", \App\Http\Controllers\Operator\UserController::class)
+                ->only([ "index", "create", "store", "destroy", "edit", "update"])
+                ->names([
+                    "index" => "operator.users.index",
+                    "create" => "operator.users.create",
+                    "store" => "operator.users.store",
+                    "destroy" => "operator.users.destroy",
+                    "edit" => "operator.users.edit",
+                    "update" => "operator.users.update"
+                ]);
+        });
     });
 });

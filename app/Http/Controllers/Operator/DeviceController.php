@@ -11,9 +11,6 @@ class DeviceController extends Controller
 {
     public function index()
     {
-        Gate::allowIf(function () {
-            return auth()->user()->role === "admin" || auth()->user()->role === "operator";
-        });
         return view('roles.operator.devices.index', [
             "devices" => Device::query()
                 ->latest()
@@ -22,9 +19,10 @@ class DeviceController extends Controller
         ]);
     }
     public function show(Device $device) {
-        Gate::allowIf(function () {
-            return auth()->user()->role === "admin" || auth()->user()->role === "operator";
-        });
+        Gate::allowIf(
+            auth()->user()->city === $device->city,
+            __("You are not authorized to access this page.")
+        );
         return view("roles.operator.devices.show", [
             "device" => $device,
             "slots" => $device

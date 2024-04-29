@@ -47,6 +47,7 @@
             <p class="mb-4">{{ __("Ești sigur că vrei să ștergi slotul?") }}</p>
 
             <form
+                id="deleteForm"
                 method="POST"
                 action="{{ route("slots.destroy", [
                     "slot" => $slot,

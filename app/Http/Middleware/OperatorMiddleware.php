@@ -12,15 +12,15 @@ class OperatorMiddleware
     /**
      * Handle an incoming request.
      *
-     * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
+     * @param  Closure(Request): (Response)  $next
      */
     public function handle(Request $request, Closure $next): Response
     {
-        Gate::allowIf(function () {
-            return
-                auth()->user()->role === "admin" ||
-                auth()->user()->role === "operator";
-        });
+        Gate::allowIf(
+            $request->user()?->role === "operator" ||
+            $request->user()?->role === "admin",
+            __("You are not authorized to access this page.")
+        );
         return $next($request);
     }
 }

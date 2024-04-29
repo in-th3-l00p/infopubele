@@ -13,9 +13,6 @@ use Illuminate\Support\Facades\Hash;
 class UserController extends Controller
 {
     public function index() {
-        Gate::allowIf(function () {
-            return auth()->user()->role === "admin" || auth()->user()->role === "uat";
-        });
         return view("roles.uat.users.index", [
             "users" => User::query()
                 ->latest()
@@ -33,17 +30,11 @@ class UserController extends Controller
     }
 
     public function create() {
-        Gate::allowIf(function () {
-            return auth()->user()->role === "admin" || auth()->user()->role === "uat";
-        });
         return view("roles.uat.users.create");
     }
 
     public function store(Request $request)
     {
-        Gate::allowIf(function () {
-            return auth()->user()->role === "admin" || auth()->user()->role === "uat";
-        });
         $data = $request->validate([
             "name" => "required|max:255",
             "email" => "required|email|unique:users,email",
@@ -68,13 +59,14 @@ class UserController extends Controller
             "city" => auth()->user()->city
         ]);
 
-        return redirect()->route("uat.users.index");
+        return redirect()->route("uat.users.index")->with("success", "Utilizatorul a fost creat cu succes.");
     }
     public function edit(User $user)
     {
-        Gate::allowIf(function () {
-            return auth()->user()->role === "admin" || auth()->user()->role === "uat";
-        });
+        Gate::allowIf(
+            auth()->user()->city === $user->city,
+            __("You are not authorized to access this page.")
+        );
         return view("roles.uat.users.edit", [
             "user" => $user,
             "devices" => Device::where("city", auth()->user()->city)->get(),
@@ -82,9 +74,6 @@ class UserController extends Controller
     }
     public function update(User $user, Request $request)
     {
-        Gate::allowIf(function () {
-            return auth()->user()->role === "admin" || auth()->user()->role === "uat";
-        });
         $user->update($request->validate([
             "name" => "required|max:255",
             "email" => "required|email|unique:users,email," . $user->id,
@@ -114,9 +103,10 @@ class UserController extends Controller
     }
     public function destroy(User $user)
     {
-        Gate::allowIf(function () {
-        return auth()->user()->role === "admin" || auth()->user()->role === "uat";
-        });
+        Gate::allowIf(
+            auth()->user()->city === $user->city,
+            __("You are not authorized to access this page.")
+        );
         if(($user->role === 'operator' || $user->role === 'user')&& $user->city === auth()->user()->city){
             $user->delete();
         }

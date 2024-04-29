@@ -28,7 +28,6 @@ class DeviceController extends Controller
         $device->tokens()->create([
             "token" => $token
         ]);
-
         return redirect()->back();
     }
 

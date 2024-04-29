@@ -13,6 +13,13 @@
                 </x-button>
             </a>
         </div>
+
+        @if(session('success'))
+            <x-bladewind.alert type="success">
+                {{ session('success') }}
+            </x-bladewind.alert>
+        @endif
+
         @forelse ($devices as $device)
             <a
                 class="flex items-center justify-between my-4 p-4 border-2 rounded-md shadow-md hover:shadow-lg hover:bg-zinc-100 transition ease-in-out"
