@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'failed' => 'todo',
-    'password' => 'The provided password is incorrect.',
-    'throttle' => 'Too many login attempts. Please try again in :seconds seconds.',
+    'failed' => 'Utilizatorul nu a fost găsit.',
+    'password' => 'Parola introdusă este greșită.',
+    'throttle' => 'Prea multe încercări de conectare. Încearcă din nou în :seconds secunde.',
 ];
