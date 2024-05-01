@@ -52,7 +52,7 @@ class CreateDevice extends Component
         } elseif (auth()->user()->role === "uat") {
             $this->validate([
                 'name' => 'required|min:1|max:255|unique:devices,name',
-                'series' => 'required|max:255',
+                'series' => 'required|max:255|unique:devices,series',
             ], [
                 'name.required' => 'Numele este obligatoriu.',
                 'name.unique' => 'Numele trebuie sa fie unic.',
@@ -60,6 +60,8 @@ class CreateDevice extends Component
                 'name.min' => 'Numele trebuie sa aibă minim 1 caracter.',
 
                 'series.required' => 'Seria este obligatorie.',
+                'series.max' => 'Seria trebuie sa aibă maxim 255 de caractere.',
+                'series.unique' => 'Seria trebuie sa fie unica.',
             ]);
 
             if (auth()->user()->city === null) {
@@ -70,6 +72,7 @@ class CreateDevice extends Component
                 Device::create([
                     'name' => $this->name,
                     'city' => auth()->user()->city,
+                    'series' => $this->series,
                 ]);
 
                 return redirect()->route('uat.devices.index')->with([

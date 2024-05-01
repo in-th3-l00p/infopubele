@@ -43,13 +43,23 @@ class UpdateDevice extends Component
             'series.unique' => 'Seria trebuie sa fie unica.',
         ]);
 
-        $this->device->update([
-            'name' => $this->name,
-            'city' => $this->city,
-            'series' => $this->series,
-        ]);
+        if(auth()->user()->role === "admin") {
+            $this->device->update([
+                'name' => $this->name,
+                'city' => $this->city,
+                'series' => $this->series,
+            ]);
 
-        $this->updated = true;
+            $this->updated = true;
+        } else {
+            $this->device->update([
+                'name' => $this->name,
+                'city' => auth()->user()->city,
+                'series' => $this->series,
+            ]);
+
+            $this->updated = true;
+        }
     }
 
     public function closeUpdated() {
