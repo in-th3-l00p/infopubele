@@ -5,6 +5,9 @@ namespace App\Http\Controllers\Operator;
 use App\Http\Controllers\Controller;
 use App\Models\Device;
 use App\Models\User;
+use App\Rules\CNP;
+use App\Rules\CUIorCIF;
+use App\Rules\ONRCNumberValidation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Hash;
@@ -38,28 +41,52 @@ class UserController extends Controller
             "password" => "required|min:8|confirmed",
             "role" => "required|in:user",
             "type" => "nullable|in:homeowners-association,individual,legal-entity",
-            "cnp" => "nullable|max:255",
-            "cui" =>"nullable|max:255",
-            "cif" =>"nullable|max:255",
+            "cnp" => ["nullable","max:255",new CNP()],
+            "cui" =>["nullable",new CUIorCIF()],
+            "cif" =>["nullable",new CUIorCIF()],
             "contract_number" => "nullable|max:255",
             "contact_person" => "nullable|max:255",
             "inhabitants" => "nullable|integer",
             "address" => "nullable|max:255",
             "phone" => "nullable|max:255",
-            "onrc_number" => "nullable|max:255",
+            "onrc_number" => ["nullable", new ONRCNumberValidation()],
         ],[
-            "password.confirmed" => "Parolele nu coincid.",
-            "password.min" => "Parola trebuie să aibă cel puțin 8 caractere.",
-            "password.required" => "Câmpul parolă este obligatoriu.",
+            "name.required" => "Câmpul nume este obligatoriu.",
+            "name.max" => "Numele trebuie să aibă maxim 255 de caractere.",
+
             "email.required" => "Câmpul email este obligatoriu.",
             "email.email" => "Emailul trebuie să fie valid.",
             "email.unique" => "Emailul este deja folosit.",
-            "name.required" => "Câmpul nume este obligatoriu.",
+
+            "password.confirmed" => "Parolele nu coincid.",
+            "password.min" => "Parola trebuie să aibă cel puțin 8 caractere.",
+            "password.required" => "Câmpul parolă este obligatoriu.",
+
             "role.required" => "Câmpul rol este obligatoriu.",
-            "role.in" => "Rolul este invalid",
-            "city.required" => "Câmpul oraș este obligatoriu.",
-            "city.max" => "Orașul trebuie sa aibă maxim 255 de caractere.",
-            "type.in" => "Tipul este invalid",
+            "role.in" => "Rolul utilizatorului nu este valid.",
+
+            "type.in" => "Tipul de utilizator nu este valid.",
+
+            "cnp.max" => "CNP-ul trebuie să aibă maxim 255 de caractere.",
+
+            "cui.max" => "CUI-ul trebuie să aibă maxim 255 de caractere.",
+
+            "cif.max" => "CIF-ul trebuie să aibă maxim 255 de caractere.",
+
+            "contract_number.max" => "Numărul de contract trebuie să aibă maxim 255 de caractere.",
+
+            "contact_person.max" => "Persoana de contact trebuie să aibă maxim 255 de caractere.",
+
+            "inhabitants.integer" => "Numărul de locuitori trebuie să fie un număr întreg.",
+
+            "address.max" => "Adresa trebuie să aibă maxim 255 de caractere.",
+
+            "phone.max" => "Numărul de telefon trebuie să aibă maxim 255 de caractere.",
+            "phone.digits" => "Numărul de telefon trebuie să aibă 10 cifre.",
+
+            "address_work.max" => "Adresa de lucru trebuie să aibă maxim 255 de caractere.",
+
+            "onrc_number.max" => "Numărul ONRC trebuie să aibă maxim 255 de caractere.",
         ]);
 
         $data["password"] = Hash::make($data['password']);
@@ -89,29 +116,53 @@ class UserController extends Controller
             "city" => "nullable|max:255",
             "role" => "required|in:user",
             "type" => "nullable|in:homeowners-association,individual,legal-entity",
-            "cnp" => "nullable|max:255",
-            "cui" =>"nullable|max:255",
-            "cif" =>"nullable|max:255",
+            "cnp" => ["nullable","max:255",new CNP()],
+            "cui" =>["nullable",new CUIorCIF()],
+            "cif" =>["nullable",new CUIorCIF()],
             "contract_number" => "nullable|max:255",
             "contact_person" => "nullable|max:255",
             "inhabitants" => "nullable|integer",
             "address" => "nullable|max:255",
             "phone" => "nullable|max:255",
-            "onrc_number" => "nullable|max:255",
+            "onrc_number" => ["nullable", new ONRCNumberValidation()],
             "device_id" => "nullable|exists:devices,id",
         ],[
-            "password.confirmed" => "Parolele nu coincid.",
-            "password.min" => "Parola trebuie să aibă cel puțin 8 caractere.",
-            "password.required" => "Câmpul parolă este obligatoriu.",
+            "name.required" => "Câmpul nume este obligatoriu.",
+            "name.max" => "Numele trebuie să aibă maxim 255 de caractere.",
+
             "email.required" => "Câmpul email este obligatoriu.",
             "email.email" => "Emailul trebuie să fie valid.",
             "email.unique" => "Emailul este deja folosit.",
-            "name.required" => "Câmpul nume este obligatoriu.",
+
+            "password.confirmed" => "Parolele nu coincid.",
+            "password.min" => "Parola trebuie să aibă cel puțin 8 caractere.",
+            "password.required" => "Câmpul parolă este obligatoriu.",
+
             "role.required" => "Câmpul rol este obligatoriu.",
-            "role.in" => "Rolul este invalid",
-            "city.required" => "Câmpul oraș este obligatoriu.",
-            "city.max" => "Orașul trebuie sa aibă maxim 255 de caractere.",
-            "type.in" => "Tipul este invalid",
+            "role.in" => "Rolul utilizatorului nu este valid.",
+
+            "type.in" => "Tipul de utilizator nu este valid.",
+
+            "cnp.max" => "CNP-ul trebuie să aibă maxim 255 de caractere.",
+
+            "cui.max" => "CUI-ul trebuie să aibă maxim 255 de caractere.",
+
+            "cif.max" => "CIF-ul trebuie să aibă maxim 255 de caractere.",
+
+            "contract_number.max" => "Numărul de contract trebuie să aibă maxim 255 de caractere.",
+
+            "contact_person.max" => "Persoana de contact trebuie să aibă maxim 255 de caractere.",
+
+            "inhabitants.integer" => "Numărul de locuitori trebuie să fie un număr întreg.",
+
+            "address.max" => "Adresa trebuie să aibă maxim 255 de caractere.",
+
+            "phone.max" => "Numărul de telefon trebuie să aibă maxim 255 de caractere.",
+            "phone.digits" => "Numărul de telefon trebuie să aibă 10 cifre.",
+
+            "address_work.max" => "Adresa de lucru trebuie să aibă maxim 255 de caractere.",
+
+            "onrc_number.max" => "Numărul ONRC trebuie să aibă maxim 255 de caractere.",
         ]));
 
         $user->city = auth()->user()->city;

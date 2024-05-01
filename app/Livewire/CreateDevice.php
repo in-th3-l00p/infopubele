@@ -28,6 +28,7 @@ class CreateDevice extends Component
                 'name.unique' => 'Numele trebuie sa fie unic.',
                 'name.max' => 'Numele trebuie sa aibă maxim 255 de caractere.',
                 'name.min' => 'Numele trebuie sa aibă minim 1 caracter.',
+
                 'city.min' => 'Orașul trebuie sa aibă minim 1 caracter.',
                 'city.required' => 'Orașul este obligatoriu.',
                 'city.max' => 'Orașul trebuie sa aibă maxim 255 de caractere.',

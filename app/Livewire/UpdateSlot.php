@@ -35,6 +35,7 @@ class UpdateSlot extends Component
             "name.required" => __("Numele este obligatoriu"),
             "name.min" => __("Numele trebuie să aibă cel puțin 3 caractere"),
             "name.max" => __("Numele trebuie să aibă cel mult 255 de caractere"),
+
             "capacity.required" => __("Capacitatea este obligatorie"),
             "capacity.numeric" => __("Capacitatea trebuie să fie un număr"),
             "capacity.min" => __("Capacitatea trebuie să fie de cel puțin 1"),

@@ -54,9 +54,7 @@
                     class="select"
                     x-model="role"
                 >
-                    <option value="admin" selected>Admin</option>
                     <option value="user">User</option>
-                    <option value="generator">Generator</option>
                     <option value="uat">UAT</option>
                     <option value="operator">Operator</option>
                 </select>
