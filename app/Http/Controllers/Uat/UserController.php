@@ -8,6 +8,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\Rule;
 
 class UserController extends Controller
 {
@@ -47,7 +48,9 @@ class UserController extends Controller
             "contact_person" => "nullable|max:255",
             "inhabitants" => "nullable|integer",
             "address" => "nullable|max:255",
-            "phone" => "nullable|max:255",
+            "phone" => "nullable|digits:10",
+            "onrc_number" => "nullable|max:255",
+            "address_work" => "nullable|max:255",
         ],[
             "password.confirmed" => "Parolele nu coincid.",
             "password.min" => "Parola trebuie să aibă cel puțin 8 caractere.",
@@ -61,6 +64,7 @@ class UserController extends Controller
             "city.required" => "Câmpul oraș este obligatoriu.",
             "city.max" => "Orașul trebuie sa aibă maxim 255 de caractere.",
             "type.in" => "Tipul este invalid",
+            "phone.digits" => "Numărul de telefon trebuie să aibă 10 cifre.",
         ]);
 
 
@@ -88,8 +92,7 @@ class UserController extends Controller
     {
         $user->update($request->validate([
             "name" => "required|max:255",
-            "email" => "required|email|unique:users,email," . $user->id,
-            "city" => "nullable|max:255",
+            "email" => ["required", "email", Rule::unique('users')->ignore($user->id)],
             "role" => "required|in:user,operator",
             "type" => "nullable|in:homeowners-association,individual,legal-entity",
             "cnp" => "nullable|max:255",
@@ -99,8 +102,9 @@ class UserController extends Controller
             "contact_person" => "nullable|max:255",
             "inhabitants" => "nullable|integer",
             "address" => "nullable|max:255",
-            "phone" => "nullable|max:255",
-            "device_id" => "nullable|exists:devices,id",
+            "phone" => "nullable|digits:10",
+            "onrc_number" => "nullable|max:255",
+            "address_work" => "nullable|max:255",
         ],[
             "password.confirmed" => "Parolele nu coincid.",
             "password.min" => "Parola trebuie să aibă cel puțin 8 caractere.",

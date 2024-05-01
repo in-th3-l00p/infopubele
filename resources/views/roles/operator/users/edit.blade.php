@@ -22,7 +22,7 @@
         <form
             id="editForm" method="POST"
             action="{{ route('operator.users.update', ['user' => $user]) }}"
-            x-data="{ type: '{{ $user->type }}' }"
+            x-data="{ type: '{{ $user->type }}', role: 'user'}"
         >
             @csrf
             @method("PUT")
@@ -59,6 +59,7 @@
                     id="role"
                     name="role"
                     class="select"
+                    x-model="role"
                 >
                     <option value="user" @selected($user->role === "user")>User</option>
                 </select>
@@ -93,6 +94,19 @@
                         name="cnp"
                         :value="$user->cnp"
                         autocomplete="cnp"
+                        x-bind:disabled="type !== 'individual'"
+                    />
+                </div>
+
+                <div class="mt-4">
+                    <x-label for="address" value="{{ __('Adresa') }}" />
+                    <x-input
+                        id="address"
+                        class="block mt-1 w-full"
+                        type="text"
+                        name="address"
+                        :value="$user->address"
+                        autocomplete="address"
                         x-bind:disabled="type !== 'individual'"
                     />
                 </div>
@@ -141,6 +155,97 @@
                         x-bind:disabled="type !== 'legal-entity'"
                     />
                 </div>
+
+                <div class="mt-4">
+                    <x-label for="cif" value="{{ __('CIF') }}" />
+                    <x-input
+                        id="cif"
+                        class="block mt-1 w-full"
+                        type="text"
+                        name="cif"
+                        :value="$user->cif"
+                        autocomplete="cif"
+                        x-bind:disabled="type !== 'legal-entity'"
+                    />
+                </div>
+
+                <div class="mt-4">
+                    <x-label for="address" value="{{ __('Sediu Social') }}" />
+                    <x-input
+                        id="address"
+                        class="block mt-1 w-full"
+                        type="text"
+                        name="address"
+                        :value="$user->address"
+                        autocomplete="address"
+                        x-bind:disabled="type !== 'legal-entity'"
+                    />
+                </div>
+
+                <div class="mt-4">
+                    <x-label for="_work" value="{{ __('Punct de Lucru') }}" />
+                    <x-input
+                        id="address_work"
+                        class="block mt-1 w-full"
+                        type="text"
+                        name="address_work"
+                        :value="$user->address_work"
+                        autocomplete="address_work"
+                        x-bind:disabled="type !== 'legal-entity'"
+                    />
+                </div>
+
+                <div class="mt-4">
+                    <x-label for="contract_number" value="{{ __('Număr contract') }}" />
+                    <x-input
+                        id="contract_number"
+                        class="block mt-1 w-full"
+                        type="text"
+                        name="contract_number"
+                        :value="$user->contract_number"
+                        autocomplete="contract_number"
+                        x-bind:disabled="type !== 'legal-entity'"
+                    />
+                </div>
+
+                <div class="mt-4">
+                    <x-label for="contact_person" value="{{ __('Persoană de contact') }}" />
+                    <x-input
+                        id="contact_person"
+                        class="block mt-1 w-full"
+                        type="text"
+                        name="contact_person"
+                        :value="$user->contact_person"
+                        autocomplete="contact_person"
+                        x-bind:disabled="type !== 'legal-entity'"
+                    />
+                </div>
+
+                <div class="mt-4">
+                    <x-label for="phone" value="{{ __('Telefon') }}" />
+                    <x-input
+                        id="phone"
+                        class="block mt-1 w-full"
+                        type="text"
+                        name="phone"
+                        :value="$user->phone"
+                        autocomplete="phone"
+                        x-bind:disabled="type !== 'legal-entity'"
+                    />
+                </div>
+
+                <div class="mt-4">
+                    <x-label for="onrc_number" value="{{ __('Nr. Registrul Comertului') }}" />
+                    <x-input
+                        id="onrc_number"
+                        class="block mt-1 w-full"
+                        type="text"
+                        name="onrc_number"
+                        :value="$user->onrc_number"
+                        autocomplete="onrc_number"
+                        x-bind:disabled="type !== 'legal-entity'"
+                    />
+                </div>
             </div>
 
             <div
@@ -157,6 +262,32 @@
                         name="cui"
                         :value="$user->cui"
                         autocomplete="cui"
+                        x-bind:disabled="type !== 'homeowners-association'"
+                    />
+                </div>
+
+                <div class="mt-4">
+                    <x-label for="cif" value="{{ __('CIF') }}" />
+                    <x-input
+                        id="cif"
+                        class="block mt-1 w-full"
+                        type="text"
+                        name="cif"
+                        :value="$user->cif"
+                        autocomplete="cif"
+                        x-bind:disabled="type !== 'homeowners-association'"
+                    />
+                </div>
+
+                <div class="mt-4">
+                    <x-label for="onrc_number" value="{{ __('Nr. Registrul Comertului') }}" />
+                    <x-input
+                        id="onrc_number"
+                        class="block mt-1 w-full"
+                        type="text"
+                        name="onrc_number"
+                        :value="$user->onrc_number"
+                        autocomplete="onrc_number"
                         x-bind:disabled="type !== 'homeowners-association'"
                     />
                 </div>

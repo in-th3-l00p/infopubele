@@ -8,6 +8,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\Rule;
 
 class UserController extends Controller
 {
@@ -45,6 +46,7 @@ class UserController extends Controller
             "inhabitants" => "nullable|integer",
             "address" => "nullable|max:255",
             "phone" => "nullable|max:255",
+            "onrc_number" => "nullable|max:255",
         ],[
             "password.confirmed" => "Parolele nu coincid.",
             "password.min" => "Parola trebuie să aibă cel puțin 8 caractere.",
@@ -83,7 +85,7 @@ class UserController extends Controller
     {
         $user->update($request->validate([
             "name" => "required|max:255",
-            "email" => "required|email|unique:users,email," . $user->id,
+            "email" => ["required", "email", Rule::unique('users')->ignore($user->id)],
             "city" => "nullable|max:255",
             "role" => "required|in:user",
             "type" => "nullable|in:homeowners-association,individual,legal-entity",
@@ -95,6 +97,7 @@ class UserController extends Controller
             "inhabitants" => "nullable|integer",
             "address" => "nullable|max:255",
             "phone" => "nullable|max:255",
+            "onrc_number" => "nullable|max:255",
             "device_id" => "nullable|exists:devices,id",
         ],[
             "password.confirmed" => "Parolele nu coincid.",

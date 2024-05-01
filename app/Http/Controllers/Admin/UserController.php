@@ -7,6 +7,7 @@ use App\Models\Device;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\Rule;
 
 class UserController extends Controller
 {
@@ -36,11 +37,13 @@ class UserController extends Controller
             "cnp" => "nullable|max:255",
             "cui" =>"nullable|max:255",
             "cif" =>"nullable|max:255",
-            "contract_number" => "nullable|max:255|numeric",
+            "contract_number" => "nullable|max:255",
             "contact_person" => "nullable|max:255",
             "inhabitants" => "nullable|integer",
             "address" => "nullable|max:255",
-            "phone" => "nullable|max:255|numeric",
+            "phone" => "nullable|digits:10",
+            "address_work" => "nullable|max:255",
+            "onrc_number" => "nullable|max:255",
         ], [
             "password.confirmed" => "Parolele nu coincid.",
             "password.min" => "Parola trebuie să aibă cel puțin 8 caractere.",
@@ -50,11 +53,15 @@ class UserController extends Controller
             "email.unique" => "Emailul este deja folosit.",
             "name.required" => "Câmpul nume este obligatoriu.",
             "city.required" => "Câmpul oraș este obligatoriu.",
-            "role.required" => "Câmpul rol este obligatoriu."
+            "role.required" => "Câmpul rol este obligatoriu.",
+            "type.in" => "Tipul de utilizator nu este valid.",
+            "role.in" => "Rolul utilizatorului nu este valid.",
+            "phone.digits" => "Numărul de telefon trebuie să aibă 10 cifre.",
         ]);
 
         $data["password"] = Hash::make($data['password']);
         $user = User::query()->create($data);
+
 
         return redirect()->route("users.index")->with("success", "Utilizatorul a fost creat cu succes.");
     }
@@ -76,7 +83,7 @@ class UserController extends Controller
     {
         $user->update($request->validate([
             "name" => "required|max:255",
-            "email" => "required|email|unique:users,email," . $user->id,
+            "email" => ["required", "email", Rule::unique('users')->ignore($user->id)],
             "city" => "nullable|max:255",
             "role" => "required|in:admin,user,generator,uat,operator",
             "device_id" => "nullable|exists:devices,id",
@@ -89,6 +96,8 @@ class UserController extends Controller
             "inhabitants" => "nullable|integer",
             "address" => "nullable|max:255",
             "phone" => "nullable|max:255",
+            "address_work" => "nullable|max:255",
+            "onrc_number" => "nullable|max:255",
         ],[
             "email.required" => "Câmpul email este obligatoriu.",
             "email.email" => "Emailul trebuie să fie valid.",
@@ -100,6 +109,8 @@ class UserController extends Controller
             "type.in" => "Tipul de utilizator nu este valid.",
             "role.in" => "Rolul utilizatorului nu este valid.",
         ]));
+
+
         return redirect()->route("users.edit", [
             "user" => $user
         ])->with("success", "Utilizatorul a fost actualizat cu succes.");
