@@ -10,6 +10,7 @@ class CreateDevice extends Component
     public string $name;
     public string $city;
     public ?string $error = null;
+    public string $series;
 
 
     public function render()
@@ -23,6 +24,7 @@ class CreateDevice extends Component
             $this->validate([
                 'name' => 'required|min:1|max:255|unique:devices,name',
                 'city' => 'required|min:1|max:255',
+                'series' => 'required|max:255|unique:devices,series',
             ], [
                 'name.required' => 'Numele este obligatoriu.',
                 'name.unique' => 'Numele trebuie sa fie unic.',
@@ -32,11 +34,16 @@ class CreateDevice extends Component
                 'city.min' => 'Orașul trebuie sa aibă minim 1 caracter.',
                 'city.required' => 'Orașul este obligatoriu.',
                 'city.max' => 'Orașul trebuie sa aibă maxim 255 de caractere.',
+
+                'series.required' => 'Seria este obligatorie.',
+                'series.max' => 'Seria trebuie sa aibă maxim 255 de caractere.',
+                'series.unique' => 'Seria trebuie sa fie unica.',
             ]);
 
             Device::create([
                 'name' => $this->name,
                 'city' => $this->city,
+                'series' => $this->series,
             ]);
 
             return redirect()->route('devices.index')->with([
@@ -45,11 +52,14 @@ class CreateDevice extends Component
         } elseif (auth()->user()->role === "uat") {
             $this->validate([
                 'name' => 'required|min:1|max:255|unique:devices,name',
+                'series' => 'required|max:255',
             ], [
                 'name.required' => 'Numele este obligatoriu.',
                 'name.unique' => 'Numele trebuie sa fie unic.',
                 'name.max' => 'Numele trebuie sa aibă maxim 255 de caractere.',
                 'name.min' => 'Numele trebuie sa aibă minim 1 caracter.',
+
+                'series.required' => 'Seria este obligatorie.',
             ]);
 
             if (auth()->user()->city === null) {

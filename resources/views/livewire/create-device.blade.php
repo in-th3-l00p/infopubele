@@ -19,6 +19,16 @@
         </div>
 
         <div class="col-span-6 sm:col-span-4">
+            <x-label for="series" value="{{ __('Serie') }}" />
+            <x-input
+                id="series" type="text" class="mt-1 block w-full"
+                required autocomplete="series"
+                wire:model="series"
+            />
+            <x-input-error for="series" class="mt-2" />
+        </div>
+
+        <div class="col-span-6 sm:col-span-4">
             @if ($error)
                 <div class="text-red-500 pb-4">{{ $error }}</div>
             @endif

@@ -12,7 +12,7 @@ class Device extends Model
     use HasFactory;
 
     protected $fillable = [
-        "name", "city", "latitude", "longitude"
+        "name", "city", "latitude", "longitude","series"
     ];
 
     public function slots(): HasMany {

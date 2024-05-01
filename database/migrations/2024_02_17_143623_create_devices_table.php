@@ -11,9 +11,7 @@ return new class extends Migration
         Schema::create('devices', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-
             $table->string("name")->unique();
-
             $table->string("city");
             $table->double("latitude")->nullable();
             $table->double("longitude")->nullable();
