@@ -11,7 +11,7 @@ class SlotController extends Controller
 {
     public function show(Slot $slot) {
         Gate::allowIf(
-            auth()->user()->city === $slot->device->city,
+            auth()->user()->city === $slot->device->city || auth()->user()->role === 'admin',
             __("You are not authorized to access this page.")
         );
         return view("roles.operator.slots.show", [

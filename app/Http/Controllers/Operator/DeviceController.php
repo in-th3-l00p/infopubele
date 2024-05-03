@@ -20,7 +20,7 @@ class DeviceController extends Controller
     }
     public function show(Device $device) {
         Gate::allowIf(
-            auth()->user()->city === $device->city,
+            auth()->user()->city === $device->city || auth()->user()->role === 'admin',
             __("You are not authorized to access this page.")
         );
         return view("roles.operator.devices.show", [

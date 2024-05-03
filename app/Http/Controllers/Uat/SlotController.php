@@ -12,17 +12,18 @@ class SlotController extends Controller
 {
     public function create(Device $device) {
         Gate::allowIf(
-            auth()->user()->city === $device->city,
-            __("You are not authorized to access this page."));
+            auth()->user()->city === $slot->device->city || auth()->user()->role === 'admin',
+            __("You are not authorized to access this page.")
+        );
         return view("roles.uat.slots.create", [
             "device" => $device
         ]);
     }
     public function show(Device $device,Slot $slot) {
         Gate::allowIf(
-            auth()->user()->city === $slot->device->city,
-            __("You are not authorized to access this page.")
-        );
+    auth()->user()->city === $slot->device->city || auth()->user()->role === 'admin',
+    __("You are not authorized to access this page.")
+);
         return view("roles.uat.slots.show", [
             "device" => $device,
             "slot" => $slot,
@@ -34,7 +35,7 @@ class SlotController extends Controller
     }
     public function destroy(Slot $slot) {
         Gate::allowIf(
-            auth()->user()->city === $slot->device->city,
+            auth()->user()->city === $slot->device->city || auth()->user()->role === 'admin',
             __("You are not authorized to access this page.")
         );
         $slot->delete();
