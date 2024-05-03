@@ -18,7 +18,7 @@
 
             <x-maps-google style="width:95%; aspect-ratio: 2/1; margin-inline: auto;"
                             :mapType="'roadmap'"
-                            :zoomLevel="8"
+                            :zoomLevel="16"
                             :centerPoint="['lat' => $device->latitude, 'long' => $device->longitude]"
                             :markers="[[$device->latitude, $device->longitude]]"
             ></x-maps-google>
