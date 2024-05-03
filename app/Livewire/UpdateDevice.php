@@ -11,12 +11,16 @@ class UpdateDevice extends Component
     public string $name;
     public string $city;
     public bool $updated = false;
+
     public string $series;
 
     public function mount() {
         $this->name = $this->device->name;
         $this->city = $this->device->city;
+        if ($this->device->series !== null)
         $this->series = $this->device->series;
+        else
+        $this->series = "";
     }
 
     public function render()
