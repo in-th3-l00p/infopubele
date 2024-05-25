@@ -44,7 +44,7 @@ class UserController extends Controller
             "cnp" => ["nullable","max:255",new CNP()],
             "cui" =>["nullable",new CUIorCIF()],
             "cif" =>["nullable",new CUIorCIF()],
-            "contract_number" => "nullable|max:255",
+            "contract_number" => "nullable|max:255|unique:users,contract_number",
             "contact_person" => "nullable|max:255",
             "inhabitants" => "nullable|integer",
             "address" => "nullable|max:255",
@@ -76,7 +76,7 @@ class UserController extends Controller
             "contract_number.max" => "Numărul de contract trebuie să aibă maxim 255 de caractere.",
 
             "contact_person.max" => "Persoana de contact trebuie să aibă maxim 255 de caractere.",
-
+       "contract_number.unique" => "Numărul de contract este deja folosit.",
             "inhabitants.integer" => "Numărul de locuitori trebuie să fie un număr întreg.",
 
             "address.max" => "Adresa trebuie să aibă maxim 255 de caractere.",
@@ -119,7 +119,7 @@ class UserController extends Controller
             "cnp" => ["nullable","max:255",new CNP()],
             "cui" =>["nullable",new CUIorCIF()],
             "cif" =>["nullable",new CUIorCIF()],
-            "contract_number" => "nullable|max:255",
+            "contract_number" => "nullable|max:255|unique:users,contract_number",
             "contact_person" => "nullable|max:255",
             "inhabitants" => "nullable|integer",
             "address" => "nullable|max:255",
@@ -150,6 +150,7 @@ class UserController extends Controller
             "cif.max" => "CIF-ul trebuie să aibă maxim 255 de caractere.",
 
             "contract_number.max" => "Numărul de contract trebuie să aibă maxim 255 de caractere.",
+            "contract_number.unique" => "Numărul de contract este deja folosit.",
 
             "contact_person.max" => "Persoana de contact trebuie să aibă maxim 255 de caractere.",
 
