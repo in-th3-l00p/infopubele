@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\Card;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class CardController extends Controller
@@ -31,20 +32,21 @@ class CardController extends Controller
 
     public function store(Request $request) {
         $device = ApiSlotController::getDevice($request);
+        $user_id = User::query()->where("contract_number",$request->contract_number)->first()->id;
         $request->validate([
-            "user_id" => "required|exists:users,id",
+            "contract_number" => "required|exists:users,contract_number",
         ],[
-            "user_id.required" => "Userul este obligatoriu",
-            "user_id.exists" => "Userul nu exista"
+            "contract_number.required" => "Contractul este obligatoriu",
+            "contract_number.exists" => "Contractul nu exista"
         ]);
-        if (Card::where("user_id", $request->user_id)
+        if (Card::where("user_id", $user_id)
             ->where("device_id", $device->id)
             ->exists())
             return response()->json([
                 "message" => "Card already exists"
             ], 400);
         return Card::create([
-            "user_id" => $request->user_id,
+            "user_id" => $user_id,
             "device_id" => $device->id,
             "uuid" => \Illuminate\Support\Str::uuid()->toString()
         ]);

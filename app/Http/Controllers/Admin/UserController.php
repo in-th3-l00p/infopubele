@@ -35,7 +35,7 @@ class UserController extends Controller
             "email" => "required|email|unique:users,email",
             "password" => "required|min:8|confirmed",
             "city" => "required|max:255",
-            "role" => "required|in:auser,uat,operator",
+            "role" => "required|in:user,uat,operator",
             "type" => "nullable|in:homeowners-association,individual,legal-entity",
             "cnp" => ["nullable","max:255",new CNP()],
             "cui" =>["nullable", new CUIorCIF()],
