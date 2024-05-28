@@ -28,7 +28,6 @@ class DeviceController extends Controller
             "slots" => $device
                 ->slots()
                 ->orderBy("order")
-                ->paginate(5),
         ]);
     }
 }

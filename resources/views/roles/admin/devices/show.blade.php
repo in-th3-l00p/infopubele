@@ -49,8 +49,6 @@
                 <p>{{ __("Nu exista sloturi configurate.") }}</p>
             @endforelse
         </ul>
-
-        {{ $slots->links() }}
     </x-white-container>
 
     <x-slot-visualizer :device="$device" />

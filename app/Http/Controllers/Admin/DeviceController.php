@@ -42,12 +42,12 @@ class DeviceController extends Controller
             "slots" => $device
                 ->slots()
                 ->orderBy("order")
-                ->paginate(5),
+                ->get(),
             "transactions" => Transaction::query()
                 ->join("slots", "transactions.slot_id", "=", "slots.id")
                 ->where("slots.device_id", $device->id)
                 ->latest()
-                ->paginate(5)
+                ->get()
         ]);
     }
 

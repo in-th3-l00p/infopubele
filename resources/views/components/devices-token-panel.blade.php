@@ -60,8 +60,6 @@
             <p>{{ __("Nu sunt tokenuri create.") }}</p>
         @endforelse
     </ul>
-
-    {{ $tokens->links() }}
 </x-white-container>
 
 
