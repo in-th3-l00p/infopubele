@@ -4,19 +4,13 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\Card;
+use App\Models\Device;
 use Illuminate\Http\Request;
 
 class CardController extends Controller
 {
     public function index(Request $request) {
-        $device = ApiSlotController::getDevice($request);
-        $request->validate([
-            "token" => "required|exists:device_tokens,token"
-        ], [
-            "token.required" => "Tokenul este obligatoriu",
-            "token.exists" => "Token invalid"
-        ]);
-
+        $device = Device::query()->findOrFail($request->device_id);
         $query = Card::query()
             ->with("user")
             ->with("device");
@@ -30,7 +24,7 @@ class CardController extends Controller
     }
 
     public function store(Request $request) {
-        $device = ApiSlotController::getDevice($request);
+        $device = Device::query()->findOrFail($request->device_id);
         $request->validate([
             "user_id" => "required|exists:users,id",
         ],[
@@ -51,12 +45,7 @@ class CardController extends Controller
     }
 
     public function show(Request $request, Card $card) {
-        $request->validate([
-            "token" => "required|exists:device_tokens,token"
-        ],[
-            "token.required" => "Tokenul este obligatoriu",
-            "token.exists" => "Token invalid"
-        ]);
+        $device = Device::query()->findOrFail($request->device_id);
         if (!$card->device()->first()
             ->tokens()
             ->where("token", $request->token)
@@ -69,12 +58,7 @@ class CardController extends Controller
     }
 
     public function destroy(Request $request, Card $card) {
-        $request->validate([
-            "token" => "required|exists:device_tokens,token"
-        ],[
-            "token.required" => "Tokenul este obligatoriu",
-            "token.exists" => "Token invalid"
-        ]);
+        $device = Device::query()->findOrFail($request->device_id);
         if (!$card->device()->first()
             ->tokens()
             ->where("token", $request->token)
