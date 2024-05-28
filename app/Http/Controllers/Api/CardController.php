@@ -20,6 +20,11 @@ class CardController extends Controller
             $query->where("uuid", $request->card_id);
         if ($request->has("device_id"))
             $query->where("device_id", $device->id);
+        if ($request->has("slot_id"))
+            $query->whereHas("device.slots",
+                function ($query) use ($request) {
+                    $query->where("id", $request->slot_id);
+                });
         return $query->latest()->get();
     }
 
@@ -46,30 +51,9 @@ class CardController extends Controller
 
     public function show(Request $request, Card $card) {
         $device = Device::query()->findOrFail($request->device_id);
-        if (!$card->device()->first()
-            ->tokens()
-            ->where("token", $request->token)
-            ->exists()
-        )
-            return response()->json([
-                "message" => "Invalid token"
-            ], 401);
         return $card->load("user", "device");
     }
 
-    public function destroy(Request $request, Card $card) {
-        $device = Device::query()->findOrFail($request->device_id);
-        if (!$card->device()->first()
-            ->tokens()
-            ->where("token", $request->token)
-            ->exists()
-        )
-            return response()->json([
-                "message" => "Invalid token"
-            ], 401);
-        $card->delete();
-        return response()->json([
-            "message" => "Card deleted"
-        ]);
-    }
+    // no need for implementation
+    public function destroy(Request $request, Card $card) { }
 }
