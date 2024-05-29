@@ -20,7 +20,7 @@ class DevicesTokenPanel extends Component
         public Device $device
     )
     {
-        $this->tokens = $this->device->tokens()->paginate(5);
+        $this->tokens = $this->device->tokens()->get();
     }
 
     /**

@@ -11,28 +11,16 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 
-class ApiSlotController extends Controller
-{
-    public static function getDevice(Request $request)
-    {
-        $request->validate([
-            "token" => "required|exists:device_tokens,token"
-        ]);
-        return DeviceToken::query()
-            ->where("token", $request->token)
-            ->first()
-            ->device()
-            ->first();
+class ApiSlotController extends Controller {
+    public function index(Request $request) {
+        return Device::query()
+            ->findOrFail($request->device_id)
+            ->slots()
+            ->get();
     }
 
-    public function index(Request $request)
-    {
-        return $this->getDevice($request)->slots()->get();
-    }
-
-    public function store(Request $request)
-    {
-        $device = $this->getDevice($request);
+    public function store(Request $request) {
+        $device = Device::query()->findOrFail($request->device_id);
         $request->validate([
             "name" => "required|min:3|max:255|unique:slots,name,NULL,id,device_id," . $device->id,
             "capacity" => "required|numeric|min:1|max:1100"
@@ -59,8 +47,7 @@ class ApiSlotController extends Controller
         return response()->json($slot, 201);
     }
 
-    public function transaction(Request $request, Slot $slot)
-    {
+    public function transaction(Request $request, Slot $slot) {
         $request->validate([
             "amount" => [
                 "required",
@@ -69,16 +56,9 @@ class ApiSlotController extends Controller
                 "max:" . $slot->max_volume - $slot->volume
             ],
             "card_uuid" => "required|exists:cards,uuid",
-        ], [
-            "amount.required" => __("Suma este obligatorie"),
-            "amount.numeric" => __("Suma trebuie să fie un număr"),
-            "amount.min" => __("Suma trebuie să fie de cel mult " . -$slot->volume),
-            "amount.max" => __("Suma trebuie să fie de cel mult " . ($slot->max_volume - $slot->volume)),
-
-            "card_uuid.required" => __("Cardul este obligatoriu"),
-            "card_uuid.exists" => __("Cardul nu există")
         ]);
-        $device = $this->getDevice($request);
+
+        $device = Device::query()->findOrFail($request->device_id);
         if ($slot->device()->first()->id != $device->id)
             return response()->json([
                 "message" => "Invalid device"
@@ -110,8 +90,7 @@ class ApiSlotController extends Controller
         return response("", 201);
     }
 
-    public function show(Slot $slot)
-    {
+    public function show(Slot $slot) {
         $device = $slot->device()->first();
         if ($device->id != $slot->device()->first()->id)
             return response()->json([
