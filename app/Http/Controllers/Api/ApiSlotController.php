@@ -11,25 +11,16 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 
-class ApiSlotController extends Controller
-{
-    public static function getDevice(Request $request) {
-        $request->validate([
-            "token" => "required|exists:device_tokens,token"
-        ]);
-        return DeviceToken::query()
-            ->where("token", $request->token)
-            ->first()
-            ->device()
-            ->first();
-    }
-
+class ApiSlotController extends Controller {
     public function index(Request $request) {
-        return $this->getDevice($request)->slots()->get();
+        return Device::query()
+            ->findOrFail($request->device_id)
+            ->slots()
+            ->get();
     }
 
     public function store(Request $request) {
-        $device = $this->getDevice($request);
+        $device = Device::query()->findOrFail($request->device_id);
         $request->validate([
             "name" => "required|min:3|max:255|unique:slots,name,NULL,id,device_id," . $device->id,
             "capacity" => "required|numeric|min:1|max:1100"
@@ -66,7 +57,8 @@ class ApiSlotController extends Controller
             ],
             "card_uuid" => "required|exists:cards,uuid",
         ]);
-        $device = $this->getDevice($request);
+
+        $device = Device::query()->findOrFail($request->device_id);
         if ($slot->device()->first()->id != $device->id)
             return response()->json([
                 "message" => "Invalid device"

@@ -42,12 +42,12 @@ class DeviceController extends Controller
             "slots" => $device
                 ->slots()
                 ->orderBy("order")
-                ->paginate(5),
+                ->get(),
             "transactions" => Transaction::query()
                 ->join("slots", "transactions.slot_id", "=", "slots.id")
                 ->where("slots.device_id", $device->id)
                 ->latest()
-                ->paginate(5)
+                ->get()
         ]);
     }
 
@@ -55,24 +55,12 @@ class DeviceController extends Controller
         $request->validate([
             "latitude" => "required|numeric",
             "longitude" => "required|numeric",
-            "token" => "required|exists:device_tokens,token"
         ],[
             "latitude.required" => "Latitudinea este obligatorie",
             "latitude.numeric" => "Latitudinea trebuie sa fie un numar",
             "longitude.required" => "Longitudinea este obligatorie",
             "longitude.numeric" => "Longitudinea trebuie sa fie un numar",
-            "token.required" => "Tokenul este obligatoriu",
-            "token.exists" => "Token invalid"
         ]);
-
-        if (!$device
-            ->tokens()
-            ->where("token", $request->token)
-            ->exists()
-        )
-            return response()->json([
-                "message" => "Invalid token"
-            ], 401);
 
         $device->update([
             "latitude" => $request->latitude,
