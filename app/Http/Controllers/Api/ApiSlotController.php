@@ -13,7 +13,8 @@ use Illuminate\Support\Facades\Mail;
 
 class ApiSlotController extends Controller
 {
-    public static function getDevice(Request $request) {
+    public static function getDevice(Request $request)
+    {
         $request->validate([
             "token" => "required|exists:device_tokens,token"
         ]);
@@ -24,11 +25,13 @@ class ApiSlotController extends Controller
             ->first();
     }
 
-    public function index(Request $request) {
+    public function index(Request $request)
+    {
         return $this->getDevice($request)->slots()->get();
     }
 
-    public function store(Request $request) {
+    public function store(Request $request)
+    {
         $device = $this->getDevice($request);
         $request->validate([
             "name" => "required|min:3|max:255|unique:slots,name,NULL,id,device_id," . $device->id,
@@ -56,7 +59,8 @@ class ApiSlotController extends Controller
         return response()->json($slot, 201);
     }
 
-    public function transaction(Request $request, Slot $slot) {
+    public function transaction(Request $request, Slot $slot)
+    {
         $request->validate([
             "amount" => [
                 "required",
@@ -65,6 +69,14 @@ class ApiSlotController extends Controller
                 "max:" . $slot->max_volume - $slot->volume
             ],
             "card_uuid" => "required|exists:cards,uuid",
+        ], [
+            "amount.required" => __("Suma este obligatorie"),
+            "amount.numeric" => __("Suma trebuie să fie un număr"),
+            "amount.min" => __("Suma trebuie să fie de cel mult " . -$slot->volume),
+            "amount.max" => __("Suma trebuie să fie de cel mult " . ($slot->max_volume - $slot->volume)),
+
+            "card_uuid.required" => __("Cardul este obligatoriu"),
+            "card_uuid.exists" => __("Cardul nu există")
         ]);
         $device = $this->getDevice($request);
         if ($slot->device()->first()->id != $device->id)
@@ -98,7 +110,8 @@ class ApiSlotController extends Controller
         return response("", 201);
     }
 
-    public function show(Slot $slot) {
+    public function show(Slot $slot)
+    {
         $device = $slot->device()->first();
         if ($device->id != $slot->device()->first()->id)
             return response()->json([
