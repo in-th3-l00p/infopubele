@@ -25,7 +25,10 @@ class CardController extends Controller
                 function ($query) use ($request) {
                     $query->where("id", $request->slot_id);
                 });
-        return $query->latest()->get();
+        return $query
+            ->latest()
+            ->get()
+            ->map(fn ($card) => $card->only("uuid"));
     }
 
     public function store(Request $request) {

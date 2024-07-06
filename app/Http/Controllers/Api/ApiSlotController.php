@@ -16,7 +16,8 @@ class ApiSlotController extends Controller {
         return Device::query()
             ->findOrFail($request->device_id)
             ->slots()
-            ->get();
+            ->get()
+            ->map(fn ($slot) => $slot->only("id", "name", "max_volume", "volume"));
     }
 
     public function store(Request $request) {
