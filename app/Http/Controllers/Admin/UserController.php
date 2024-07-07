@@ -10,6 +10,7 @@ use App\Rules\CUIorCIF;
 use App\Rules\ONRCNumberValidation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Validation\Rule;
 
 class UserController extends Controller
@@ -92,9 +93,11 @@ class UserController extends Controller
 
         $data["password"] = Hash::make($data['password']);
         $user = User::query()->create($data);
+        Mail::to($user->email)->send(new \App\Mail\Welcome($user));
 
-
-        return redirect()->route("users.index")->with("success", "Utilizatorul a fost creat cu succes.");
+        return redirect()
+            ->route("users.index")
+            ->with("success", "Utilizatorul a fost creat cu succes.");
     }
 
     public function show(User $user)
