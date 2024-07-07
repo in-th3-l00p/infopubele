@@ -70,6 +70,13 @@ class DeviceController extends Controller
         return response("", 200);
     }
 
+    public function cardsNumber(Request $request, Device $device)
+    {
+        return response()->json([
+            "cards" => $device->cards()->count()
+        ]);
+    }
+
     public function destroy(Device $device)
     {
         $device->delete();
