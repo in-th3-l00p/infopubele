@@ -7,7 +7,7 @@
                 <p>{{ __("Slot ") . $slot->name }}</p>
 
                 @php $percentage = $slot->volume / $slot->max_volume * 100;  @endphp
-                <p>{{ $percentage }}%</p>
+                <p>{{ number_format($percentage) }}%</p>
                 <div
                     class="absolute w-full bg-green-100 bottom-0 left-0 -z-10"
                     style="height: {{ $percentage }}%"
