@@ -35,8 +35,8 @@
                 </header>
             @endif
             @if (isset($sticky_header))
-                <header id="sticky-header" class="bg-white shadow">
-                    <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+                <header id="header" class="bg-white shadow">
+                    <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8 mt-16">
                         {{ $sticky_header }}
                     </div>
                 </header>
