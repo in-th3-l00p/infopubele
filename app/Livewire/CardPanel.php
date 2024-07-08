@@ -36,6 +36,7 @@ class CardPanel extends Component
         $this->unusedUsers = \App\Models\User::query()
             ->whereNull("device_id")
             ->where("role", "user")
+            ->where("city", $this->device->city)
             ->get();
         $this->dispatch('$refresh');
     }
