@@ -11,7 +11,7 @@
         <h2 class="text-lg mb-4">{{ __("Adaugă card") }}</h2>
         <x-label for="user" value="{{ __('Utilizator') }}" />
 
-        @php $unusedUsers = \App\Models\User::query()->whereNull("device_id")->where("role", "user")->get(); @endphp
+        @php $unusedUsers = \App\Models\User::query()->whereNull("device_id")->where("role", "user")->where("city",$device->city)->get(); @endphp
         <select
             id="user" name="user"
             class="select"
@@ -31,6 +31,9 @@
     </form>
 
     <ul class="mx-8">
+        @php
+        $cards = $device->cards;
+        @endphp
         @forelse ($cards as $card)
             <li>
                 <livewire:card-display :card="$card" />
