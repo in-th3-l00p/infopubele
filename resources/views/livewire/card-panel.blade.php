@@ -14,8 +14,8 @@
         <select
             id="user" name="user"
             class="select"
-            wire:model.fill="userId"
-            wire:model.change="userId"
+{{--            wire:model.fill="userId"--}}
+{{--            wire:model.change="userId"--}}
             wire:model="userId"
         >
             <option value="null" disabled selected>{{ __("Alege utilizator") }}</option>
