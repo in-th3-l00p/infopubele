@@ -18,7 +18,7 @@ class CardPanel extends Component
     public function render()
     {
         return view('livewire.card-panel', [
-            "cards" => Card::query()->latest()->get()
+            "cards" => $this->device->cards()->latest()->get()
         ]);
     }
 
