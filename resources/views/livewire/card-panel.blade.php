@@ -15,8 +15,8 @@
         <select
             id="user" name="user"
             class="select"
-            wire:model.fill="userId"
-            wire:model.change="userId"
+{{--            wire:model.fill="userId"--}}
+{{--            wire:model.change="userId"--}}
             wire:model="userId"
         >
             <option value="" disabled selected>{{ __("Alege utilizator") }}</option>
@@ -31,9 +31,6 @@
     </form>
 
     <ul class="mx-8">
-        @php
-        $cards = $device->cards;
-        @endphp
         @forelse ($cards as $card)
             <li>
                 <livewire:card-display :card="$card" />
