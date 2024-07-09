@@ -53,7 +53,7 @@
 
     <x-slot-visualizer :device="$device" />
 
-    <x-white-container>
+    <x-white-container id="transactions">
         <h2 class="text-lg font-semibold mb-8">{{ __("Tranzacții") }}</h2>
 
         <ul class="ml-8">
@@ -66,6 +66,10 @@
                 <p>{{ __("Nu exista tranzacții.") }}</p>
             @endforelse
         </ul>
+
+        <div class="mt-8">
+            {{ $transactions->links() }}
+        </div>
     </x-white-container>
 
     <x-white-container>
