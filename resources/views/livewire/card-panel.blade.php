@@ -11,15 +11,12 @@
         <h2 class="text-lg mb-4">{{ __("Adaugă card") }}</h2>
         <x-label for="user" value="{{ __('Utilizator') }}" />
 
-        @php $unusedUsers = \App\Models\User::query()->whereNull("device_id")->where("role", "user")->get(); @endphp
         <select
             id="user" name="user"
             class="select"
-            wire:model.fill="userId"
-            wire:model.change="userId"
             wire:model="userId"
         >
-            <option value="" disabled selected>{{ __("Alege utilizator") }}</option>
+            <option value="null" disabled selected>{{ __("Alege utilizator") }}</option>
             @foreach ($unusedUsers as $user)
                 <option value="{{ $user->id }}" >{{ $user->name }}</option>
             @endforeach
@@ -33,7 +30,23 @@
     <ul class="mx-8">
         @forelse ($cards as $card)
             <li>
-                <livewire:card-display :card="$card" />
+                <div
+                    class="flex items-center justify-between my-4 p-4 border-2 rounded-md shadow-md hover:shadow-lg hover:bg-zinc-100 transition ease-in-out"
+                >
+                    <div class="flex items-center gap-4">
+                        <h3 class="text-lg font-semibold">{{ $card->user->name }}</h3>
+                        <p>{{ $card->uuid }}</p>
+                    </div>
+
+                    <div>
+                        <form id="deleteForm" wire:submit="deleteCard({{ $card->id }})">
+                            @csrf
+                            @method("DELETE")
+
+                            <x-danger-button type="submit" title="remove">{{__("Șterge")}}</x-danger-button>
+                        </form>
+                    </div>
+                </div>
             </li>
         @empty
             <p>{{ __("Nu exista utilizatori arondați.") }}</p>

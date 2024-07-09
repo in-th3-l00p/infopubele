@@ -16,6 +16,9 @@ class CardDisplay extends Component
 
     public function deleteCard() {
         $this->card->delete();
+        $this->card->user->update([
+            "device_id" => null
+        ]);
         $this->dispatch('refreshParent');
     }
 }

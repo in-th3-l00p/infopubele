@@ -3,7 +3,6 @@
 >
     <div class="flex items-center gap-4">
         <h3 class="text-lg font-semibold">{{ $card->user->name }}</h3>
-        <p>{{ $card->user->role }}</p>
         <p>{{ $card->uuid }}</p>
     </div>
 

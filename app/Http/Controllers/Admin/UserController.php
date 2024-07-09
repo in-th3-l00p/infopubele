@@ -122,7 +122,7 @@ class UserController extends Controller
             "cnp" => ["nullable","max:255",new CNP()],
             "cui"  =>"nullable|max:255",
             "cif" => "nullable|max:255",
-            "contract_number" => "nullable|max:255|unique:users,contract_number",
+            "contract_number" => ["nullable","max:255", Rule::unique('users','contract_number')->ignore($user->id)],
             "contact_person" => "nullable|max:255",
             "inhabitants" => "nullable|integer",
             "address" => "nullable|max:255",
