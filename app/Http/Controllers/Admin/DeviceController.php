@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Device;
-use App\Models\DeviceToken;
 use App\Models\Transaction;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -19,21 +18,6 @@ class DeviceController extends Controller
 
     public function create() {
         return view("roles.admin.devices.create");
-    }
-
-    public function createToken(Device $device) {
-        $token = Str::random(64);
-        while ($device->tokens()->where("token", $token)->exists())
-            $token = Str::random(64);
-        $device->tokens()->create([
-            "token" => $token
-        ]);
-        return redirect()->back();
-    }
-
-    public function deleteToken(Device $device, DeviceToken $token) {
-        $token->delete();
-        return redirect()->back();
     }
 
     public function show(Device $device) {
