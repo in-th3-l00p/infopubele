@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Livewire\CardPanel;
+use App\Models\Card;
 use App\Models\Device;
 use App\Models\User;
 use App\Rules\CNP;
@@ -179,6 +181,10 @@ class UserController extends Controller
 
     public function destroy(User $user)
     {
+        $card=Card::query()->where("user_id",$user->id)->first();
+        if ($card) {
+            $card->delete();
+        }
         $user->delete();
         return redirect()->route("users.index");
     }
