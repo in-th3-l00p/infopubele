@@ -184,10 +184,6 @@ class UserController extends Controller
 
     public function destroy(User $user)
     {
-        $card=Card::query()->where("user_id",$user->id)->first();
-        if ($card) {
-            $card->delete();
-        }
         $user->delete();
         return redirect()->route("users.index");
     }
