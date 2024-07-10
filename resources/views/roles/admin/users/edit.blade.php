@@ -388,26 +388,6 @@
                 <x-input-error for="city" class="mt-2" />
             </div>
 
-            @if ($user->role === "user")
-                <div class="mt-4">
-                    <x-label for="device_id" value="{{ __('Dispozitiv') }}" />
-                    <select name="device_id" id="device_id" class="select">
-                        <option value="" @selected($user->device === null)>
-                            {{ __("Nu exista Dispozitiv alocat") }}
-                        </option>
-
-                        @foreach ($devices as $device)
-                            <option
-                                value="{{ $device->id }}"
-                                @selected($user->device_id === $device->id)
-                            >
-                                {{ $device->name }}
-                            </option>
-                        @endforeach
-                    </select>
-                </div>
-            @endif
-
             <div class="flex items-center justify-center mt-4">
                 <x-button id="submitButton">{{ __('Salvează') }}</x-button>
             </div>
