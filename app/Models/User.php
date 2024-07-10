@@ -80,7 +80,17 @@ class User extends Authenticatable
         return $this->belongsTo(Device::class, 'device_id');
     }
 
-    public function cards(): HasMany {
-        return $this->hasMany(Card::class);
+    public function card(): BelongsTo {
+        return $this->belongsTo(Card::class);
+    }
+
+    protected static function booted()
+    {
+        static::deleting(function (User $user) {
+            $card=Card::query()->where("user_id",$user->id)->first();
+            if ($card) {
+                $card->delete();
+            }
+        });
     }
 }

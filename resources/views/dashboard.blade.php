@@ -3,7 +3,7 @@
         <div
             class="w-full flex-grow bg-[url('/public/img.jpg')] bg-cover brightness-100 bg-center flex justify-center  lg:justify-start">
             <div class="flex flex-col ">
-                <h1 class="px-16 pt-16 text-center text-5xl text-black font-bold drop-shadow-lg uppercase">{{__("BINE AI VENIT, ")}} <b class="text-green-600">{{Request::user()->name}}</b>
+                <h1 class="px-16 pt-32 text-center text-5xl text-black font-bold drop-shadow-lg uppercase">{{__("BINE AI VENIT, ")}} <b class="text-green-600">{{Request::user()->name}}</b>
                 </h1>
                 @if(Request::user()->device)
                     <p class="text-2xl uppercase font-bold p-6">{{__("Dispozitivul tau: ")}} <br> {{Request::user()->device->name}}, {{Request::user()->device->city}}</p>

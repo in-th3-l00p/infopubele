@@ -95,7 +95,7 @@ class UserController extends Controller
 
         $data["password"] = Hash::make($data['password']);
         $user = User::query()->create($data);
-        Mail::to($user->email)->send(new \App\Mail\Welcome($user));
+//        Mail::to($user->email)->send(new \App\Mail\Welcome($user));
 
         return redirect()
             ->route("users.index")
@@ -184,10 +184,6 @@ class UserController extends Controller
 
     public function destroy(User $user)
     {
-        $card=Card::query()->where("user_id",$user->id)->first();
-        if ($card) {
-            $card->delete();
-        }
         $user->delete();
         return redirect()->route("users.index");
     }
