@@ -16,3 +16,5 @@ Route::put(
     "/devices/{device}/location",
     [\App\Http\Controllers\Admin\DeviceController::class, "updateLocation"]
 );
+
+Route::get("/devices/{device}/cards", [\App\Http\Controllers\Admin\DeviceController::class, "cardsNumber"]);
