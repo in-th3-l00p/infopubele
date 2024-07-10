@@ -46,6 +46,7 @@ class DeviceController extends Controller
             "transactions" => Transaction::query()
                 ->join("slots", "transactions.slot_id", "=", "slots.id")
                 ->where("slots.device_id", $device->id)
+                ->select("transactions.*")
                 ->latest()
                 ->paginate(5)
                 ->fragment('transactions')
