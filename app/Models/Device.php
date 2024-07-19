@@ -19,10 +19,6 @@ class Device extends Model
         return $this->hasMany(Slot::class);
     }
 
-    public function tokens(): HasMany {
-        return $this->hasMany(DeviceToken::class);
-    }
-
     public function reports(): HasMany {
         return $this->hasMany(DeviceReport::class);
     }
