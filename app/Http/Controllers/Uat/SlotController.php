@@ -12,7 +12,7 @@ class SlotController extends Controller
 {
     public function create(Device $device) {
         Gate::allowIf(
-            auth()->user()->city === $slot->device->city || auth()->user()->role === 'admin',
+            auth()->user()->city === $device->city || auth()->user()->role === 'admin',
             __("You are not authorized to access this page.")
         );
         return view("roles.uat.slots.create", [
