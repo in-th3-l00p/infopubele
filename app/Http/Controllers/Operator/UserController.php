@@ -35,6 +35,8 @@ class UserController extends Controller
 
     public function store(Request $request)
     {
+        $request->merge(['email' => strtolower($request->email)]);
+
         $data = $request->validate([
             "name" => "required|max:255",
             "email" => "required|email|unique:users,email",
@@ -110,6 +112,8 @@ class UserController extends Controller
     }
     public function update(User $user, Request $request)
     {
+        $request->merge(['email' => strtolower($request->email)]);
+
         $user->update($request->validate([
             "name" => "required|max:255",
             "email" => ["required", "email", Rule::unique('users')->ignore($user->id)],

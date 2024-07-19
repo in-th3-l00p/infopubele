@@ -33,6 +33,8 @@ class UserController extends Controller
 
     public function store(Request $request)
     {
+        $request->merge(['email' => strtolower($request->email)]);
+
         $data = $request->validate([
             "name" => "required|max:255",
             "email" => "required|email|unique:users,email",
@@ -117,9 +119,11 @@ class UserController extends Controller
 
     public function update(Request $request, User $user)
     {
+        $request->merge(['email' => strtolower($request->email)]);
+
         $user->update($request->validate([
             "name" => "required|max:255",
-            "email" => ["required", "email", Rule::unique('users')->ignore($user->id)],
+            "email" => ["required","", "email", Rule::unique('users')->ignore($user->id)],
             "city" => "nullable|max:255",
             "role" => "required|in:admin,user,generator,uat,operator",
             "device_id" => "nullable|exists:devices,id",
@@ -175,6 +179,7 @@ class UserController extends Controller
 
             "onrc_number.max" => "Numărul ONRC trebuie să aibă maxim 255 de caractere.",
         ]));
+
 
 
         return redirect()->route("users.edit", [
