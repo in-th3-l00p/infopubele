@@ -12,7 +12,7 @@ class Slot extends Model
     use HasFactory;
 
     protected $fillable = [
-        "name", "volume", "max_volume", "device_id", "order"
+        "name", "volume", "max_volume", "device_id", "order","type"
     ];
 
     public function device(): BelongsTo
