@@ -37,31 +37,6 @@ class DeviceController extends Controller
         ]);
     }
 
-    public function updateLocation(Request $request, Device $device) {
-        $request->validate([
-            "latitude" => "required|numeric",
-            "longitude" => "required|numeric"
-        ],[
-            "latitude.required" => "Latitudinea este obligatorie",
-            "latitude.numeric" => "Latitudinea trebuie sa fie un numar",
-            "longitude.required" => "Longitudinea este obligatorie",
-            "longitude.numeric" => "Longitudinea trebuie sa fie un numar",
-        ]);
-
-        $device->update([
-            "latitude" => $request->latitude,
-            "longitude" => $request->longitude
-        ]);
-
-        return response("", 200);
-    }
-
-    public function cardsNumber(Request $request, Device $device)
-    {
-        return response()->json([
-            "cards" => $device->cards()->count()
-        ]);
-    }
 
     public function destroy(Device $device)
     {

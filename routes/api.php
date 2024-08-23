@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\ApiSlotController;
 use App\Http\Controllers\Api\CardController;
+use App\Http\Controllers\Api\DeviceController;
 use Illuminate\Support\Facades\Route;
 
 Route::resource("cards", CardController::class)->except("update");
@@ -14,7 +15,10 @@ Route::post(
 
 Route::put(
     "/devices/{device}/location",
-    [\App\Http\Controllers\Admin\DeviceController::class, "updateLocation"]
+    [DeviceController::class, "updateLocation"]
 );
 
-Route::get("/devices/{device}/cards", [\App\Http\Controllers\Admin\DeviceController::class, "cardsNumber"]);
+Route::get("/devices/{device}/cards", [
+    DeviceController::class,
+    "cardsNumber"
+]);
