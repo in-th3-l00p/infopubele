@@ -10,3 +10,7 @@
 [x-cloak] {
     display: none;
 }
+
+.white-container {
+    @apply divide-y divide-gray-100 overflow-hidden bg-white shadow sm:shadow-md sm:rounded-md mb-4 px-4 py-5 sm:px-6;
+}

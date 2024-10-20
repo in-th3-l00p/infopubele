@@ -1,6 +1,4 @@
-<div
-    class="divide-y divide-gray-100 overflow-hidden bg-white shadow sm:shadow-md sm:rounded-md mb-4 px-4 py-5 sm:px-6"
->
+<div class="white-container">
     <h2 class="mb-4">{{__("Locația dispozitivului")}}:</h2>
     <div class="py-4 border-t border-b flex gap-4 items-center flex-wrap">
         <a

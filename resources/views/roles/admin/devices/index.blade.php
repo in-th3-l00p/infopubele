@@ -64,7 +64,7 @@
         </div>
 
         <div
-            class="divide-y divide-gray-100 overflow-hidden bg-white shadow-sm ring-1 ring-gray-900/5 sm:rounded-md mb-4 px-4 py-5 sm:px-6">
+            class="white-container">
             <h2 class="mb-4">{{__("Locația pubelelor")}}</h2>
 
             <div class="pt-4">

@@ -1,4 +1,4 @@
-<div class="divide-y divide-gray-100 overflow-hidden bg-white shadow sm:shadow-md sm:rounded-md mb-4 px-4 py-5 sm:px-6">
+<div class="white-container">
     <div class="flex flex-wrap items-center justify-between sm:flex-nowrap mb-4">
         <div>
             <h3 class="text-base font-semibold leading-6 text-gray-900">{{ __("Sloturi") }}</h3>
