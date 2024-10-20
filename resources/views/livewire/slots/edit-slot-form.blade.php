@@ -9,6 +9,19 @@
 
     <x-slot name="form">
         <div class="col-span-6 sm:col-span-4">
+            <x-label for="id" value="{{ __('Id') }}" />
+            <x-input
+                id="id"
+                type="text"
+                class="mt-1 block w-full"
+                :value="$slot->id"
+                readonly
+                disabled
+            />
+            <x-input-error for="id" class="mt-2" />
+        </div>
+
+        <div class="col-span-6 sm:col-span-4">
             <x-label for="name" value="{{ __('Nume') }}" />
             <x-input id="name" type="text" class="mt-1 block w-full" wire:model="state.name" required autocomplete="name" />
             <x-input-error for="name" class="mt-2" />

@@ -32,4 +32,8 @@ class Card extends Model
     public function slot() {
         return $this->belongsTo(Slot::class);
     }
+
+    public function transactions() {
+        return $this->hasMany(Transaction::class);
+    }
 }
