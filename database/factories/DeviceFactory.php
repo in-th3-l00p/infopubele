@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,7 +18,12 @@ class DeviceFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            "name" => $this->faker->city(),
+            "series" => $this->faker->unique()->word(),
+            "city" => $this->faker->randomElement(config("cities")),
+            "latitude" => $this->faker->latitude(),
+            "longitude" => $this->faker->longitude(),
+            "owner_id" => User::query()->inRandomOrder()->first()->id,
         ];
     }
 }

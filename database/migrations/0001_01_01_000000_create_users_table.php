@@ -23,7 +23,9 @@ return new class extends Migration
             $table->string('profile_photo_path', 2048)->nullable();
             $table->timestamps();
 
-            $table->enum("role", [ "user", "admin", "operator", "uat", "generator" ]);
+            $table
+                ->enum("role", [ "user", "admin", "operator", "uat", "generator" ])
+                ->default("user");
             $table->string("city")->nullable();
             $table
                 ->foreignIdFor(Device::class)
