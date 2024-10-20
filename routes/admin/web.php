@@ -8,4 +8,5 @@ Route::middleware("can:admin")
         require __DIR__ . "/devices.php";
         require __DIR__ . "/slots.php";
         require __DIR__ . "/users.php";
+        require __DIR__ . "/device-reports.php";
     });

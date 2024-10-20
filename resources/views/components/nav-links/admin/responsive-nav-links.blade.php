@@ -12,12 +12,9 @@
     {{ __('Utilizatori') }}
 </x-responsive-nav-link>
 
-{{--            <x-responsive-nav-link--}}
-{{--                        href="{{ route('device-reports.index') }}"--}}
-{{--                        :active="request()->routeIs('device-reports.index')"--}}
-{{--            >--}}
-{{--                {{ __('Rapoarte Dispozitive') }}--}}
-{{--            </x-responsive-nav-link>--}}
-<x-responsive-nav-link>
+<x-responsive-nav-link
+    href="{{ route('admin.device-reports.index') }}"
+    :active="request()->routeIs('admin.device-reports.index')"
+>
     {{ __('Rapoarte Dispozitive') }}
 </x-responsive-nav-link>

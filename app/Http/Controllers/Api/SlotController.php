@@ -64,7 +64,7 @@ class SlotController extends Controller {
             "volume" => $slot->volume + $request->amount
         ]);
         if (($slot->volume / $slot->max_volume) * 100 > 90) {
-            $operators = User::query()
+            $operators = User::query() // todo use associations
                 ->where("role", "=", "operator")
                 ->where("city", "=", $slot->device()->first()->city)
                 ->get();
