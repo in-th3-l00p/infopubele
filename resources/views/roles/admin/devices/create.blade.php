@@ -6,6 +6,6 @@
     </x-slot>
 
     <x-layout.form-padding>
-        @livewire("admin.device.create-device-form")
+        @livewire("device.create-device-form")
     </x-layout.form-padding>
 </x-app-layout>

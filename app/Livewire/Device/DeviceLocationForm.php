@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire\Admin\Device;
+namespace App\Livewire\Device;
 
 use App\Models\Device;
 use Illuminate\Support\Facades\Validator;
@@ -33,6 +33,6 @@ class DeviceLocationForm extends Component
 
     public function render()
     {
-        return view('livewire.admin.device.device-location-form');
+        return view('livewire.device.device-location-form');
     }
 }

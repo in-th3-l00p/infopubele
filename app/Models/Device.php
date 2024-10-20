@@ -48,4 +48,12 @@ class Device extends Model
     public function owner(): BelongsTo {
         return $this->belongsTo(User::class, "owner_id");
     }
+
+    /**
+     * Device slots
+     * @return HasMany : A device has many slots
+     */
+    public function slots(): HasMany {
+        return $this->hasMany(Slot::class);
+    }
 }

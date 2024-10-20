@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire\Admin\Device;
+namespace App\Livewire\Device;
 
 use App\Models\Device;
 use Illuminate\Support\Facades\Validator;
@@ -44,6 +44,6 @@ class EditDeviceForm extends Component
 
     public function render()
     {
-        return view('livewire.admin.device.edit-device-form');
+        return view('livewire.device.edit-device-form');
     }
 }
