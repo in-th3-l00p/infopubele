@@ -16,4 +16,8 @@ Route::middleware([
     })->name('dashboard');
 
     require __DIR__ . "/admin/web.php";
+    require __DIR__ . "/uat/web.php";
+    require __DIR__ . "/generator/web.php";
+    require __DIR__ . "/operator/web.php";
+    require __DIR__ . "/user/web.php";
 });
