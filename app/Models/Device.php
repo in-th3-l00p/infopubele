@@ -56,4 +56,13 @@ class Device extends Model
     public function slots(): HasMany {
         return $this->hasMany(Slot::class);
     }
+
+    /**
+     * Device cards
+     * @return HasMany : A device has many cards
+     */
+    public function cards(): HasMany
+    {
+        return $this->hasMany(Card::class);
+    }
 }

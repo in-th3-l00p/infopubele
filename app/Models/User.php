@@ -97,4 +97,13 @@ class User extends Authenticatable
     {
         return $this->hasMany(Device::class, "owner_id");
     }
+
+    /**
+     * Cards associated with the user
+     * @return HasMany : card relationship
+     */
+    public function cards(): HasMany
+    {
+        return $this->hasMany(Card::class);
+    }
 }
