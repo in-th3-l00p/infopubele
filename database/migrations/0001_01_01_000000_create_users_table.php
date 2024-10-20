@@ -27,6 +27,7 @@ return new class extends Migration
             $table->string("city")->nullable();
             $table
                 ->foreignIdFor(Device::class)
+                ->nullable()
                 ->constrained("devices");
         });
 
