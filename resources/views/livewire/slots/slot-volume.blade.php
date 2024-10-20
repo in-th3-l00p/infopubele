@@ -17,7 +17,6 @@
                 class="absolute bottom-0 left-0 w-full bg-green-50"
                 style="height: {{ ($slot->volume / $slot->max_volume) * 100 }}%;"
             >
-
             </div>
         </div>
     </div>

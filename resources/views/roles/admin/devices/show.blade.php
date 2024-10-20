@@ -28,5 +28,11 @@
         @livewire("slots.device-slots", [
             "device" => $device
         ])
+
+        <x-section-border />
+
+        @livewire("slots.device-slots-visualizer", [
+            "device" => $device
+        ])
     </x-layout.form-padding>
 </x-app-layout>
