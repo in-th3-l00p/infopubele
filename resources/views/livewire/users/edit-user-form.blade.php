@@ -1,10 +1,10 @@
-<x-form-section submit="createUser">
+<x-form-section submit="updateUser">
     <x-slot name="title">
-        {{ __('Introdu informațiile') }}
+        {{ __('Modifică informațiile') }}
     </x-slot>
 
     <x-slot name="description">
-        {{ __('Completează câmpurile necesare creeri utilizatorului') }}
+        {{ __('Completează câmpurile și trimite formularul pentru a modifica datele utilizatorului') }}
     </x-slot>
 
     <x-slot name="form">
@@ -19,18 +19,6 @@
             <x-input id="email" type="text" class="mt-1 block w-full" wire:model="state.email" required
                      autocomplete="email"/>
             <x-input-error for="email" class="mt-2"/>
-        </div>
-        <div class="col-span-6 sm:col-span-4">
-            <x-label for="password" value="{{ __('Parolă') }}"/>
-            <x-input id="password" type="password" class="mt-1 block w-full" wire:model="state.password" required
-                     autocomplete="password"/>
-            <x-input-error for="password" class="mt-2"/>
-        </div>
-        <div class="col-span-6 sm:col-span-4">
-            <x-label for="password_confirmation" value="{{ __('Confirmare parolă') }}"/>
-            <x-input id="password_confirmation" type="password" class="mt-1 block w-full"
-                     wire:model="state.password_confirmation" required autocomplete="password_confirmation"/>
-            <x-input-error for="password_confirmation" class="mt-2"/>
         </div>
         <div class="col-span-6 sm:col-span-4">
             <x-label for="city" value="{{ __('Oraș') }}"/>
@@ -69,8 +57,12 @@
     </x-slot>
 
     <x-slot name="actions">
+        <x-action-message class="me-3" on="saved">
+            {{ __('Salvat.') }}
+        </x-action-message>
+
         <x-button wire:loading.attr="disabled">
-            {{ __('Creează') }}
+            {{ __('Modifică') }}
         </x-button>
     </x-slot>
 </x-form-section>
