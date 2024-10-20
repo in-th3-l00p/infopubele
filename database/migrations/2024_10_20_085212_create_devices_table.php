@@ -20,8 +20,8 @@ return new class extends Migration
             $table->string("name")->unique();
             $table->string("series")->unique();
             $table->string("city");
-            $table->float("latitude");
-            $table->float("longitude");
+            $table->float("latitude")->nullable();
+            $table->float("longitude")->nullable();
 
             $table
                 ->foreignIdFor(User::class, "owner_id")
