@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Device;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -24,6 +25,9 @@ return new class extends Migration
 
             $table->enum("role", [ "user", "admin", "operator", "uat", "generator" ]);
             $table->string("city")->nullable();
+            $table
+                ->foreignIdFor(Device::class)
+                ->constrained("devices");
         });
 
         Schema::create('password_reset_tokens', function (Blueprint $table) {

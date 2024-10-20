@@ -4,6 +4,8 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Fortify\TwoFactorAuthenticatable;
@@ -30,7 +32,8 @@ class User extends Authenticatable
         'email',
         'password',
         'role',
-        'city'
+        'city',
+        'device_id',
     ];
 
     /**
@@ -65,5 +68,22 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    /**
+     * It's associated device, only for the user role
+     * @return BelongsTo : device relationship
+     */
+    public function associatedDevice(): BelongsTo {
+        return $this->belongsTo(Device::class);
+    }
+
+    /**
+     * Devices created by the user, only for admin and uat
+     * @return HasMany : device relationship
+     */
+    public function createdDevices(): HasMany
+    {
+        return $this->hasMany(Device::class, "owner_id");
     }
 }
