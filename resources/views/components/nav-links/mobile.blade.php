@@ -8,7 +8,9 @@
             @include("components.nav-links.admin.responsive-nav-links")
             @break
         @case ("user")
-            @include("components.nav-links.user.responsive-nav-links")
+            @if (request()->user()->associatedDevice()->exists())
+                @include("components.nav-links.user.responsive-nav-links")
+            @endif
             @break
         @case ("uat")
             @include("components.nav-links.uat.responsive-nav-links")

@@ -1,10 +1,7 @@
-{{--            <x-nav-link  --}}
-{{--                        href="{{ route('devices.index') }}" --}}
-{{--                        :active="request()->routeIs('devices.index')"--}}
-{{--            >--}}
-{{--                {{ __('Dispozitive') }}--}}
-{{--            </x-nav-link>--}}
-<x-nav-link>
+<x-nav-link
+    href="{{ route('admin.devices.index') }}"
+    :active="request()->routeIs('admin.devices.index')"
+>
     {{ __('Dispozitive') }}
 </x-nav-link>
 

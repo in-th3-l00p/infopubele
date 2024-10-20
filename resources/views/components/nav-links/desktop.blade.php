@@ -7,7 +7,9 @@
             @include("components.nav-links.admin.nav-links")
             @break
         @case ("user")
-            @include("components.nav-links.user.nav-links")
+            @if (request()->user()->associatedDevice()->exists())
+                @include("components.nav-links.user.nav-links")
+            @endif
             @break
         @case ("uat")
             @include("components.nav-links.uat.nav-links")

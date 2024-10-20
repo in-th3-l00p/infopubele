@@ -1,11 +1,7 @@
-{{--            <x-nav-link--}}
-{{--                --}}
-{{--                href="{{ route('uat.devices.index') }}"--}}
-{{--                :active="request()->routeIs('uat.devices.index')"--}}
-{{--            >--}}
-{{--                {{ __('Dispozitive') }}--}}
-{{--            </x-nav-link>--}}
-<x-nav-link>
+<x-nav-link
+    href="{{ route('uat.devices.index') }}"
+    :active="request()->routeIs('uat.devices.index')"
+>
     {{ __('Dispozitive') }}
 </x-nav-link>
 
