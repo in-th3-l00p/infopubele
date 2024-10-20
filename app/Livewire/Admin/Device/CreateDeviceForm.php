@@ -3,18 +3,19 @@
 namespace App\Livewire\Admin\Device;
 
 use App\Models\Device;
+use Illuminate\Support\Facades\Validator;
 use Livewire\Component;
 
 class CreateDeviceForm extends Component
 {
-    public $state = [];
+    public array $state = [];
 
     public function createDevice() {
-        $this->validate([
-            'state.name' => 'required|max:255|unique:devices,name',
-            'state.series' => 'required|max:255|unique:devices,series',
-            'state.city' => 'required|max:255',
-        ]);
+        Validator::make($this->state, [
+            'name' => 'required|max:255|unique:devices,name',
+            'series' => 'required|max:255|unique:devices,series',
+            'city' => 'required|max:255',
+        ])->validate();
 
         $device = Device::create([
             'name' => $this->state['name'],
