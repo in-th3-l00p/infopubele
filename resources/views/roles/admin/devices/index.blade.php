@@ -73,7 +73,7 @@
                                  ->whereNotNull("longitude")
                                  ->get([ "name", "latitude", "longitude" ]);
                 @endphp
-                <x-maps-google style="width:95%; aspect-ratio: 2/1; margin-inline: auto;"
+                <x-maps-leaflet style="width:95%; aspect-ratio: 2/1; margin-inline: auto;"
                                :mapType="'roadmap'"
                                :zoomLevel="7" :centerPoint="['lat' => 45.9432, 'long' => 24.9668]"
                                :markers="$locationDevices->map(fn (Device $device) => [
@@ -81,7 +81,7 @@
                                     'long' => $device->longitude,
                                     'title' => $device->name
                                 ])->all()"
-                ></x-maps-google>
+                ></x-maps-leaflet>
             </div>
         </div>
     </x-layout.global-padding>

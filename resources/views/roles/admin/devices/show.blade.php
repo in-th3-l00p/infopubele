@@ -39,12 +39,12 @@
                         </x-button>
                     </a>
                 </div>
-                <x-maps-google style="width:95%; aspect-ratio: 2/1; margin-inline: auto;"
+                <x-maps-leaflet style="width:95%; aspect-ratio: 2/1; margin-inline: auto;"
                                :mapType="'roadmap'"
                                :zoomLevel="16"
                                :centerPoint="['lat' => $device->latitude, 'long' => $device->longitude]"
                                :markers="[[$device->latitude, $device->longitude]]"
-                ></x-maps-google>
+                ></x-maps-leaflet>
             </div>
             <x-section-border />
         @endif
