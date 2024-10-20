@@ -5,14 +5,10 @@
     {{ __('Dispozitive') }}
 </x-responsive-nav-link>
 
-{{--            <x-responsive-nav-link --}}
-{{--                        href="{{ route('users.index' )}}" --}}
-{{--                        :active="request()->routeIs('users.index')"--}}
-{{--            >--}}
-{{--                {{ __('Utilizatori') }}--}}
-{{--            </x-responsive-nav-link>--}}
-
-<x-responsive-nav-link>
+<x-responsive-nav-link
+    href="{{ route('admin.users.index' )}}"
+    :active="request()->routeIs('admin.users.index')"
+>
     {{ __('Utilizatori') }}
 </x-responsive-nav-link>
 

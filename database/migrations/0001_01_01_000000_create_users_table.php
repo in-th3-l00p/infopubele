@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Device;
+use App\Models\User;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -32,6 +33,10 @@ return new class extends Migration
                 ->foreignIdFor(Device::class)
                 ->nullable()
                 ->constrained("devices");
+            $table
+                ->foreignIdFor(User::class, "owner_id")
+                ->nullable()
+                ->constrained("users");
         });
 
         Schema::create('password_reset_tokens', function (Blueprint $table) {

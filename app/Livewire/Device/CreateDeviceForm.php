@@ -24,7 +24,7 @@ class CreateDeviceForm extends Component
             'owner_id' => auth()->id(),
         ]);
 
-        session()->flash('success', 'Device added successfully!');
+        session()->flash('success', __('Dispozitivul a fost adăugat cu succes!'));
         $this->redirectRoute('admin.devices.index');
     }
 

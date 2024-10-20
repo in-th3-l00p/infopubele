@@ -37,6 +37,7 @@ class User extends Authenticatable
         'role',
         'city',
         'device_id',
+        'owner_id',
     ];
 
     /**
@@ -105,5 +106,14 @@ class User extends Authenticatable
     public function cards(): HasMany
     {
         return $this->hasMany(Card::class);
+    }
+
+    /**
+     * Owner of the user, nullable
+     * @return BelongsTo : user relationship
+     */
+    public function owner(): BelongsTo
+    {
+        return $this->belongsTo(User::class, "owner_id");
     }
 }
