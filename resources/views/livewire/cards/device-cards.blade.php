@@ -4,7 +4,10 @@
         <p class="mt-1 text-sm text-gray-500">{{ __("Vizualizează sau creează cardurile dispozitivului") }}</p>
     </div>
 
-    <form action="createCard" class="py-4 space-y-4">
+    <form
+        wire:submit="createCard"
+        class="py-4 space-y-4"
+    >
         <p>{{ __("Creează un card") }}:</p>
 
         <div>
@@ -25,19 +28,37 @@
             <x-input-error for="user" class="mt-2" />
         </div>
 
+        <div>
+            <x-label for="slot" value="{{ __('Slot') }}" />
+            <x-select
+                id="slot"
+                type="text"
+                class="mt-1 block w-full"
+                wire:model="slot"
+                required
+                autocomplete="slot"
+            >
+                <option value="">{{ __('Selectează utilizatorul') }}</option>
+                @foreach($device->slots as $slot)
+                    <option value="{{ $slot->id }}">{{ $slot->name }}</option>
+                @endforeach
+            </x-select>
+            <x-input-error for="slot" class="mt-2" />
+        </div>
+
         <div class="flex items-center">
             <x-button wire:loading.attr="disabled">
                 {{ __('Creează') }}
             </x-button>
 
-            <x-action-message class="me-3" on="saved">
+            <x-action-message class="ms-3" on="saved">
                 {{ __('Salvat.') }}
             </x-action-message>
         </div>
     </form>
 
     @if ($cards->count() > 0)
-        <ul role="list" class="divide-y divide-gray-100 rounded-b-md overflow-hidden">
+        <ul id="cards" role="list" class="divide-y divide-gray-100 rounded-b-md overflow-hidden">
             @foreach($cards as $card)
                 <li class="relative flex justify-between gap-x-6 py-5 hover:bg-gray-50 px-4 sm:px-6">
                     <div class="flex min-w-0 gap-x-4">
@@ -50,9 +71,23 @@
                             </p>
                         </div>
                     </div>
+
+                    <div>
+                        <x-button
+                            wire:click="deleteCard({{ $card->id }})"
+                            type="button"
+                            class="!bg-red-600"
+                            :title="__('Șterge cardul')"
+                        >
+                            <i class="fa-solid fa-trash"></i>
+                        </x-button>
+                    </div>
                 </li>
             @endforeach
         </ul>
+        <div class="pt-4">
+            {{ $cards->links(data: ['scrollTo' => '#cards']) }}
+        </div>
     @else
         <p class="text-center pt-4">{{ __("Dispozitivul nu are niciun card") }}</p>
     @endif

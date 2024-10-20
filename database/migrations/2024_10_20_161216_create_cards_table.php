@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Device;
+use App\Models\Slot;
 use App\Models\User;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
@@ -22,8 +23,8 @@ return new class extends Migration
                 ->foreignIdFor(User::class)
                 ->constrained("users");
             $table
-                ->foreignIdFor(Device::class)
-                ->constrained("devices");
+                ->foreignIdFor(Slot::class)
+                ->constrained("slots");
         });
     }
 

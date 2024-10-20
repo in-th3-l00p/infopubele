@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Slot extends Model
@@ -27,5 +28,14 @@ class Slot extends Model
     public function owner()
     {
         return $this->belongsTo(User::class);
+    }
+
+    /**
+     * Get the cards for the Slot
+     * @return HasMany : The cards for the Slot
+     */
+    public function cards(): HasMany
+    {
+        return $this->hasMany(Card::class);
     }
 }

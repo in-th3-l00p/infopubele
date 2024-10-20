@@ -26,10 +26,10 @@ class Card extends Model
     }
 
     /**
-     * Get the device that owns the Card
-     * @return BelongsTo : The device that owns the Card
+     * Get the slot that owns the Card
+     * @return BelongsTo : The slot that owns the Card
      */
-    public function device() {
-        return $this->belongsTo(Device::class);
+    public function slot() {
+        return $this->belongsTo(Slot::class);
     }
 }
