@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('welcome');
 
 Route::middleware([
     'auth:sanctum',
@@ -12,7 +12,25 @@ Route::middleware([
     'verified',
 ])->group(function () {
     Route::get('/dashboard', function () {
-        return view('dashboard');
+        switch (request()->user()->role) {
+            case "admin":
+                return redirect()->route('admin.devices.index');
+            case "uat":
+                return redirect()->route('uat.devices.index');
+            case "generator":
+                return redirect()->route('generator.device-reports.index');
+            case "operator":
+                return redirect()->route('operator.devices.index');
+            case "user":
+                if (request()->user()->device_id)
+                    return redirect()->route('user.devices.show', [
+                        'device' => request()->user()->device_id,
+                    ]);
+                return redirect()
+                    ->route('welcome')
+                    ->withErrors(["alert" => __("Nu ai niciun dispozitiv asociat contului!")]);
+        }
+        return redirect()->route('welcome');
     })->name('dashboard');
 
     require __DIR__ . "/admin/web.php";
