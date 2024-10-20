@@ -12,5 +12,9 @@
 
         <x-section-border/>
 
+        @livewire("slots.slot-volume", [
+            "slot" => $slot
+        ])
+
     </x-layout.form-padding>
 </x-app-layout>
