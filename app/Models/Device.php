@@ -20,6 +20,7 @@ class Device extends Model
         "city",
         "latitude",
         "longitude",
+        "owner_id",
     ];
 
     /**

@@ -23,7 +23,9 @@ class DeviceFactory extends Factory
             "city" => $this->faker->randomElement(config("cities")),
             "latitude" => $this->faker->latitude(),
             "longitude" => $this->faker->longitude(),
-            "owner_id" => User::query()->inRandomOrder()->first()->id,
+            "owner_id" => User::query()
+                ->where("role", "=", "admin")
+                ->inRandomOrder()->first()->id,
         ];
     }
 }

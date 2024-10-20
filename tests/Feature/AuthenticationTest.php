@@ -22,6 +22,7 @@ class AuthenticationTest extends TestCase
         $user = User::factory()->create();
 
         $response = $this->post('/login', [
+            "_token" => csrf_token(),
             'email' => $user->email,
             'password' => 'password',
         ]);

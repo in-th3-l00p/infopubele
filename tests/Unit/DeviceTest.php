@@ -38,8 +38,11 @@ class DeviceTest extends TestCase
     #[Test]
     public function it_has_many_associated_users()
     {
-        $user = User::factory()->create();
+        $this->seed(DatabaseSeeder::class);
         $device = Device::factory()->create();
+        $user = User::query()
+            ->where("role", "=", "admin")
+            ->first();
         $user->update([
             'device_id' => $device->id,
         ]);
@@ -48,10 +51,26 @@ class DeviceTest extends TestCase
     }
 
     #[Test]
+    public function it_belongs_to_many_associated_users()
+    {
+        $this->seed(DatabaseSeeder::class);
+        $device = Device::factory()->create();
+        $users = User::query()->inRandomOrder()->get();
+        $device->associatedUsers()->attach($users[0]);
+        $device->associatedUsers()->attach($users[1]);
+
+        $this->assertTrue($device->associatedUsers->contains($users[0]));
+        $this->assertTrue($device->associatedUsers->contains($users[1]));
+        $this->assertFalse($device->associatedUsers->contains($users[2]));
+    }
+
+    #[Test]
     public function it_belongs_to_an_owner()
     {
-        $owner = User::factory()->create();
-        $device = Device::factory()->create(['owner_id' => $owner->id]);
+        $owner = User::factory()->create([
+            'role' => 'admin'
+        ]);
+        $device = Device::factory()->create();
 
         $this->assertEquals($owner->id, $device->owner->id);
     }
