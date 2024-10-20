@@ -10,9 +10,7 @@
                     </a>
                 </div>
 
-                <!-- Navigation Links -->
-                @include('layouts.navigation.links.nav-links.links')
-
+                <x-nav-links.desktop />
             </div>
 
             <div class="hidden sm:flex sm:items-center sm:ms-6">
@@ -93,8 +91,7 @@
 
     <!-- Responsive Navigation Menu -->
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
-
-        @include('layouts.navigation.links.responsive-nav-links.links')
+        <x-nav-links.mobile />
 
         <!-- Responsive Settings Options -->
         <div class="pt-4 pb-1 border-t border-gray-200">
