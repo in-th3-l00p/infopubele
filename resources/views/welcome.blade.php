@@ -16,7 +16,6 @@
     <main class="isolate">
         <!-- Hero section -->
         <x-landing.hero />
-        <x-landing.logo-cloud />
         <x-landing.feature />
         <x-landing.cta />
     </main>
