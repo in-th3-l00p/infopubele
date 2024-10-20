@@ -1,4 +1,4 @@
-<div class="white-container">
+<div class="white-container" wire:poll.750ms.visible.keep-alive>
     <div class="flex flex-wrap items-center justify-between sm:flex-nowrap mb-4">
         <div>
             <h3 class="text-base font-semibold leading-6 text-gray-900">{{ __("Sloturi") }}</h3>

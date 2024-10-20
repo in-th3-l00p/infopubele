@@ -1,4 +1,4 @@
-<div class="white-container">
+<div class="white-container" wire:poll.750ms.visible.keep-alive>
     <div class="flex flex-wrap items-center justify-between sm:flex-nowrap mb-4">
         <div>
             <h3 class="text-base font-semibold leading-6 text-gray-900">{{ __("Vizualizare sloturi") }}</h3>
@@ -16,7 +16,7 @@
                     <p>{{ number_format($percentage) }}%</p>
                     <div
                         class="absolute w-full bg-green-100 bottom-0 left-0 -z-10"
-                        style="height: {{ $percentage }}%"
+                        style="height: {{ min($percentage, 100) }}%"
                     ></div>
                 </div>
             @endforeach

@@ -16,5 +16,10 @@
             "slot" => $slot
         ])
 
+        <x-section-border />
+
+        @livewire("transactions.slot-transactions", [
+            "slot" => $slot
+        ])
     </x-layout.form-padding>
 </x-app-layout>

@@ -37,6 +37,12 @@
 
         <x-section-border />
 
+        @livewire("transactions.device-transactions", [
+            "device" => $device
+        ])
+
+        <x-section-border />
+
         @livewire("cards.device-cards", [
             "device" => $device
         ])
