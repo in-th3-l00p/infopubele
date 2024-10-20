@@ -11,7 +11,7 @@
                 </div>
 
                 <!-- Navigation Links -->
-                <x-nav-links/>
+                @include('layouts.navigation.links.nav-links.links')
 
             </div>
 
@@ -94,7 +94,7 @@
     <!-- Responsive Navigation Menu -->
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
 
-        <x-responsive-nav-links/>
+        @include('layouts.navigation.links.responsive-nav-links.links')
 
         <!-- Responsive Settings Options -->
         <div class="pt-4 pb-1 border-t border-gray-200">
