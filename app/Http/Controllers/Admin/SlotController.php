@@ -13,13 +13,13 @@ class SlotController extends Controller
     public function create(Device $device)
     {
         Gate::authorize("update", $device);
-        return view("admin.slots.create", compact("device"));
+        return view("roles.admin.slots.create", compact("device"));
     }
 
     public function show(Device $device, Slot $slot)
     {
         Gate::authorize("view", $device);
-        return view("admin.slots.show", compact("device", "slot"));
+        return view("roles.admin.slots.show", compact("device", "slot"));
     }
 
     public function destroy(Device $device, Slot $slot)
@@ -27,7 +27,7 @@ class SlotController extends Controller
         Gate::authorize("update", $device);
         $slot->delete();
         return redirect()
-            ->route("admin.devices.show", $device)
+            ->route("roles.admin.devices.show", $device)
             ->with("success", "Slot deleted successfully");
     }
 }

@@ -11,7 +11,11 @@ class DeviceSlots extends Component
 
     public function render()
     {
-        $slots = $this->device->slots()->get();
+        $slots = $this
+            ->device
+            ->slots()
+            ->orderBy("created_at", "desc")
+            ->get();
         return view('livewire.slots.device-slots', ["slots" => $slots]);
     }
 }

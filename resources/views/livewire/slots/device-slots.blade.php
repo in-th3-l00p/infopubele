@@ -17,7 +17,7 @@
 
     @if ($device->slots()->count() > 0)
         <ul role="list" class="divide-y divide-gray-100 rounded-b-md overflow-hidden">
-            @foreach($device->slots as $slot)
+            @foreach($slots as $slot)
                 <li class="relative flex justify-between gap-x-6 py-5 hover:bg-gray-50 px-4 sm:px-6">
                     <div class="flex min-w-0 gap-x-4">
                         <div class="min-w-0 flex-auto">

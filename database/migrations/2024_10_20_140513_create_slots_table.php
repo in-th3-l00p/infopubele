@@ -19,7 +19,7 @@ return new class extends Migration
             $table->softDeletes();
 
             $table->string("name");
-            $table->float("volume");
+            $table->float("volume")->default(0);
             $table->float("max_volume");
 
             $table
