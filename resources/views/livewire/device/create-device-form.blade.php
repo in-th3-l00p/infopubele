@@ -20,23 +20,25 @@
             <x-input-error for="series" class="mt-2" />
         </div>
 
-        <div class="col-span-6 sm:col-span-4">
-            <x-label for="city" value="{{ __('Oraș') }}" />
-            <x-select
-                id="city"
-                type="text"
-                class="mt-1 block w-full"
-                wire:model="state.city"
-                required
-                autocomplete="city"
-            >
-                <option value="">{{ __('Selectează orașul') }}</option>
-                @foreach(config("cities") as $city)
-                    <option value="{{ $city }}">{{ $city }}</option>
-                @endforeach
-            </x-select>
-            <x-input-error for="city" class="mt-2" />
-        </div>
+        @if (auth()->user()->role === "admin")
+            <div class="col-span-6 sm:col-span-4">
+                <x-label for="city" value="{{ __('Oraș') }}" />
+                <x-select
+                    id="city"
+                    type="text"
+                    class="mt-1 block w-full"
+                    wire:model="state.city"
+                    required
+                    autocomplete="city"
+                >
+                    <option value="">{{ __('Selectează orașul') }}</option>
+                    @foreach(config("cities") as $city)
+                        <option value="{{ $city }}">{{ $city }}</option>
+                    @endforeach
+                </x-select>
+                <x-input-error for="city" class="mt-2" />
+            </div>
+        @endif
     </x-slot>
 
     <x-slot name="actions">

@@ -36,7 +36,7 @@ class UserPolicy
         return
             $user->role === "admin" ||
             $user->role === "operator" ||
-            $user->role === "uat" && $user->city === $model->city;
+            $user->role === "uat" && $user->city === $model->city && $user->role !== "admin";
     }
 
     public function delete(User $user, User $model): bool

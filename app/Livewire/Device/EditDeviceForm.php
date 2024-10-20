@@ -34,11 +34,17 @@ class EditDeviceForm extends Component
             Validator::make($this->state, [
                 'series' => 'unique:devices,series',
             ])->validate();
-        $this->device->update([
-            'name' => $this->state['name'],
-            'series' => $this->state['series'],
-            'city' => $this->state['city'],
-        ]);
+        if (auth()->user()->role === "admin")
+            $this->device->update([
+                'name' => $this->state['name'],
+                'series' => $this->state['series'],
+                'city' => $this->state['city'],
+            ]);
+        else
+            $this->device->update([
+                'name' => $this->state['name'],
+                'series' => $this->state['series'],
+            ]);
         $this->dispatch('saved');
     }
 

@@ -22,6 +22,6 @@
             @endforeach
         </div>
     @else
-        <p class="text-center p t-4">{{ __("Dispozitivul nu are niciun slot") }}</p>
+        <p class="text-center pt-4">{{ __("Dispozitivul nu are niciun slot") }}</p>
     @endif
 </div>

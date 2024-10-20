@@ -37,13 +37,23 @@ class EditUserForm extends Component
             Validator::make($this->state, [
                 'email' => 'unique:users,email',
             ])->validate();
-        $this->user->update([
-            'name' => $this->state['name'],
-            'email' => $this->state['email'],
-            'city' => $this->state['city'],
-            'role' => $this->state["role"]
-
-        ]);
+        if ($this->state['role'] == 'admin' && auth()->user()->role !== 'admin') {
+            $this->addError("role", __("Nu aveți permisiunea să creați un utilizator cu rol de administrator!"));
+            return;
+        }
+        if (auth()->user()->role === "admin")
+            $this->user->update([
+                'name' => $this->state['name'],
+                'email' => $this->state['email'],
+                'city' => $this->state['city'],
+                'role' => $this->state["role"]
+            ]);
+        else
+            $this->user->update([
+                'name' => $this->state['name'],
+                'email' => $this->state['email'],
+                'role' => $this->state["role"]
+            ]);
         $this->dispatch('saved');
     }
 

@@ -14,9 +14,10 @@ class DeviceController extends Controller
         Gate::authorize("viewAny", Device::class);
         return view("roles.uat.devices.index", [
             "devices" => Device::query()
-                ->where("city", "=", $request->user()->city)
+                ->where("city", "=", auth()->user()->city)
                 ->when($request->has("search"), fn($query) => $query->where("name", "like", "%{$request->search}%"))
-                ->paginate()
+                ->orderBy("created_at", "desc")
+                ->paginate(6)
         ]);
     }
 

@@ -5,13 +5,9 @@
     {{ __('Dispozitive') }}
 </x-responsive-nav-link>
 
-{{--            <x-responsive-nav-link--}}
-{{--                --}}
-{{--                href="{{ route('uat.users.index') }}"--}}
-{{--                :active="request()->routeIs('uat.users.index')"--}}
-{{--            >--}}
-{{--                {{ __("Utilizatori") }}--}}
-{{--            </x-responsive-nav-link>--}}
-<x-responsive-nav-link>
+<x-responsive-nav-link
+    href="{{ route('uat.users.index') }}"
+    :active="request()->routeIs('uat.users.index')"
+>
     {{ __("Utilizatori") }}
 </x-responsive-nav-link>

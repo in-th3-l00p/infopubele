@@ -10,7 +10,18 @@ use Livewire\Component;
 
 class CreateUserForm extends Component
 {
-    public array $state;
+    public array $state = [];
+
+    public function mount() {
+        $this->state = [
+            'name' => '',
+            'email' => '',
+            'password' => '',
+            'password_confirmation' => '',
+            'city' => auth()->user()->city,
+            'role' => ''
+        ];
+    }
 
     public function createUser() {
         Validator::make($this->state, [
@@ -20,7 +31,10 @@ class CreateUserForm extends Component
             'city' => 'required|max:255',
             'role' => 'required|in:' . implode(',', config("constants.roles"))
         ])->validate();
-
+        if ($this->state['role'] == 'admin' && auth()->user()->role !== 'admin') {
+            $this->addError("role", __("Nu aveți permisiunea să creați un utilizator cu rol de administrator!"));
+            return;
+        }
         $user = User::create([
             'name' => $this->state['name'],
             'email' => $this->state['email'],
@@ -31,7 +45,7 @@ class CreateUserForm extends Component
         ]);
 
         session()->flash('success', __("Utilizatorul a fost adăugat cu succes!"));
-        $this->redirectRoute('admin.users.index');
+        $this->redirectRoute(auth()->user()->role . '.users.index');
     }
 
     public function render()
