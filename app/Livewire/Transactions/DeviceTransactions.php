@@ -20,7 +20,7 @@ class DeviceTransactions extends Component
                 $query->where("device_id", $this->device->id);
             })
             ->orderBy("created_at", "desc")
-            ->paginate(5, "transactions-page");
+            ->paginate(5, pageName: "transactions-page");
         return view('livewire.transactions.transactions', [
             "transactions" => $transactions
         ]);
