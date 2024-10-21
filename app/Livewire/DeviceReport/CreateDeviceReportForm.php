@@ -4,6 +4,7 @@ namespace App\Livewire\DeviceReport;
 
 use App\Exports\DeviceReportExport;
 use App\Models\Device;
+use Carbon\Carbon;
 use Livewire\Component;
 use Maatwebsite\Excel\Facades\Excel;
 
@@ -37,13 +38,19 @@ class CreateDeviceReportForm extends Component
         }
 
         // create the xlsx
+        $datetime = Carbon::make($deviceReport->created_at)
+            ->timezone('Europe/Bucharest')
+            ->format('Y-m-d-H-i-s');
+        $filePath =
+            "device-reports/device-report-" .
+            "{$deviceReport->id}-{$datetime}.xlsx";
         Excel::store(
             new DeviceReportExport($deviceReport),
-            "device-reports/device-report-{$deviceReport->id}.xlsx"
+            $filePath
         );
 
         $deviceReport->update([
-            "spreadsheet_link" => "device-reports/device-report-{$deviceReport->id}.xlsx"
+            "spreadsheet_link" => $filePath
         ]);
 
         return redirect()

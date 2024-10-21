@@ -29,7 +29,7 @@
                                     <p class="text-sm font-semibold leading-6 text-gray-900">
                                         <a href="{{ route("admin.device-reports.show", [ "device_report" => $report ]) }}">
                                             <span class="absolute inset-x-0 -top-px bottom-0"></span>
-                                            {{ $report->device_name }}
+                                            {{ $report->device_name }} - {{ \Carbon\Carbon::make($report->created_at)->timezone('Europe/Bucharest') }}
                                         </a>
                                     </p>
                                     <p class="mt-1 flex text-xs leading-5 text-gray-500">

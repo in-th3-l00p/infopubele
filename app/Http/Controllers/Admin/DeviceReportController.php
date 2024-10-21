@@ -13,7 +13,9 @@ class DeviceReportController extends Controller
     public function index() {
         Gate::authorize("viewAny", DeviceReport::class);
         return view("roles.admin.devices.reports.index", [
-            "deviceReports" => DeviceReport::query()->latest()->paginate(5)
+            "deviceReports" => DeviceReport::query()
+                ->latest()
+                ->paginate(5)
         ]);
     }
 
