@@ -18,7 +18,7 @@ class SlotTransactions extends Component
             ->slot
             ->transactions()
             ->latest()
-            ->paginate(5);
+            ->paginate(5, "transactions-page");
         return view('livewire.transactions.transactions', [
             'transactions' => $transactions
         ]);

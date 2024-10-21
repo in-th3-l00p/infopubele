@@ -33,7 +33,7 @@ class DeviceOperators extends Component
 
     public function render()
     {
-        $users = $this->device->associatedUsers()->paginate(5);
+        $users = $this->device->associatedUsers()->paginate(5, pageName: "operators-page");
         $possibleUsers = User::query()
             ->where("role", "=", "operator")
             ->where("city", "=", $this->device->city)

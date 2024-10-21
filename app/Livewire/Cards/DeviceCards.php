@@ -48,7 +48,7 @@ class DeviceCards extends Component
 
     public function render()
     {
-        $cards = $this->device->cards()->paginate(5);
+        $cards = $this->device->cards()->paginate(5, pageName: "cards-page");
         $cardPossibleUsers = User::query()
             ->whereNotIn('id', $cards->getCollection()->pluck('user_id'))
             ->where("role", "=", "user")
