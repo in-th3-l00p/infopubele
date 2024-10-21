@@ -28,24 +28,6 @@
             <x-input-error for="user" class="mt-2" />
         </div>
 
-        <div>
-            <x-label for="slot" value="{{ __('Slot') }}" />
-            <x-select
-                id="slot"
-                type="text"
-                class="mt-1 block w-full"
-                wire:model="slot"
-                required
-                autocomplete="slot"
-            >
-                <option value="">{{ __('Selectează utilizatorul') }}</option>
-                @foreach($device->slots as $slot)
-                    <option value="{{ $slot->id }}">{{ $slot->name }}</option>
-                @endforeach
-            </x-select>
-            <x-input-error for="slot" class="mt-2" />
-        </div>
-
         <div class="flex items-center">
             <x-button wire:loading.attr="disabled">
                 {{ __('Creează') }}
@@ -64,7 +46,7 @@
                     <div class="flex min-w-0 gap-x-4">
                         <div class="min-w-0 flex-auto">
                             <p class="text-sm font-semibold leading-6 text-gray-900">
-                                {{ __("Utilizator") }} {{ $card->user->name }} - {{ __("Slot") }} {{ $card->slot->name }}
+                                {{ __("Utilizator") }} {{ $card->user->name }}
                             </p>
                             <p class="mt-1 flex text-xs leading-5 text-gray-500">
                                 {{ $card->uuid }}

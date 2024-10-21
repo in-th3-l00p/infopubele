@@ -66,4 +66,12 @@ class Device extends Model
             ->slots()
             ->where("(volume / max_volume) * 100", ">", 90);
     }
+
+    /**
+     * Cards allocated to this device
+     * @return HasMany
+     */
+    public function cards() {
+        return $this->hasMany(Card::class);
+    }
 }

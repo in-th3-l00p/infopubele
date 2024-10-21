@@ -3,7 +3,7 @@
 use App\Models\Device;
 use Illuminate\Support\Facades\Route;
 
-Route::get("/operator/notifications", function () {
+Route::get("/notifications", function () {
     $devices = request()
         ->user()
         ->associatedDevices()

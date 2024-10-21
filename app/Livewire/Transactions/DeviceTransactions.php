@@ -5,9 +5,12 @@ namespace App\Livewire\Transactions;
 use App\Models\Device;
 use App\Models\Transaction;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 class DeviceTransactions extends Component
 {
+    use WithPagination;
+
     public Device $device;
 
     public function render()

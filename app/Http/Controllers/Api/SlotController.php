@@ -47,14 +47,14 @@ class SlotController extends Controller {
             return response()->json([
                 "message" => "Invalid device or slot"
             ], 401);
-//        $card = $slot
-//            ->cards()
-//            ->where("uuid", $request->card_uuid)
-//            ->first();
-//        if ($card === null)
-//            return response()->json([
-//                "message" => "Invalid card"
-//            ], 401);
+        $card = $device
+            ->cards()
+            ->where("uuid", $request->card_uuid)
+            ->first();
+        if ($card === null)
+            return response()->json([
+                "message" => "Invalid card"
+            ], 401);
 
         $slot->transactions()->create([
             "amount" => $request->amount,
@@ -66,7 +66,7 @@ class SlotController extends Controller {
         if (($slot->volume / $slot->max_volume) * 100 > 90) {
             $operators = User::query() // todo use associations
                 ->where("role", "=", "operator")
-                ->where("city", "=", $slot->device()->first()->city)
+                ->where("city", "=", $device->city)
                 ->get();
             foreach ($operators as $operator) {
                 Mail

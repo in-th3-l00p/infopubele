@@ -23,8 +23,8 @@ return new class extends Migration
                 ->foreignIdFor(User::class)
                 ->constrained("users");
             $table
-                ->foreignIdFor(Slot::class)
-                ->constrained("slots");
+                ->foreignIdFor(Device::class)
+                ->constrained("devices");
         });
     }
 

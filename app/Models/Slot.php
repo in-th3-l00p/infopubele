@@ -31,15 +31,6 @@ class Slot extends Model
     }
 
     /**
-     * Get the cards for the Slot
-     * @return HasMany : The cards for the Slot
-     */
-    public function cards(): HasMany
-    {
-        return $this->hasMany(Card::class);
-    }
-
-    /**
      * Get the transactions for the Slot
      * @return HasMany : The transactions for the Slot
      */

@@ -4,9 +4,12 @@ namespace App\Livewire\Transactions;
 
 use App\Models\Slot;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 class SlotTransactions extends Component
 {
+    use WithPagination;
+
     public Slot $slot;
 
     public function render()
