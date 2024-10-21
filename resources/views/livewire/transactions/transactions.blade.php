@@ -33,6 +33,6 @@
             {{ $transactions->links() }}
         </div>
     @else
-        <p class="text-center pt-4">{{ __("Dispozitivul nu are niciun slot") }}</p>
+        <p class="text-center pt-4">{{ __("Nu a fost efectuată nicio tranzacție") }}</p>
     @endif
 </div>

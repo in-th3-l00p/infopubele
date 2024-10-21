@@ -19,7 +19,7 @@ class DevicePolicy
             $user->role === "admin" ||
             $user->role === "uat" && $user->city === $device->city ||
             $user->role === "user" && $user->device_id === $device->id ||
-            ($user->role === "generator" || $user->role === "operator") && $user->associatedDevices->contains($device);
+            $user->role === "operator" && $user->associatedDevices->contains($device);
     }
 
     public function create(User $user): bool
@@ -31,7 +31,8 @@ class DevicePolicy
     {
         return
             $user->role === "admin" ||
-            $user->role === "uat" && $user->city === $device->city;
+            $user->role === "uat" && $user->city === $device->city ||
+            $user->role === "operator" && $user->associatedDevices->contains($device);
     }
 
     public function delete(User $user, Device $device): bool
