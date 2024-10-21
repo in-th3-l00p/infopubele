@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Users;
 
+use App\Models\Device;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -18,7 +19,8 @@ class EditUserForm extends Component
             "name" => $user->name,
             "email" => $user->email,
             "city" => $user->city,
-            "role" => $user->role
+            "role" => $user->role,
+            "device" => $user->device_id
         ];
     }
 
@@ -37,9 +39,31 @@ class EditUserForm extends Component
             Validator::make($this->state, [
                 'email' => 'unique:users,email',
             ])->validate();
-        if ($this->state['role'] == 'admin' && auth()->user()->role !== 'admin') {
+        if (
+            $this->state['role'] == 'admin' &&
+            auth()->user()->role !== 'admin'
+        ) {
             $this->addError("role", __("Nu aveți permisiunea să creați un utilizator cu rol de administrator!"));
             return;
+        }
+        if ( // if role is user, the user might have a device linked to him
+            $this->state["role"] === "user" &&
+            Device::query()->where("id", "=", $this->state["device"])
+        ) {
+            // uat can only give devices from his city
+            if (
+                auth()->user()->role !== "admin" &&
+                Device::query()
+                    ->where("id", "=", $this->state["device"])
+                    ->first()
+                    ->city !== auth()->user()->city
+            ) {
+                $this->addError("device", __("Nu aveți permisiunea să selectați acest dispozitiv!"));
+                return;
+            }
+            $this->user->update([
+                'device_id' => $this->state["device"]
+            ]);
         }
         if (auth()->user()->role === "admin")
             $this->user->update([

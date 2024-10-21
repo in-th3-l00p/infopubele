@@ -33,7 +33,7 @@ class CreateSlotForm extends Component
         ]);
 
         session()->flash('success', __("Slot adăugat cu succes!"));
-        $this->redirectRoute('admin.devices.slots.show', [
+        $this->redirectRoute(auth()->user()->role . '.devices.slots.show', [
             'device' => $this->device,
             'slot' => $slot
         ]);

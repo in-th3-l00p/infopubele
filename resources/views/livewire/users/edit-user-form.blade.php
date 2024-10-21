@@ -1,3 +1,4 @@
+@php use App\Models\Device; @endphp
 <x-form-section submit="updateUser">
     <x-slot name="title">
         {{ __('Modifică informațiile') }}
@@ -28,6 +29,7 @@
                     type="text"
                     class="mt-1 block w-full"
                     wire:model="state.city"
+                    wire:change="$refresh"
                     required
                     autocomplete="city"
                 >
@@ -39,6 +41,11 @@
                 <x-input-error for="city" class="mt-2"/>
             </div>
         @endif
+        @php
+            $roles = config("constants.roles");
+            if (auth()->user()->role !== "admin")
+                $roles = array_diff($roles, ["admin"]);
+        @endphp
         <div class="col-span-6 sm:col-span-4">
             <x-label for="role" value="{{ __('Rol') }}"/>
             <x-select
@@ -46,16 +53,42 @@
                 type="text"
                 class="mt-1 block w-full"
                 wire:model="state.role"
+                wire:change="$refresh"
                 required
                 autocomplete="role"
             >
                 <option value="">{{ __('Selectează rolul') }}</option>
-                @foreach(config("constants.roles") as $role)
+                @foreach($roles as $role)
                     <option value="{{ $role }}">{{ ucfirst($role) }}</option>
                 @endforeach
             </x-select>
             <x-input-error for="role" class="mt-2"/>
         </div>
+        @if ($state["role"] === "user")
+            @php
+                $devices = Device::query();
+                if (auth()->user()->role !== 'admin') {
+                    $devices = $devices->where('city', $state["city"]);
+                }
+                $devices = $devices->orderBy('name')->get();
+            @endphp
+            <div class="col-span-6 sm:col-span-4">
+                <x-label for="device" value="{{ __('Dispozitiv') }}"/>
+                <x-select
+                    id="device"
+                    type="text"
+                    class="mt-1 block w-full"
+                    wire:model="state.device"
+                    autocomplete="device"
+                >
+                    <option value="">{{ __('Selectează dispozitivul') }}</option>
+                    @foreach ($devices as $device)
+                        <option value="{{ $device->id }}">{{ $device->name }}</option>
+                    @endforeach
+                </x-select>
+                <x-input-error for="device" class="mt-2"/>
+            </div>
+        @endif
     </x-slot>
 
     <x-slot name="actions">

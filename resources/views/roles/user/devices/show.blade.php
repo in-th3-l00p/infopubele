@@ -8,14 +8,14 @@
 
     <x-layout.form-padding>
         @livewire("device.show-device", [
-        "device" => $device
+            "device" => $device
         ])
 
         <x-section-border/>
 
         @if ($device->latitude && $device->longitude)
             @livewire("device.device-map", [
-            "device" => $device
+                "device" => $device
             ])
             <x-section-border/>
         @endif
@@ -23,20 +23,20 @@
         <x-section-border/>
 
         @livewire("slots.device-slots-visualizer", [
-        "device" => $device
+            "device" => $device
         ])
 
         <x-section-border/>
 
         @livewire("transactions.user-transactions", [
-        "device" => $device
+            "device" => $device
         ])
 
         <x-section-border/>
 
         @if(Card::where('user_id',Auth::user()->id))
             @livewire("cards.show-card", [
-            "device" => $device
+                "device" => $device
             ])
         @endif
 

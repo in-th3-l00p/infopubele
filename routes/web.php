@@ -22,13 +22,7 @@ Route::middleware([
             case "operator":
                 return redirect()->route('operator.devices.index');
             case "user":
-                if (request()->user()->device_id)
-                    return redirect()->route('user.devices.show', [
-                        'device' => request()->user()->device_id,
-                    ]);
-                return redirect()
-                    ->route('welcome')
-                    ->withErrors(["alert" => __("Nu ai niciun dispozitiv asociat contului!")]);
+                return redirect()->route('user.devices.show');
         }
         return redirect()->route('welcome');
     })->name('dashboard');

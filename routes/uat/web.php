@@ -6,5 +6,6 @@ Route::middleware("can:uat")
     ->prefix("uat")
     ->group(function () {
         require __DIR__ . "/devices.php";
+        require __DIR__ . "/slots.php";
         require __DIR__ . "/users.php";
     });

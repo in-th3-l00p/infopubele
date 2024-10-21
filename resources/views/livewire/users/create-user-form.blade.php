@@ -1,3 +1,4 @@
+@php use App\Models\Device; @endphp
 <x-form-section submit="createUser">
     <x-slot name="title">
         {{ __('Introdu informațiile') }}
@@ -40,6 +41,7 @@
                     type="text"
                     class="mt-1 block w-full"
                     wire:model="state.city"
+                    wire:change="$refresh"
                     required
                     autocomplete="city"
                 >
@@ -63,6 +65,7 @@
                 type="text"
                 class="mt-1 block w-full"
                 wire:model="state.role"
+                wire:change="$refresh"
                 required
                 autocomplete="role"
             >
@@ -73,6 +76,32 @@
             </x-select>
             <x-input-error for="role" class="mt-2"/>
         </div>
+
+        @if ($state["role"] === "user")
+            @php
+                $devices = Device::query();
+                if (auth()->user()->role !== 'admin') {
+                    $devices = $devices->where('city', $state["city"]);
+                }
+                $devices = $devices->orderBy('name')->get();
+            @endphp
+            <div class="col-span-6 sm:col-span-4">
+                <x-label for="device" value="{{ __('Dispozitiv') }}"/>
+                <x-select
+                    id="device"
+                    type="text"
+                    class="mt-1 block w-full"
+                    wire:model="state.device"
+                    autocomplete="device"
+                >
+                    <option value="">{{ __('Selectează dispozitivul') }}</option>
+                    @foreach ($devices as $device)
+                        <option value="{{ $device->id }}">{{ $device->name }}</option>
+                    @endforeach
+                </x-select>
+                <x-input-error for="device" class="mt-2"/>
+            </div>
+        @endif
     </x-slot>
 
     <x-slot name="actions">

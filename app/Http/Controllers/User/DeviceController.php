@@ -9,11 +9,12 @@ use Illuminate\Support\Facades\Gate;
 
 class DeviceController extends Controller
 {
-    public function show(Device $device)
+    public function show(Request $request)
     {
-        Gate::authorize("view", $device);
+        if ($request->user()->associatedDevice === null)
+            return view("roles.user.devices.no-device");
         return view("roles.user.devices.show", [
-            "device" => $device
+            "device" => $request->user()->associatedDevice
         ]);
     }
 }

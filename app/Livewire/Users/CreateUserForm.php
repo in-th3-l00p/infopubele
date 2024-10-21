@@ -6,6 +6,7 @@ use App\Models\Device;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Livewire\Attributes\On;
 use Livewire\Component;
 
 class CreateUserForm extends Component
@@ -18,9 +19,11 @@ class CreateUserForm extends Component
             'email' => '',
             'password' => '',
             'password_confirmation' => '',
-            'city' => auth()->user()->city,
+            'city' => '',
             'role' => ''
         ];
+        if (auth()->user()->role !== "admin")
+            $this->state["city"] = auth()->user()->city;
     }
 
     public function createUser() {
@@ -31,10 +34,21 @@ class CreateUserForm extends Component
             'city' => 'required|max:255',
             'role' => 'required|in:' . implode(',', config("constants.roles"))
         ])->validate();
-        if ($this->state['role'] == 'admin' && auth()->user()->role !== 'admin') {
+        if (
+            $this->state['role'] == 'admin' &&
+            auth()->user()->role !== 'admin'
+        ) {
             $this->addError("role", __("Nu aveți permisiunea să creați un utilizator cu rol de administrator!"));
             return;
         }
+        if (
+            auth()->user()->role !== "admin" &&
+            $this->state["city"] !== auth()->user()->city
+        ) {
+            $this->addError("city", __("Nu aveți permisiunea să creați un utilizator în alt oraș!"));
+            return;
+        }
+
         $user = User::create([
             'name' => $this->state['name'],
             'email' => $this->state['email'],
@@ -43,6 +57,28 @@ class CreateUserForm extends Component
             'owner_id' => auth()->id(),
             'role' => $this->state["role"]
         ]);
+
+        // if role is user, the user might have a device linked to him
+        if (
+            $this->state["role"] === "user" &&
+            Device::query()->where("id", "=", $this->state["device"])
+        ) {
+            // uat can only give devices from his city
+            if (
+                auth()->user()->role !== "admin" &&
+                Device::query()
+                    ->where("id", "=", $this->state["device"])
+                    ->first()
+                    ->city !== auth()->user()->city
+            ) {
+                $this->addError("device", __("Nu aveți permisiunea să selectați acest dispozitiv!"));
+                return;
+            }
+            $user->update([
+                'device_id' => $this->state["device"]
+            ]);
+        }
+
 
         session()->flash('success', __("Utilizatorul a fost adăugat cu succes!"));
         $this->redirectRoute(auth()->user()->role . '.users.index');
