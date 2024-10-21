@@ -19,6 +19,8 @@ class ShowDevice extends Component
             "name" => $device->name,
             "series" => $device->series,
             "city" => $device->city,
+            "latitude" => $device->latitude,
+            "longitude" => $device->longitude,
         ];
     }
 

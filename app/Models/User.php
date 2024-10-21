@@ -77,7 +77,7 @@ class User extends Authenticatable
      * @return BelongsTo : device relationship
      */
     public function associatedDevice(): BelongsTo {
-        return $this->belongsTo(Device::class);
+        return $this->belongsTo(Device::class, "device_id");
     }
 
     /**

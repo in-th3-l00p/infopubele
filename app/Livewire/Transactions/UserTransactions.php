@@ -8,19 +8,21 @@ use App\Models\Transaction;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 class UserTransactions extends Component
 {
-    public $transactions;
-
-    public function mount(Device $device)
-    {
-        $card = Card::where('user_id',Auth::user()->id)->first();
-        $this->transactions = Transaction::where('card_id',$card->id)->get();
-    }
+    use WithPagination;
 
     public function render(): View
     {
-        return view('livewire.transactions.user-transactions');
+        $transactions = Transaction::query()
+            ->whereHas("card", function ($query) {
+                $query->where("user_id", Auth::id());
+            })
+            ->paginate(5);
+        return view('livewire.transactions.user-transactions', [
+            "transactions" => $transactions
+        ]);
     }
 }

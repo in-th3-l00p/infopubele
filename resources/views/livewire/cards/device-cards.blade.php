@@ -1,4 +1,4 @@
-<div class="white-container">
+<div class="white-container" id="cards">
     <div class="pb-4">
         <h3 class="text-base font-semibold leading-6 text-gray-900">{{ __("Carduri") }}</h3>
         <p class="mt-1 text-sm text-gray-500">{{ __("Vizualizează sau creează cardurile dispozitivului") }}</p>
@@ -40,7 +40,7 @@
     </form>
 
     @if ($cards->count() > 0)
-        <ul id="cards" role="list" class="divide-y divide-gray-100 rounded-b-md overflow-hidden">
+        <ul role="list" class="divide-y divide-gray-100 rounded-b-md overflow-hidden">
             @foreach($cards as $card)
                 <li class="relative flex justify-between gap-x-6 py-5 hover:bg-gray-50 px-4 sm:px-6">
                     <div class="flex min-w-0 gap-x-4">

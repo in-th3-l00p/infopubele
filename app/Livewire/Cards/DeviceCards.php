@@ -23,10 +23,10 @@ class DeviceCards extends Component
             $this->addError('user', __('Rolul utilizatorului selectat nu este "user".'));
             return;
         }
-        if ($user->city !== $this->device->city) {
-            $this->addError('user', __('Utilizatorul selectat nu este din același oraș cu dispozitivul.'));
-            return;
-        }
+//        if ($user->city !== $this->device->city) {
+//            $this->addError('user', __('Utilizatorul selectat nu este din același oraș cu dispozitivul.'));
+//            return;
+//        }
 
         $this->device->cards()->create([
             'user_id' => $user->id,
@@ -52,7 +52,7 @@ class DeviceCards extends Component
         $cardPossibleUsers = User::query()
             ->whereNotIn('id', $cards->getCollection()->pluck('user_id'))
             ->where("role", "=", "user")
-            ->where("city", "=", $this->device->city)
+//            ->where("city", "=", $this->device->city)
             ->get();
         return view('livewire.cards.device-cards', [
             'cards' => $cards,
