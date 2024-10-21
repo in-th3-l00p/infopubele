@@ -17,14 +17,14 @@ return new class extends Migration
             $table->id();
             $table->timestamps();
 
-            $table
-                ->foreignIdFor(Device::class)
-                ->constrained("devices");
-
             $table->string("name");
             $table->double("volume");
             $table->double("max_volume");
-            $table->foreignIdFor(DeviceReport::class);
+
+            $table
+                ->foreignIdFor(DeviceReport::class)
+                ->constrained("device_reports")
+                ->onDelete("cascade");
         });
     }
 

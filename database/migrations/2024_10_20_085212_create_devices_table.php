@@ -15,7 +15,6 @@ return new class extends Migration
         Schema::create('devices', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->softDeletes();
 
             $table->string("name")->unique();
             $table->string("series")->unique();
@@ -25,7 +24,9 @@ return new class extends Migration
 
             $table
                 ->foreignIdFor(User::class, "owner_id")
-                ->constrained("users");
+                ->nullable()
+                ->constrained("users")
+                ->onDelete("set null");
         });
     }
 

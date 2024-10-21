@@ -16,9 +16,11 @@ return new class extends Migration
         Schema::create('device_user', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(Device::class)
-                ->constrained("devices");
+                ->constrained("devices")
+                ->onDelete("cascade");
             $table->foreignIdFor(User::class)
-                ->constrained("users");
+                ->constrained("users")
+                ->onDelete("cascade");
         });
     }
 

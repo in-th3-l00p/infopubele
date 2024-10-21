@@ -21,10 +21,12 @@ return new class extends Migration
             $table->string("uuid");
             $table
                 ->foreignIdFor(User::class)
-                ->constrained("users");
+                ->constrained("users")
+                ->onDelete("cascade");
             $table
                 ->foreignIdFor(Device::class)
-                ->constrained("devices");
+                ->constrained("devices")
+                ->onDelete("cascade");
         });
     }
 

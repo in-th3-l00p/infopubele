@@ -42,7 +42,7 @@ class DeviceController extends Controller
         Gate::authorize("delete", $device);
         $device->delete();
         return redirect()
-            ->route("roles.uat.devices.index")
+            ->route("uat.devices.index")
             ->with("success", "Device deleted successfully");
     }
 }
