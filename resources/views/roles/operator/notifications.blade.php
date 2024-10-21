@@ -45,22 +45,5 @@
                 <p class="text-center">{{ __("Nu ai nicio notificare") }}.</p>
             @endif
         </div>
-
-        <div
-            class="white-container">
-            <h2 class="mb-4">{{__("Locația pubelelor")}}</h2>
-
-            <div class="pt-4">
-                <x-maps-leaflet style="width:95%; aspect-ratio: 2/1; margin-inline: auto;"
-                               :mapType="'roadmap'"
-                               :zoomLevel="7" :centerPoint="['lat' => 45.9432, 'long' => 24.9668]"
-                               :markers="$devices->map(fn (Device $device) => [
-                                    'lat' => $device->latitude,
-                                    'long' => $device->longitude,
-                                    'title' => $device->name
-                                ])->all()"
-                ></x-maps-leaflet>
-            </div>
-        </div>
     </x-layout.global-padding>
 </x-app-layout>

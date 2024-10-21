@@ -43,7 +43,7 @@
                 </ul>
                 {{ $devices->links() }}
             @else
-                <p class="text-center">{{ __("Nu a fost creat niciun dispozitiv") }}.</p>
+                <p class="text-center">{{ __("Nu ai niciun dispozitiv asociat") }}.</p>
             @endif
         </div>
 
