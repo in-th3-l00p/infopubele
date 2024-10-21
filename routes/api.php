@@ -13,6 +13,11 @@ Route::post(
     [SlotController::class, "transaction"]
 )->name("slots.transaction");
 
+Route::post(
+    "/slots/{slot}/reset",
+    [SlotController::class, "reset"]
+)->name("slots.reset");
+
 Route::put(
     "/devices/{device}/location",
     [DeviceController::class, "updateLocation"]

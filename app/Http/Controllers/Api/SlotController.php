@@ -76,4 +76,34 @@ class SlotController extends Controller {
         }
         return response("", 201);
     }
+
+    public function reset(Request $request, Slot $slot) {
+        $request->validate([
+            "card_uuid" => "required|exists:cards,uuid",
+            "volume" => "required|numeric|min:0"
+        ]);
+
+        $device = Device::query()->findOrFail($request->device_id);
+        if ($slot->device()->first()->id != $device->id)
+            return response()->json([
+                "message" => "Invalid device or slot"
+            ], 401);
+        $card = $device
+            ->cards()
+            ->where("uuid", $request->card_uuid)
+            ->first();
+        if ($card === null)
+            return response()->json([
+                "message" => "Invalid card"
+            ], 401);
+
+        $slot->transactions()->create([
+            "amount" => $slot->volume - $request->volume,
+            "card_id" => $card->id
+        ]);
+        $slot->update([
+            "volume" => $request->volume
+        ]);
+        return response("", 201);
+    }
 }
