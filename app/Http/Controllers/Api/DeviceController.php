@@ -30,11 +30,7 @@ class DeviceController extends Controller {
     public function cardsNumber(Device $device)
     {
         return response()->json([
-            "cards" => Card::query()
-                ->whereHas("slot", function ($query) use ($device) {
-                    $query->where("device_id", $device->id);
-                })
-                ->count()
+            "cards" => $device->cards()->count()
         ]);
     }
 }

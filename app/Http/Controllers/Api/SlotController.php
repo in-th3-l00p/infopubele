@@ -47,7 +47,7 @@ class SlotController extends Controller {
             return response()->json([
                 "message" => "Invalid device or slot"
             ], 401);
-        $card = $slot
+        $card = $device
             ->cards()
             ->where("uuid", $request->card_uuid)
             ->first();
@@ -65,8 +65,8 @@ class SlotController extends Controller {
         ]);
         if (($slot->volume / $slot->max_volume) * 100 > 90) {
             $operators = User::query() // todo use associations
-                ->where("role", "=", "operator")
-                ->where("city", "=", $slot->device()->first()->city)
+            ->where("role", "=", "operator")
+                ->where("city", "=", $device->city)
                 ->get();
             foreach ($operators as $operator) {
                 Mail
