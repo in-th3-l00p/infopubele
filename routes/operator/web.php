@@ -7,4 +7,5 @@ Route::middleware("can:operator")
     ->group(function () {
         require __DIR__ . "/devices.php";
         require __DIR__ . "/slots.php";
+        require __DIR__ . "/notifications.php";
     });

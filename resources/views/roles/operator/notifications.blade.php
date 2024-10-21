@@ -1,0 +1,66 @@
+@php use App\Models\Device; @endphp
+<x-app-layout>
+    <x-slot name="header">
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+            {{ __('Notificări') }}
+        </h2>
+    </x-slot>
+
+    <x-layout.global-padding>
+        <div>
+            @if ($devices->count() > 0)
+                <ul role="list"
+                    class="divide-y divide-gray-100 overflow-hidden bg-white shadow-sm ring-1 ring-gray-900/5 sm:rounded-md mb-4"
+                >
+                    @foreach($devices as $device)
+                        <li class="relative flex justify-between gap-x-6 px-4 py-5 hover:bg-gray-50 sm:px-6">
+                            <div class="flex min-w-0 gap-x-4">
+                                <div class="min-w-0 flex-auto">
+                                    <p class="text-sm font-semibold leading-6 text-gray-900">
+                                        <a href="{{ route("operator.devices.show", [ "device" => $device ]) }}">
+                                            <span class="absolute inset-x-0 -top-px bottom-0"></span>
+                                            {{ $device->name }}
+                                        </a>
+                                    </p>
+                                    <p class="mt-1 flex text-xs leading-5 text-gray-500">
+                                        {{ $device->filledSlots()->count() }}  {{ $device->filledSlots()->count() > 90 ? "sloturi ocupate" : "slot ocupat" }} {{ __('mai mult de 90%') }}
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="flex shrink-0 items-center gap-x-4">
+                                <div class="hidden sm:flex sm:flex-col sm:items-end">
+                                    <p class="text-sm leading-6 text-gray-900">{{ $device->slots()->count() }} {{ __("sloturi") }}</p>
+                                </div>
+                                <svg class="h-5 w-5 flex-none text-gray-400" viewBox="0 0 20 20" fill="currentColor"
+                                     aria-hidden="true" data-slot="icon">
+                                    <path fill-rule="evenodd"
+                                          d="M8.22 5.22a.75.75 0 0 1 1.06 0l4.25 4.25a.75.75 0 0 1 0 1.06l-4.25 4.25a.75.75 0 0 1-1.06-1.06L11.94 10 8.22 6.28a.75.75 0 0 1 0-1.06Z"
+                                          clip-rule="evenodd"/>
+                                </svg>
+                            </div>
+                        </li>
+                    @endforeach
+                </ul>
+            @else
+                <p class="text-center">{{ __("Nu ai nicio notificare") }}.</p>
+            @endif
+        </div>
+
+        <div
+            class="white-container">
+            <h2 class="mb-4">{{__("Locația pubelelor")}}</h2>
+
+            <div class="pt-4">
+                <x-maps-leaflet style="width:95%; aspect-ratio: 2/1; margin-inline: auto;"
+                               :mapType="'roadmap'"
+                               :zoomLevel="7" :centerPoint="['lat' => 45.9432, 'long' => 24.9668]"
+                               :markers="$devices->map(fn (Device $device) => [
+                                    'lat' => $device->latitude,
+                                    'long' => $device->longitude,
+                                    'title' => $device->name
+                                ])->all()"
+                ></x-maps-leaflet>
+            </div>
+        </div>
+    </x-layout.global-padding>
+</x-app-layout>

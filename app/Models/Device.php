@@ -56,4 +56,14 @@ class Device extends Model
     public function slots(): HasMany {
         return $this->hasMany(Slot::class);
     }
+
+    /**
+     * Device slots that have more then 90% of their capacity filled
+     * @return HasMany : A device has many slots
+     */
+    public function filledSlots(): HasMany {
+        return $this
+            ->slots()
+            ->where("(volume / max_volume) * 100", ">", 90);
+    }
 }
