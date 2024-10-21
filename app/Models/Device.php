@@ -56,4 +56,8 @@ class Device extends Model
     public function slots(): HasMany {
         return $this->hasMany(Slot::class);
     }
+
+    public function reports(): HasMany {
+        return $this->hasMany(DeviceReport::class);
+    }
 }

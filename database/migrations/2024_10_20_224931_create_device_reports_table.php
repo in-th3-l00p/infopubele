@@ -19,10 +19,15 @@ return new class extends Migration
 
             $table
                 ->foreignIdFor(Device::class)
-                ->constrained("devices");
+                ->nullable()
+                ->constrained("devices")
+                ->nullOnDelete();
             $table
-                ->foreignId(User::class, "owner_id")
-                ->constrained("users");
+                ->foreignIdFor(User::class, "owner_id")
+                ->nullable()
+                ->constrained("users")
+                ->nullOnDelete();
+
 
             $table->string("device_name");
             $table->string("device_city");
