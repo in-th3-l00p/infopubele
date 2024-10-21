@@ -98,7 +98,7 @@ class SlotController extends Controller {
             ], 401);
 
         $slot->transactions()->create([
-            "amount" => $slot->volume - $request->volume,
+            "amount" => $request->volume - $slot->volume,
             "card_id" => $card->id
         ]);
         $slot->update([
