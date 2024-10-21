@@ -6,13 +6,16 @@ use App\Http\Controllers\Controller;
 use App\Models\DeviceReport;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Storage;
 
 class DeviceReportController extends Controller
 {
     public function index() {
         Gate::authorize("viewAny", DeviceReport::class);
         return view("roles.generator.devices.reports.index", [
-            "deviceReports" => DeviceReport::query()->latest()->paginate(5)
+            "deviceReports" => DeviceReport::query()
+                ->latest()
+                ->paginate(5)
         ]);
     }
 
@@ -23,9 +26,7 @@ class DeviceReportController extends Controller
 
     public function show(DeviceReport $deviceReport) {
         Gate::authorize("view", $deviceReport);
-        return view("roles.generator.devices.reports.show", [
-            "deviceReport" => $deviceReport
-        ]);
+        return Storage::download($deviceReport->spreadsheet_link);
     }
 
     public function destroy(DeviceReport $deviceReport)
