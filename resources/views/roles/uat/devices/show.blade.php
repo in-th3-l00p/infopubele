@@ -46,5 +46,11 @@
         @livewire("cards.device-cards", [
             "device" => $device
         ])
+
+        <x-section-border />
+
+        @livewire("device.device-operators", [
+            "device" => $device
+        ])
     </x-layout.form-padding>
 </x-app-layout>
