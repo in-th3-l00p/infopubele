@@ -14,7 +14,6 @@
 <div class="bg-white">
     <x-landing.header />
     <main class="isolate">
-        <!-- Hero section -->
         <x-landing.hero />
         <x-landing.feature />
         <x-landing.cta />
