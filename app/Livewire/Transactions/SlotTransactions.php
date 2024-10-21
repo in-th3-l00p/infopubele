@@ -4,9 +4,12 @@ namespace App\Livewire\Transactions;
 
 use App\Models\Slot;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 class SlotTransactions extends Component
 {
+    use WithPagination;
+
     public Slot $slot;
 
     public function render()
@@ -15,7 +18,7 @@ class SlotTransactions extends Component
             ->slot
             ->transactions()
             ->latest()
-            ->paginate(5);
+            ->paginate(5, pageName: "transactions-page");
         return view('livewire.transactions.transactions', [
             'transactions' => $transactions
         ]);

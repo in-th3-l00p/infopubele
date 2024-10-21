@@ -41,7 +41,7 @@ class DeviceController extends Controller
         Gate::authorize("delete", $device);
         $device->delete();
         return redirect()
-            ->route("roles.admin.devices.index")
+            ->route("admin.devices.index")
             ->with("success", "Device deleted successfully");
     }
 }

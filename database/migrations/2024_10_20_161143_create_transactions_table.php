@@ -19,10 +19,12 @@ return new class extends Migration
 
             $table
                 ->foreignIdFor(Slot::class)
-                ->constrained("slots");
+                ->constrained("slots")
+                ->onDelete("cascade");
             $table
                 ->foreignIdFor(Card::class)
-                ->constrained("cards");
+                ->constrained("cards")
+                ->onDelete("cascade");
             $table->double("amount");
         });
     }

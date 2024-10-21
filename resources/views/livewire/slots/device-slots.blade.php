@@ -5,7 +5,7 @@
             <p class="mt-1 text-sm text-gray-500">{{ __("Vizualizează, creează sau modifică sloturile dispozitivului") }}</p>
         </div>
         <div class="flex-shrink-0">
-            <a href="{{ route("admin.devices.slots.create", [ "device" => $device ]) }}">
+            <a href="{{ route(auth()->user()->role . ".devices.slots.create", [ "device" => $device ]) }}">
                 <x-button
                     :title="__('Creează un slot')"
                 >
@@ -22,7 +22,7 @@
                     <div class="flex min-w-0 gap-x-4">
                         <div class="min-w-0 flex-auto">
                             <p class="text-sm font-semibold leading-6 text-gray-900">
-                                <a href="{{ route("admin.devices.slots.show", [ "device" => $device, "slot" => $slot ]) }}">
+                                <a href="{{ route(auth()->user()->role . ".devices.slots.show", [ "device" => $device, "slot" => $slot ]) }}">
                                     <span class="absolute inset-x-0 -top-px bottom-0"></span>
                                     ID {{ $slot->id }} - {{ $slot->name }}
                                 </a>

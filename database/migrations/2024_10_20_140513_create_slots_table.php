@@ -16,7 +16,6 @@ return new class extends Migration
         Schema::create('slots', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->softDeletes();
 
             $table->string("name");
             $table->float("volume")->default(0);
@@ -24,10 +23,13 @@ return new class extends Migration
 
             $table
                 ->foreignIdFor(Device::class)
-                ->constrained("devices");
+                ->constrained("devices")
+                ->onDelete("cascade");
             $table
                 ->foreignIdFor(User::class, "owner_id")
-                ->constrained("users");
+                ->nullable()
+                ->constrained("users")
+                ->nullOnDelete();
         });
     }
 

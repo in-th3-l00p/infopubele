@@ -1,4 +1,8 @@
-<div class="white-container" wire:poll.750ms.visible.keep-alive>
+<div
+    id="transactions"
+    class="white-container"
+    wire:poll.750ms.visible.keep-alive
+>
     <div class="flex flex-wrap items-center justify-between sm:flex-nowrap mb-4">
         <div>
             <h3 class="text-base font-semibold leading-6 text-gray-900">{{ __("Tranzacții") }}</h3>
@@ -30,9 +34,9 @@
             @endforeach
         </ul>
         <div class="pt-4">
-            {{ $transactions->links() }}
+            {{ $transactions->links(data: [ "scrollTo" => "#transactions" ]) }}
         </div>
     @else
-        <p class="text-center pt-4">{{ __("Dispozitivul nu are niciun slot") }}</p>
+        <p class="text-center pt-4">{{ __("Nu a fost efectuată nicio tranzacție") }}</p>
     @endif
 </div>

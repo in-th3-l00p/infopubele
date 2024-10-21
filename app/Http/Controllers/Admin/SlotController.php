@@ -27,7 +27,7 @@ class SlotController extends Controller
         Gate::authorize("update", $device);
         $slot->delete();
         return redirect()
-            ->route("roles.admin.devices.show", $device)
+            ->route("admin.devices.show", $device)
             ->with("success", "Slot deleted successfully");
     }
 }

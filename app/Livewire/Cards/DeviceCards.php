@@ -16,15 +16,9 @@ class DeviceCards extends Component
 
     public Device $device;
     public string $user;
-    public string $slot;
 
     public function createCard() {
         $user = User::findOrFail($this->user);
-        $slot = $this->device->slots()->where("id", "=", $this->slot)->first();
-        if (!$slot) {
-            $this->addError('slot', __('Slotul selectat nu există.'));
-            return;
-        }
         if ($user->role !== "user") {
             $this->addError('user', __('Rolul utilizatorului selectat nu este "user".'));
             return;
@@ -34,13 +28,12 @@ class DeviceCards extends Component
             return;
         }
 
-        $slot->cards()->create([
+        $this->device->cards()->create([
             'user_id' => $user->id,
             'uuid' => Str::uuid()
         ]);
 
         $this->user = "";
-        $this->slot = "";
 
         $this->dispatch("saved");
         $this->dispatch('$refresh');
@@ -55,12 +48,7 @@ class DeviceCards extends Component
 
     public function render()
     {
-        $cards = Card::query()
-            ->whereHas('slot', function ($query) {
-                $query->where('device_id', '=', $this->device->id);
-            })
-            ->with('user')
-            ->paginate(5);
+        $cards = $this->device->cards()->paginate(5, pageName: "cards-page");
         $cardPossibleUsers = User::query()
             ->whereNotIn('id', $cards->getCollection()->pluck('user_id'))
             ->where("role", "=", "user")

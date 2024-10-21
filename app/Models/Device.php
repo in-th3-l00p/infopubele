@@ -12,7 +12,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Device extends Model
 {
     /** @use HasFactory<\Database\Factories\DeviceFactory> */
-    use HasFactory, SoftDeletes;
+    use HasFactory;
 
     protected $fillable = [
         "name",
@@ -55,6 +55,24 @@ class Device extends Model
      */
     public function slots(): HasMany {
         return $this->hasMany(Slot::class);
+    }
+
+    /**
+     * Device slots that have more then 90% of their capacity filled
+     * @return HasMany : A device has many slots
+     */
+    public function filledSlots(): HasMany {
+        return $this
+            ->slots()
+            ->where("(volume / max_volume) * 100", ">", 90);
+    }
+
+    /**
+     * Cards allocated to this device
+     * @return HasMany
+     */
+    public function cards() {
+        return $this->hasMany(Card::class);
     }
 
     public function reports(): HasMany {

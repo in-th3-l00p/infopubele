@@ -15,13 +15,15 @@ class DeviceController extends Controller
         return view("roles.operator.devices.index", [
             "devices" => $request->user()->associatedDevices()
                 ->when($request->has("search"), fn($query) => $query->where("name", "like", "%{$request->search}%"))
-                ->paginate()
+                ->orderBy("created_at", "desc")
+                ->paginate(6)
         ]);
     }
 
     public function show(Device $device)
     {
         Gate::authorize("view", $device);
+        Gate::authorize("update", $device);
         return view("roles.operator.devices.show", [
             "device" => $device
         ]);

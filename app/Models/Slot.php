@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Slot extends Model
 {
     /** @use HasFactory<\Database\Factories\SlotFactory> */
-    use HasFactory, SoftDeletes;
+    use HasFactory;
 
     protected $fillable = [
         "name",
@@ -28,15 +28,6 @@ class Slot extends Model
     public function owner()
     {
         return $this->belongsTo(User::class);
-    }
-
-    /**
-     * Get the cards for the Slot
-     * @return HasMany : The cards for the Slot
-     */
-    public function cards(): HasMany
-    {
-        return $this->hasMany(Card::class);
     }
 
     /**

@@ -1,19 +1,9 @@
 @php use App\Models\Device; @endphp
 <x-app-layout>
     <x-slot name="header">
-        <div class="flex w-full items-center justify-between">
-            <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                {{ __('Dispozitive') }}
-            </h2>
-
-            <a href="{{ route('uat.devices.create') }}">
-                <x-button
-                    :title="__('Creează')"
-                >
-                    <i class="fa-solid fa-plus"></i>
-                </x-button>
-            </a>
-        </div>
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+            {{ __('Notificări') }}
+        </h2>
     </x-slot>
 
     <x-layout.global-padding>
@@ -27,13 +17,13 @@
                             <div class="flex min-w-0 gap-x-4">
                                 <div class="min-w-0 flex-auto">
                                     <p class="text-sm font-semibold leading-6 text-gray-900">
-                                        <a href="{{ route("uat.devices.show", [ "device" => $device ]) }}">
+                                        <a href="{{ route("operator.devices.show", [ "device" => $device ]) }}">
                                             <span class="absolute inset-x-0 -top-px bottom-0"></span>
                                             {{ $device->name }}
                                         </a>
                                     </p>
                                     <p class="mt-1 flex text-xs leading-5 text-gray-500">
-                                        {{ $device->city }}
+                                        {{ $device->filledSlots()->count() }}  {{ $device->filledSlots()->count() > 90 ? "sloturi ocupate" : "slot ocupat" }} {{ __('mai mult de 90%') }}
                                     </p>
                                 </div>
                             </div>
@@ -51,27 +41,9 @@
                         </li>
                     @endforeach
                 </ul>
-                {{ $devices->links() }}
             @else
-                <p class="text-center">{{ __("Nu a fost creat niciun dispozitiv") }}.</p>
+                <p class="text-center">{{ __("Nu ai nicio notificare") }}.</p>
             @endif
-        </div>
-
-        <div
-            class="white-container">
-            <h2 class="mb-4">{{__("Locația pubelelor")}}</h2>
-
-            <div class="pt-4">
-                <x-maps-leaflet style="width:95%; aspect-ratio: 2/1; margin-inline: auto;"
-                               :mapType="'roadmap'"
-                               :zoomLevel="7" :centerPoint="['lat' => 45.9432, 'long' => 24.9668]"
-                               :markers="$devices->map(fn (Device $device) => [
-                                    'lat' => $device->latitude,
-                                    'long' => $device->longitude,
-                                    'title' => $device->name
-                                ])->all()"
-                ></x-maps-leaflet>
-            </div>
         </div>
     </x-layout.global-padding>
 </x-app-layout>
