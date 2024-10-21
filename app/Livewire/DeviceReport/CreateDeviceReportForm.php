@@ -54,7 +54,7 @@ class CreateDeviceReportForm extends Component
         ]);
 
         return redirect()
-            ->route('admin.device-reports.index')
+            ->route(auth()->user()->role . '.device-reports.index')
             ->with('success', __("Raportul a fost creat cu succes."));
     }
 
